@@ -1,0 +1,26 @@
+{% set sorting = [(_('Latest Updated'), 'name desc')] %}
+
+{#<div role="main" class="hero">
+    {% snippet 'home/snippets/carousel.html' %} 
+    
+        <!-- <div class = "promotebox">-->
+               {% snippet 'home/snippets/promoted.html' %} 
+       <!-- </div> -->
+   
+    <body background="{{ h.url_for_static('/images/background.jpg') }}">
+    </body>
+   
+
+    
+
+    
+</div> #}
+<div id="package-list-home">
+<div class="container">
+    <h4>{{ _('Latest Updates') }}</h4>
+    {% snippet 'snippets/package_list_home.html', packages = h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
+</div>
+</div>
+</div>
+
+{% resource 'ckanext-helix-theme/slider' %}

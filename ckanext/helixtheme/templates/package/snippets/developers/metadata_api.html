@@ -1,0 +1,18 @@
+{% set api_root_url = '/api/3/action'%}
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-dev" href="#collapse-querying-mdapi">{{ _('Metadata API') }} &raquo;</a>
+    </div>
+    <div id="collapse-querying-mdapi" class="collapse accordion-body">
+        <div class="accordion-inner">
+
+        <strong>{{ _('Package show') }}</strong>
+        <p>
+        <code><a href="{{ api_root_url }}/package_show?id={{pkg.name}}" target="_blank">{{ api_root_url }}/package_show?id={{pkg.name}}</a></code>
+        </p>
+
+        </div>
+
+</div>
+</div>

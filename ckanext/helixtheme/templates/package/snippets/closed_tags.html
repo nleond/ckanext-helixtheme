@@ -1,0 +1,21 @@
+ 
+<h2 class="module-heading"><img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/tags.svg') }}"></img>
+{{ _('Subject') }}</h2>
+{# <i class="icon-medium icon-lock"></i> #}
+{% if tags %} 
+  <section class="tags">
+    {% set _class = _class or 'tag-list' %}
+    {% block tag_list %}
+    <ul class="{{ _class }}">
+    {% for tag in tags %}
+      <li>
+        <a class="{% block tag_list_item_class %}tag{% endblock %}"  href="{% url_for controller='package', action='search', q=tag%}" >{{ h.truncate(tag, 22) }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+  </section>
+  {% else %}
+    <section class="module-content"></section>
+  {% endif %}
+  </section>
