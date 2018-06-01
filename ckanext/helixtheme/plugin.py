@@ -2,7 +2,8 @@ import datetime
 import copy
 import sets
 
-from pylons import request, config
+from pylons import  config
+from ckan.common import request
 
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
