@@ -43,6 +43,9 @@ hide_section
 {% set hide_empty = hide_empty or false %}
 {% set LIMIT = 5 %}
 {% with items = items or h.get_facet_items_dict(name, limit=50) %}
+
+
+
 {% if not hide_section and items|length >= 1 %}
   {% if items or not hide_empty %}
     {% if within_tertiary %}
@@ -108,4 +111,4 @@ hide_section
         <p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
         {% endif %}
 {% endif %}
-{% endwith %}
+{% endwith %} 
