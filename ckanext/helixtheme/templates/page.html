@@ -1,5 +1,12 @@
 {% ckan_extends %}
 
+{#{% block styles %}
+        {{ super() }}
+<link rel="stylesheet" href="/css/roleplay.css" />
+{% endblock %}
+#}
+
+
 {%- block page -%}
 
   {#
@@ -13,13 +20,7 @@
 
  {%- block main %}
 
-    {% block feedback %}
-    {#     
-       <div class="feedback-form">
-            <a href="{{ h.feedback_form() }}"><button class="btn btn-primary">{{_('Leave your feedback')}}</button></a><a href="http://www.imis.athena-innovation.gr"><div class="imis-logo-side"></div></a>
-                            </div>
-    #}
-    {% endblock %}
+   
 
   {# The content block allows you to replace the content of the page if needed #}
   {%- block content %}

@@ -84,7 +84,8 @@ p a{
 /* Header */
 
 .account-masthead {
-    //background: #fff;
+    background: #fff;
+    
     background-color: transparent;
     font-color: #4E59A4;
     /*height: 32px;  edit for data logo overlap*/
@@ -652,7 +653,7 @@ p a{
     background: #fff;
 }
 [role=main] .primary{
-    width: 697px;
+    max-width: 697px;
 }
 //.module-content:first-child{
 //    padding-top:0;
@@ -735,6 +736,7 @@ p a{
 .wrapper {
     border: none;
     box-shadow: none;
+    position: static;   /* edit */
 }
 .page-header{
     background: none;
@@ -890,6 +892,7 @@ p a{
 }
 .homepage .search-form .search-input.search-giant input{
     padding-left:10;
+    color: #000;
 }
 .search-form-top .search-input.search-giant input{
     padding-left:0;
@@ -2206,6 +2209,12 @@ format-label[data-format=csv], .format-label[data-format*=csv]
         display: none;
     }
 }
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+  }
 
 
 
