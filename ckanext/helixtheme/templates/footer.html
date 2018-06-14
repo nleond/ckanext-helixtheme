@@ -30,7 +30,22 @@
         <div class="quarter footer-links">
             <ul class="unstyled">
             {% block footer_links_ckan %}
-              {% snippet 'snippets/main_menu.html' %}                            
+                <li  >
+                <a href="{{ h.url_for(controller='package', action='search')}}">{{_('Data')}}</a>
+                </li>
+                <li  >
+                <a href=#>{{_('Pubs')}}</a>
+                </li>
+                <li  >
+               <a href=#>{{_('Lab')}}</a>
+                </li>
+                <li  >
+                <a href="{{ h.redirect_wp('about') }}">{{_('About')}}</a>
+                </li>
+                <li  >
+                <a href="{{ h.redirect_wp('news') }}">{{_('News')}}</a>
+                </li>
+                           
                 {% endblock %}
             </ul>
         </div>

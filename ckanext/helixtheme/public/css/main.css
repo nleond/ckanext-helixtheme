@@ -12,7 +12,8 @@ I/* Body */
 body { 
     color: #666666;
     background: #3EA0DD;
-    font-family: 'ACMuliLight', Helvetica, Arial, sans-serif;
+    //font-family: 'ACMuliLight', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 500;
     min-width:1000px;
     margin-top: 15px;
@@ -20,14 +21,15 @@ body {
     margin-bottom: 0px;
     margin-left: 15px
 }
-a, b { 
+
+/*a, b { 
     font-family: 'ACMuli', Helvetica, Arial, sans-serif;
     font-weight: normal;
-}
+} 
 textarea, input{
     font-family: 'ACMuliLight', Helvetica, Arial, sans-serif !important;
     padding-top:5px;
-}
+}    Edit for roboto */  
 
 ac{
     color: #4E59A4;
@@ -86,7 +88,7 @@ p a{
 .account-masthead {
     background: #fff;
     
-    background-color: transparent;
+    //background-color: transparent;
     font-color: #4E59A4;
     /*height: 32px;  edit for data logo overlap*/
 }
@@ -164,6 +166,7 @@ p a{
     float: right;
     border: none;
     overflow: visible;
+    padding-top: 2px;   /* edit for roleplay index*/
     }
 
 .user-menu .nav-pills{
@@ -331,10 +334,10 @@ p a{
     padding: 10px 7px;
     margin-right: 0;
     border-radius: 0;
-    border-right: 1px #7C7C7F solid;
+    //border-right: 1px #7C7C7F solid;
 }
 .nav-pills > li:first-child a{
-    border-left: 1px #7C7C7F solid;
+    //border-left: 1px #7C7C7F solid;
 }
 .nav-pills > li:hover a, .nav-pills > .active >a:hover {
     background-color: #4E59A4;
@@ -653,7 +656,8 @@ p a{
     background: #fff;
 }
 [role=main] .primary{
-    max-width: 697px;
+    width: 697px;
+    //width: 70%;  /* edit for 2.8*/
 }
 //.module-content:first-child{
 //    padding-top:0;
@@ -696,7 +700,7 @@ p a{
 }
 .icons-grid {
     margin-bottom: 20px;
-}
+}/*
 .menu-item{
     display: block;
     float: left;
@@ -710,7 +714,7 @@ p a{
     width:95px;
     margin: 8px 0 0 -7px;
     line-height: 15px;
-}
+}   */
 .icons-grid li img{
     -webkit-transition: .2s ease-in-out;
     -moz-transition: .2s ease-in-out;
@@ -1925,6 +1929,7 @@ a.tag:hover{
     border-radius: 0px !important;
 }
 .select2-container-multi .select2-choices .select2-search-choice{
+   
     font-size: 14px;
     line-height: 13px;
     background-image: none;
@@ -1933,6 +1938,11 @@ a.tag:hover{
     box-shadow: none;
     background-clip: none;
 }
+
+.select2-choices {
+    width: 517px;  /* edit (added)*/
+}
+
 .select2-container .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices{
     background-image: none;
     background: #fff;
