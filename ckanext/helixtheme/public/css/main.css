@@ -24,12 +24,11 @@ body {
 
 /*a, b { 
     font-family: 'ACMuli', Helvetica, Arial, sans-serif;
-    font-weight: normal;
+    font-weight: normal; */
 } 
 textarea, input{
-    font-family: 'ACMuliLight', Helvetica, Arial, sans-serif !important;
-    padding-top:5px;
-}    Edit for roboto */  
+    font-family: 'Roboto'!important;
+}    
 
 ac{
     color: #4E59A4;
@@ -341,7 +340,7 @@ p a{
 }
 .nav-pills > li:hover a, .nav-pills > .active >a:hover {
     background-color: #4E59A4;
-    color: #fff;
+    //color: #fff;
 }
 .alt-navigation{
     margin-top:2px;
@@ -1724,10 +1723,11 @@ a.tag:hover{
     box-shadow: none;
 }
 .btn:hover, .btn-hover{
-    border-radius: 0;
-    background: #4E59A4;
-    color: #fff !important;
+    //border-radius: 0;
+    //background: #4E59A4;
+    background-color: #D7DBDD !important;
     //border: 2px #4E59A4 solid;
+    //cursor:pointer;
 }
 .btn:focus{
     outline: none;
@@ -1939,15 +1939,23 @@ a.tag:hover{
     background-clip: none;
 }
 
-.select2-choices {
-    width: 517px;  /* edit (added)*/
+.select2-choices {  /* edit (added)*/
+    //width: 517px;  
+    padding: 0px !important;
+    border-radius: 4px !important;
+     
+}
+
+.select2-search-field input{
+    font-family: 'Roboto' !important;
 }
 
 .select2-container .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices{
     background-image: none;
     background: #fff;
-    border-radius: 0;
-    margin-top: 10px;
+    border-radius: 4px !important;
+    border-color: #cccccc ;
+    //margin-top: 10px;
     //border: 3px #4E59A4 solid;
 }
 .select2-search-choice-close, .select2-container-multi .select2-search-choice-close{
@@ -1956,7 +1964,14 @@ a.tag:hover{
 .select2-container .select2-choice .select2-arrow{
     background-image:none;
     background: #fff;
+    
 }
+
+
+.select2-container{
+    width: 100% !important;
+}
+
 
 /* closed-tags class(select-multiple) */
 
@@ -2226,5 +2241,26 @@ format-label[data-format=csv], .format-label[data-format*=csv]
     }
   }
 
+.control-label{
+    cursor:default;  //remove pointer from hovering field titles
+}
+
+.help-block{
+    padding-left:21.8%;
+    padding-bottom:12px;
+}
+
+.editor textarea{
+    border-radius: 4px;
+}
+
+.form-actions .control-required-message{
+    float:right;
+}
+
+//.form-control{
+ //   color: #999 !important;
+    
+//}
 
 

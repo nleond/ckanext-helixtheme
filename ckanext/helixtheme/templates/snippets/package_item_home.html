@@ -19,49 +19,33 @@ Example:
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set modified = package.metadata_modified %}
 
-<li class="{{ item_class or "dataset-item" }}">
+<div class="latest-dataset-item">
   {% block package_item_content %}
-  <div class="dataset-content">
-      <div class="dataset-preheading">
+      <div class="date-of-entry">
           {% if package.groups %}
           {% set group = package.groups[0] %}
-          <div>{{ h.friendly_date(modified|urlize)}} @ <span> <a href={{ h.url_for(controller='group', action='read', id= group.name) }}> {{group.title|urlize }}</span></div> </a>
+          {{ h.friendly_date(modified|urlize)}} @ <a href={{ h.url_for(controller='group', action='read', id= group.name) }}> {{group.title|urlize }}</a>
           {% else %}
-          <div>{{ h.friendly_date(modified|urlize)}} </div>
+          {{ h.friendly_date(modified|urlize)}} 
           {% endif %}
       </div>
-
-      <h3 class="dataset-heading">
-        {% if package.private %}
-          <span class="dataset-private label label-inverse">
-            <i class="icon-lock"></i>
-            {{ _('Private') }}
-        </span>
-        {% endif %}
-        
-        {% if package.groups %}
-        {% set group = package.groups[0] %}
-        <a href={{ h.url_for(controller='package', action='read', id=package.name)}}><img src= {{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}/></a>
-          {% endif %}
+      <a href={{h.url_for(controller='package', action='read', id=package.name)}}>
+      <h3 class="latest-dataset-title">
 
           {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
-        {% if package.get('state', '').startswith('draft') %}
-          <span class="label label-info">{{ _('Draft') }}</span>
-        {% elif package.get('state', '').startswith('deleted') %}
-          <span class="label label-important">{{ _('Deleted') }}</span>
-        {% endif %}
+          
         {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
       </h3>
-      {% if banner %}
-        <span class="banner">{{ _('Popular') }}</span>
-      {% endif %}
+      </a>
+      
+      
       {% if package.organization %}
       {% set org = h.get_organization(package.organization.name) %}
       <div class="dataset-postheading">
           <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}}> {{ package.organization.title|urlize }}</a>
       </div>
       {% endif %}
-  </div>
+  
       {% if package.resources and not hide_resources %}
       <ul class="dataset-resources unstyled">
         {% for resource in h.dict_list_reduce(package.resources, 'format') %}
@@ -72,4 +56,4 @@ Example:
       </ul>
     {% endif %}
   {% endblock %}
-</li>
+</div>

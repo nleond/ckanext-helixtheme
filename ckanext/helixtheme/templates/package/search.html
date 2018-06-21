@@ -1,6 +1,8 @@
 {% ckan_extends %}
-          
+    
+   
 {% block breadcrumb_content %}
+
     <li class="active">  {{ h.nav_link(_('Datasets'), controller='package', action='search', highlight_actions = 'new index') }}</li>
 {% endblock %}
 {% block gap %}{% endblock %}
@@ -60,9 +62,14 @@
     </div>
   </section>
   {% endblock %}
+  
+
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
 {% resource 'ckanext-helix-theme/facets' %}
 {% endblock %} 
+
+
+

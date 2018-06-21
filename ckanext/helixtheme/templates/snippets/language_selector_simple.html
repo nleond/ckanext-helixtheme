@@ -6,8 +6,8 @@
 
 {% for locale in h.get_available_locales() %}
 {% if locale.identifier == current_lang %} 
-<a href="{{ h.url_for(current_url, locale=locale) }}"><span class="down-arrow">
-            {{ locale.display_name|capitalize or locale.english_name|capitalize }}</span></a>
+<a href="{{ h.url_for(current_url, locale=locale) }}"><span >
+            {{ locale.display_name|truncate(2,True, '')|upper or locale.english_name|truncate(2,True, '')|upper }}</span></a>
 {% endif %} 
 {% endfor %}
 
@@ -15,7 +15,7 @@
     {% for locale in h.get_available_locales() %}
     {% if locale.identifier != current_lang %}
     <li value="{% url_for current_url, locale=locale %}"><a href="{{ h.url_for(current_url, locale=locale) }}"><span>
-        {{ locale.display_name|capitalize  or locale.english_name|capitalize }}</span></a></li>
+        {{ locale.display_name|truncate(2,True, '')|upper   or locale.english_name|truncate(2,True, '') |upper  }}</span></a></li>
     {% endif %}
     {% endfor %}
     </ul>

@@ -1,82 +1,88 @@
-<footer class="site-footer">
-  <div class="container">
+<footer id="footer" class="data-footer">
+  <div class="footer-content">
     {% block footer_content %}
     {% block footer_links %}
             {% endblock %}
 
-    <div class="quarter">
-        <ul class="unstyled"> 
-            {#<li>
-                <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
-                    <div class="field">
-                    <label for="field-sitewide-search">{{ _('Search') }}</label>
-                    <input id="field-sitewide-search" type="text" name="q" placeholder="{{ _('Search...') }}" />
-                    <button class="btn-search" type="submit"><i class="icon-search"></i></button>
-                    </div>
-                </form>
-            </li> #}
-            <div id="footerlogo">
-            <li>
-                <a class="logo" href="{{ h.url('home') }}"><img src="{{ h.url_for_static('/images/Helix-logo.svg') }}" alt="{{ g.site_title }} Logo" title="{{ g.site_title }} Logo" /></a>
-            </li>
-            </div>            
-        </ul>
-
+    <div class="footer-column logo">
+        
+          <a href="{{ h.url('home.index') }}">
+               <img src="{{ h.url_for_static('/images/svg/Helix-logo-White-on-Blue.svg') }}" alt="" >
+          </a>
     </div>
     
-        {# <nav class="footer-links"> #}
-        {% block footer_nav %}
-       
-        <div class="quarter footer-links">
-            <ul class="unstyled">
-            {% block footer_links_ckan %}
-                <li  >
-                <a href="{{ h.url_for(controller='package', action='search')}}">{{_('Data')}}</a>
-                </li>
-                <li  >
-                <a href=#>{{_('Pubs')}}</a>
-                </li>
-                <li  >
-               <a href=#>{{_('Lab')}}</a>
-                </li>
-                <li  >
-                <a href="{{ h.redirect_wp('about') }}">{{_('About')}}</a>
-                </li>
-                <li  >
-                <a href="{{ h.redirect_wp('news') }}">{{_('News')}}</a>
-                </li>
-                           
-                {% endblock %}
-            </ul>
-        </div>
-        
-        {% endblock %}
-        {# </nav> #}
+        <div class="footer-column about">
+        <h3 class="footer-column-title">
+          About
+        </h3>
+        <ul>
+          <li><a href="#">Αρχική</a></li>
+          <li><a href="#">Το έργο</a></li>
+          <li><a href="#">Επικοινωνία</a></li>
+          <li><a href="#">Όροι χρήσης</a></li>
+        </ul>
+      </div>
+      <div class="footer-column research">
+        <h3 class="footer-column-title">
+          Έρευνα
+        </h3>
+        <ul>
+          <li><a href="#">Data</a></li>
+          <li><a href="#">Publications</a></li>
+          <li><a href="#">Lab</a></li>
+          <li><a href="#">Θεματικές</a></li>
+          <li><a href="#">Οργανισμοί</a></li>
+        </ul>
+      </div>
+      <div class="footer-column partners">
+        <h3 class="footer-column-title">
+          Συνεργάτες
+        </h3>
+        <ul>
+          <li>
+            <a href="#">
+              <img src="" alt="">
+            </a>
+          </li>
+          
+          <li>
+            <a href="#">
+              <img src="" alt="">
+            </a>
+          </li>
+          
+          <li>
+            <a href="#">
+              <img src="" alt="">
+            </a>
+          </li>
+          
+          <li>
+            <a href="#">
+              <img src="" alt="">
+            </a>
+          </li>
+          
+          <li>
+            <a href="#">
+              <img src="" alt="">
+            </a>
+          </li>
+          
+          <li>
+            <a href="#">
+              <img src="" alt="">
+            </a>
+          </li>
+          
+        </ul>
+      </div>
 
-        <div class="quarter footer-links">
-            <ul class="unstyled">
-                <li><a href="mailto:info@geodata.gov.gr">{% trans %}<span class="contact-footer">Contact</span>{% endtrans %} </a></li>
-                <li><a href="http://www.imis.athena-innovation.gr"> {{ _('IMIS') }} </a></li>
-                <li><a href="http://inspire.ec.europa.eu/"> {{ _('INSPIRE') }} </a></li>
-                <li><a href="http://open-data.europa.eu/en/data/"> {{ _('EU Open Data Portal') }} </a></li>
-            </ul>
-        </div>
-
-        <div class="quarter footer-links">
-            <ul class="unstyled">
-            <li><a href="http://www.publicamundi.eu">PublicaMundi</a></li>
-            <li><a href="https://twitter.com/geodatagovgr">Twitter</a></li>
-            <li><a href="https://github.com/PublicaMundi/geodata.gov.gr">Github</a></li>
-            <li><a href="https://github.com/PublicaMundi/geodata.gov.gr/issues/new">{{_('Report issue') }}</a></li>
-            </ul>
-        </div>   
-      
-          {% block footer_attribution %}
-        {% endblock %}
-              
+      <div class="copyright-notes">
+        © 2018 Helix. All rights reserved.
+      </div>
     </div>
-    {% endblock %}
-  </div>
+ {% endblock %}
 
   {% block footer_debug %}
     {% if g.debug %}

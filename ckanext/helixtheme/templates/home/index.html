@@ -6,7 +6,7 @@
 
 <body class="main-landing data">
 
-<header class="header" >   
+<header class="header  home-header" >   
     
         {% block header_site_navigation %}
         
@@ -14,7 +14,7 @@
         {# The .header-image class hides the main text and uses image replacement for the title #}
         
 
-         <a href="{{ h.url('home') }}">
+         <a href="{{ h.url('home.index') }}">
            <img class="logo-image" src="{{ h.url_for_static('/images/Data-logo.svg') }}" alt="{{ g.site_title }} Logo"  />
            </a>
           {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
@@ -27,29 +27,30 @@
               {% block header_site_navigation_tabs %}
                 {% snippet 'snippets/main_menu.html' %}                            
             {% endblock %}
-         
-            <ul class="user-menu">
-                
+                </ul>
+           
+             </nav>   
               {% block header_lang %}
-                <li class="language">
+                <li class="language-selector">
                 {% snippet "snippets/language_selector_simple.html" %}
                 </li>
             {% endblock %}  
                 
              {% block header_account_container_content %}
-        {# {% snippet "snippets/user_selector_simple.html", c=c %} #}
+        
         {% if c.userobj %}
-          <li class="authed" data-module="me" data-me="{{ c.userobj.id }}">
+          <li class="account-item" data-module="me" data-me="{{ c.userobj.id }}">
               {% block header_account_logged %}
-              {# <ul class="unstyled"> #}
-                  {# <li> #}
+              
                 <a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="viewprofile" title="{{ _('View profile') }}">
-                    <span class="down-arrow" >{{h.truncate(c.userobj.display_name, 40) }}</span>
+                    
+                    <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab">
                     </a>
                 <ul>
                     {% if c.userobj.sysadmin %}
                     <li>
                         <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
+                        <span>{{ _('Sysadmin settings') }}</span>
                         </a>
                     </li>
                     {% endif %}
@@ -77,33 +78,28 @@
                         </a>
                     </li>
                     {% endblock %}
-                    {#  </ul>
-                </li> #}
+                    
             </ul>
             {% endblock %}
             </li>
-              {#  </ul> #}
-          {% else %}
-          {# <li class="not-authed">
-          <ul class="unstyled"> #}
+             
+          {% else %}         
                 {% block header_account_notlogged %}
-                <li>{% link_for _('Log in'), controller='user', action='login' %}</li>
+                <li class="account-item">{% link_for _('Log in'), controller='user', action='login' %}</li>
                 {% if h.check_access('user_create') %}
-                <li>{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
+                <li class="account-item">{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
                 {% endif %}
                 {% endblock %}
-                {#  </ul>
-            </li> #}
         {% endif %}
         {% endblock %}   
                 
                 
                 
                 
-           </ul>     {# ul user-menu #}
+           {#</ul>     ul user-menu 
           
-          </ul>
-          </nav>
+          </ul>     ul menu-items 
+          </nav>  #}
             
           
           
@@ -131,21 +127,42 @@
 
      {% snippet 'home/snippets/search.html' %}   {# includes <section> #}
      
+     
+<section class="data-landing-page-content">     
 
-            {#  Latest datasets #}
-        <div id="package-list-home">
-            <div class="container">
-            <h4>{{ _('Latest Updates') }}</h4>
-                {% snippet 'snippets/package_list_home.html', packages = h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
-            </div>
+    <div class="latest-datasets-container container-fluid">
+      <div class="row">
+          {#  Latest datasets #}
+          <div class="col-sm-12">
+           <h4 class="latest-datasets-header">
+             Latest Data sets
+           </h4>
+          </div>
+          
+       <div class="col-sm-12">
+          <div class="latest-border-bottom">
+            <label class="latest-datasets-order-by" for="latest-datasets-order-by">Order by
+              <select name="latest-datasets-order-by" value="">
+                <option value="1">
+                  Σχετικότητα
+                </option>
+              </select>
+            </label>
+          </div>
         </div>
+            
+        
+        {% snippet 'snippets/package_list_home.html', packages = h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
+          
     {% endblock %}
 
-
-
-
-
   {% endblock %}
+  
+
+        
+      </div>
+    </div>
+  </section>  
 
 {% block footer %}
 {{ super() }}
