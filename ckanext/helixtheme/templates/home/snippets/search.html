@@ -8,7 +8,7 @@
 
       <div class="search-form-wrapper">
 
-        <form class="landing-search-form module-content search-form" method="get" action="{% url_for controller='package', action='search' %} ">
+        <form class="landing-search-form" method="get" action="{% url_for controller='package', action='search' %} ">
           
           <div class="main-form-content">
             <input type="text" class="landing-search-text" name="landing-search-text" value="" placeholder="Αναζητήστε δεδομένα, δημοσιεύσεις, εργαλεία έρευνας">
@@ -68,13 +68,10 @@
               </div>
               
              
-           
-            <button type="submit" name="landing-search-button" class="landing-search-button">
-              <i class="fa fa-search"></i>
-              
-            </button>
           </div>
-        </div>
+         <button type="submit" name="landing-search-button" class="landing-search-button">
+              <i class="fa fa-search"></i>
+            </button>
       </form>
     </div>
   </section>

@@ -1,4 +1,9 @@
-{% ckan_extends %}
+{% extends 'package/base.html' %}
+
+{% set pkg = c.pkg_dict %}
+{% set pkg_dict = c.pkg_dict %}
+
+{% block breadcrumb_content_selected %}{% endblock %}
 
 {% block secondary_content %}
 
@@ -7,3 +12,37 @@
     {% snippet 'package/snippets/info.html', pkg=pkg, hide_follow_button=true %}
 </div>
 {% endblock %}
+
+{% block breadcrumb_content %}
+  {% if pkg %}
+    {% set dataset = h.dataset_display_name(pkg) %}
+    {% if pkg.organization %}
+      {% set organization = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
+      <a class="breadcrumbs-part"{% link_for _('Organizations'), controller='organization', action='index' %}</a>
+      <a class="breadcrumbs-part"{% link_for organization|truncate(30), controller='organization', action='read', id=pkg.organization.name %}</a>
+    {% else %}
+      <a class="breadcrumbs-part"{% link_for _('Datasets'), controller='package', action='search' %}</a>
+    {% endif %}
+    <a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(30), controller='package', action='read', id=pkg.name %}</a>
+  {% else %}
+    <a class="breadcrumbs-part" {% link_for _('Datasets'), controller='package', action='search' %}</a>
+    <a class="breadcrumbs-part" href=""{{ _('Create Dataset') }}</a>
+  {% endif %}
+   
+  {% if pkg %}
+    <a class="breadcrumbs-part"{% link_for _('Edit'), controller='package', action='edit', id=pkg.name %}</a>
+  {% endif %}
+{% endblock %}
+
+{% block content_action %}
+  {% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn btn-default btn-manage', icon='eye' %}
+{% endblock %}
+
+{% block content_primary_nav %}
+  {{ h.build_nav_icon('dataset_edit', _('Edit metadata'), id=pkg.name) }}
+  {{ h.build_nav_icon('dataset_resources', _('Resources'), id=pkg.name) }}
+{% endblock %}
+
+{#{% block secondary_content %}
+  {% snippet 'package/snippets/info.html', pkg=pkg, hide_follow_button=true %}
+{% endblock %}#}

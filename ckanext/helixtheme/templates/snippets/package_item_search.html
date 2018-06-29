@@ -19,10 +19,10 @@ Example:
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set modified = package.metadata_modified %}
 
-<li class="{{ item_class or "dataset-item" }}">
+<div class="result-item data">
   {% block package_item_content %}
-  <div class="dataset-content">
-      <div class="dataset-preheading">
+  
+      <div class="date-of-entry">
           {% if package.groups %}
           {% set group = package.groups[0] %}
           <div>{{ h.friendly_date(modified|urlize)}} @ <span> <a href={{ h.url_for(controller='group', action='read', id= group.name) }}> {{group.title|urlize }}</span></div> </a>
@@ -31,7 +31,7 @@ Example:
           {% endif %}
       </div>
 
-      <h3 class="dataset-heading">
+      <h3 class="title">
         {% if package.private %}
           <span class="dataset-private label label-inverse">
             <i class="icon-lock"></i>
@@ -39,7 +39,10 @@ Example:
         </span>
         {% endif %}
         
-          {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
+          {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }} 
+          <div class="pill data">
+                DATA
+          </div>
         {% if package.get('state', '').startswith('draft') %}
           <span class="label label-info">{{ _('Draft') }}</span>
         {% elif package.get('state', '').startswith('deleted') %}
@@ -50,30 +53,27 @@ Example:
       {% if banner %}
         <span class="banner">{{ _('Popular') }}</span>
       {% endif %}
-        {% if notes %}
-  <div> {{ notes |urlize }} </div>
-  {% endif %}
+        
 
       {% if package.organization %}
-      <div class="dataset-postheading">
+      <div class="service">
           <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}} > {{ package.organization.title|urlize }}</a>
       </div>
       {% endif %}
-  </div>
+ 
     {% block package_item_resources %}
     {% if package.resources and not hide_resources %}
-      <ul class="dataset-resources unstyled">
+      <div class="tag-list">
         {% for resource in package.resources %}
-        <li>
-          <a class="label"
+          <a class="tag-box"
             href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
             data-format="{{ resource.format }}"
            >{{ resource.format|upper }}</a>
-        </li>
+
         {% endfor %}
-      </ul>
+      </div>
     {% endif %} {# package.resources #}
     {% endblock %} {# package_item_resources #}
 
       {% endblock %}
-</li>
+</div>

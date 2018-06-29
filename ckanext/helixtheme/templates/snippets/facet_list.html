@@ -40,9 +40,29 @@ hide_section
   Parameter to hide organization/group facet section when only one item is present
 #}
 
+{% set total_count=[0]%}
+
+
+{% with labels = c.facet_labels or {} %}
+  {% for name, title in c.facet_titles.items() %}
+
+
 {% set hide_empty = hide_empty or false %}
 {% set LIMIT = 5 %}
 {% with items = items or h.get_facet_items_dict(name, limit=50) %}
+{% set label_function=labels.get(facet) %}
+{% if name == 'organization' %}
+            {% set facet_class = 'organizations' %}
+        {% elif name == 'closed_tags_facets' %}
+            {% set facet_class = 'topics' %}
+        {% elif name == 'tags' %}
+            {% set facet_class = 'tags' %}
+        {% elif name == 'res_format' %}
+            {% set facet_class = 'formats' %}
+        {% elif name == 'license_id' %}
+            {% set facet_class = 'licenses' %}
+{% endif %}
+
 
 
 
@@ -54,13 +74,15 @@ hide_section
       {% set wrapper_class = 'nav-facet nav-facet-tertiary' %}
     {% endif %}
     {% if items %}
-    <section class="{{ wrapper_class or 'module module-narrow module-shallow' }}">
+    <div class="{{ facet_class  }} param-box">
 
-    <h2 class="module-heading">
-        {% if name == 'organization' %}
+    <h5 class="title">
+       {# {% if name == 'organization' %}
         <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/organizations.svg') }}"></img>
         {% elif name == 'groups' %}
         <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/topics.svg') }}"></img>
+        {% elif name == 'closed_tags_facets' %}
+        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/tags.svg') }}"></img>
         {% elif name == 'tags' %}
         <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/tags.svg') }}"></img>
         {% elif name == 'res_format' %}
@@ -68,47 +90,57 @@ hide_section
         {% elif name == 'license_id' %}
         <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img>
         {% endif %}
+        #}
         {% set facet_titles = {'organization': _('Organizations'),
-                    'groups': _('Topics'),
+                    'closed_tags_facets': _('Topics'),
                     'tags': _('Tags'),
                     'res_format': _('Formats'),
                     'license_id': _('Licenses'), } %}
 
-                    {% set title = facet_titles.get(name)|capitalize %}
-                    {{ title }} <br> 
-                    <div class="sorting">
+                    {% set title = facet_titles.get(name)|upper %}
+                    {{ title }} 
+                    {#<div class="sorting">
                         <a href="#" class="sort-name">{{_('A...Z ')}} 
                             <i class="fa fa-sort"></i>
                         </a> 
                         <a href="#" class="sort-count">{{_('1...9 ')}} <i class="fa fa-sort"></i>
                         </a> 
-                    </div>
-      </h2>
-        <nav>
-        <ul id={{ name }}  title={{title}} class="{{ nav_class or 'unstyled nav nav-simple nav-facet' }} count_desc">
-            {% for item in items %}
+                    </div> #}
+      </h5>
+        <div  class="switches">  
+            {% for item in items %}   {% if total_count.append(total_count.pop() + 1) %}{% endif %} 
               {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
               {% set label = label_function(item) if label_function else item.display_name %}
               {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
-              {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
-              <li count={{ item['count'] }}  class="{{ nav_item_class or 'nav-item' }}{% if item.active %} active{% endif %}">
-                  <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}">
-                      <span>{{ label_truncated }} {{ count }}</span>{% if item.active %}<i class="icon-remove-sign hover-icon"></i>{% else %}<i class="icon-plus-sign hover-icon"></i>{% endif %}
-                  </a>
-                </li>
+              {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %} 
+              <label for="switch-{{total_count[0]}}" {% if loop.index> LIMIT %} class="view-more" {% endif %}>
+                    <input type="checkbox" form="main-form-search" id="switch-{{total_count[0]}}" name="{{name|lower}}" 
+                            {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}"{% else %} value="{{label}}"> {% endif %}
+                  <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}"> 
+                      {{ label_truncated }} {{ count }}
+                  </a> 
+                </label> 
             {% endfor %}
-          </ul>
-          </nav>
-        {% if items|length >= LIMIT %}
-        <p class="module-footer">
-            <a href="#" class="read-more">{{ _('Show More {facet_type}').format(facet_type=title) }}</a> 
-            <a href="#" class="read-less hidden">{{ _('Show Only Popular {facet_type}').format(facet_type=title) }}</a> 
-            </p>
+            {% if items|length >= LIMIT %}
+        <div class="more-link">
+            <a href="#" class="read-more">{{ _('View More').format(facet_type=title) }}</a> 
+            <a href="#" class="read-less hidden">{{ _('View Less').format(facet_type=title) }}</a> 
+        </div>
         {% endif %}
         {% endif %}
-    </section>
+          </div>
+        
+    </div>
       {% else %}
         <p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
         {% endif %}
-{% endif %}
+   {% endif %}
+  {% endwith %} 
+
+
+ {% endfor %}
 {% endwith %} 
+
+
+
+

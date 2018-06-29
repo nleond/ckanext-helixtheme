@@ -2,13 +2,13 @@
   {% if not text_only %}
     <section class="module module-narrow module-shallow license">
 
-    <h2 class="module-heading"><img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img>
+    <h2 class="module-heading">
 {{ _('License') }}</h2>
     {# <i class="icon-medium icon-lock"></i> #}
       <p class="module-content">
   {% endif %}
   {% if 'license_url' in pkg_dict %}
-    <a href="{{ pkg_dict.license_url }}" rel="dc:rights">{{ pkg_dict.license_title }}</a>
+    <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img><a href="{{ pkg_dict.license_url }}" rel="dc:rights">{{ pkg_dict.license_title }}</a>
   {% else %}
     <span property="dc:rights">{{ pkg_dict.license_title }}</span>
   {% endif %}

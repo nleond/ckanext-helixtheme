@@ -1,0 +1,8 @@
+{% ckan_extends%}
+
+{% block breadcrumb_content %}
+<a class="breadcrumbs-part" {% link_for _('Dataset'), controller='package', action='search', highlight_actions = 'new index' %}</a>
+<a class="breadcrumbs-part" {% link_for _('Create Datase'), controller='package', action='new' %}</a>
+{% endblock%}
+
+

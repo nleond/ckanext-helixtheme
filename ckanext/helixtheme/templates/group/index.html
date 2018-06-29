@@ -3,7 +3,7 @@
 {% block subtitle %}{{ _('Topics') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{% link_for _('Topics'), controller='group', action='index' %}</li>
+  <a class="breadcrumbs-part" {% link_for _('Topics'), controller='group', action='index' %}</a>
 {% endblock %}
 
 

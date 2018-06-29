@@ -1,0 +1,54 @@
+{% ckan_extends %}
+
+{% set user = c.userobj %}
+
+
+{% block breadcrumb_content %}
+  
+{% endblock %}
+
+{% block secondary %} 
+<section class="main-results-page-content">
+        <div class="results-main-content">
+
+
+
+
+{% endblock %}
+
+
+
+{% block primary_content %}
+    {% block page_header %}
+        <section class= "results-main-result-set"> 
+    
+        <div class = "page-header">
+          <div class="content_action">
+          {% link_for _('Edit setting'), controller='user', action='edit', id=user.name, class_='btn', icon='cog' %}
+          </div>
+         </div> 
+    <ul class="nav nav-tabs">
+        {% block page_header_navtab_links %}
+            {{ h.build_nav_icon('dashboard.datasets', _('My Datasets')) }}
+            {{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}
+            {{ h.build_nav_icon('dashboard.organizations', _('My Organizations')) }}
+            {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }}  #}
+            {{ h.build_nav_icon('dashboard.index', _('News feed')) }}
+    
+            {# {% if c.is_sysadmin %} 
+                {{ h.build_nav_icon('user_dashboard_maps', _('Maps'), icon='globe') }}
+            {% endif %} #}
+     </ul>       
+        {% endblock page_header_navtab_links %}
+
+   
+    {% endblock page_header%}
+   
+   
+
+      {% block primary_content_inner %}
+      {{super() }}
+      {% endblock %}
+      
+{% endblock primary_content%}
+</section>

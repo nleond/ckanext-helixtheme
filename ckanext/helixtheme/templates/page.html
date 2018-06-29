@@ -12,143 +12,134 @@
 
 {%- block page -%}
 
-<body  >
+<body class="results-data data" >
 
-  {#
-  Override the header on a page by page basis by extending this block. If
-  making sitewide header changes it is preferable to override the header.html
-  file.
-  #}
-  {%- block header %}
-    {% include "header.html" %}
-  {% endblock -%}
+  
+    {%- block header %}
+        {% include "header.html" %}
+    {% endblock header-%}
 
- {%- block main %}
+    {%- block main %}
 
    
+    {# The content block allows you to replace the content of the page if needed #}
+        {%- block content %}
+            {% block maintag %}
+    
+            {% endblock %}
+            <section class="main-results-page-content">
+                <div class="results-main-content">
 
-  {# The content block allows you to replace the content of the page if needed #}
-  {%- block content %}
-    {% block maintag %}<div role="main">{% endblock %}
-         {% block toolbar %}
-            <div class="toolbar">
-              <div class="container">
-                  {% block breadcrumb %}
-                      {% if self.breadcrumb_content() | trim %}
-                  <ol class="breadcrumb">
-                    {% snippet 'snippets/home_breadcrumb_item.html' %}
-                    {% block breadcrumb_content %}{% endblock %}
-                </ol>
-                {% endif %}
-
-                  {% if self.page_primary_action() | trim %}
-                        <div class="page_primary_action">
-                          {% block page_primary_action %}{% endblock %}
+                {% block secondary %}
+        
+                    <section class="results-main-sidebar">  
+                    {% block searchbar %}{% endblock %}
+          
+                
+                    {% block secondary_content %}{% endblock %}
+            
+                {% endblock secondary %}
+              
+            </section>
+        
+    
+            <section class="results-main-result-set">
+                {% block search_title%}
+                {% endblock  %}
+                {% block toolbar %}
+            
+                    {% block breadcrumb %}
+                        {% if self.breadcrumb_content() | trim %}
+                        <div class="breadcrumbs-pagination top">
+                            <div class="breadcrumbs">
+                                {% block breadcrumb_content %}{% endblock %}
+                            </div>
+                            {% if self.page_primary_action() | trim %}
+                            <div class="page_primary_action">
+                                {% block page_primary_action %}{% endblock %}
+                            </div>
+                            {% endif %}
                         </div>
-                  {% endif %}
-
-              {% endblock %}
-            </div>
-            </div>
-          {% endblock %}
-        {% endblock %}
-    {% block altbar %} 
-    {% endblock %}
-    {% block searchbar %}{% endblock %}
-        <div id="content" class="container">
+                        {% endif %}
+                    {% endblock breadcrumb %}
+                {% endblock toolbar%}
+        
+            {% block altbar %} 
+            {% endblock %}
+    
+            <div  class="main-results-border-bottom">
             {% block gap %}
-            <div class="gap"></div>
+            
             {% endblock %}
             {% block main_content %}
-          {% block flash %}
-            {% set flash_messages = h.flash.pop_messages() | list %}
-            <div class="flash-messages">
-              {% for message in flash_messages %}
-                <div class="alert fade in {{ message.category }}">
-                  {{ h.literal(message) }}
-                </div>
-              {% endfor %}
+            
+                {# Add Order by plus result number for search #}
             </div>
-          {% endblock %}
-                    <div class="wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' %} no-nav{% endif %}">
-
-            {#
-            The pre_primary block can be used to add content to before the
-            rendering of the main content columns of the page.
-            #}
-            {% block pre_primary %}
-                
-            {% endblock %}
-
-            {% block primary %}
-
-              <div class="primary">
-                {#
-                The primary_content block can be used to add content to the page.
-                This is the main block that is likely to be used within a template.
-
-                Example:
-
-                  {% block primary_content %}
-                    <h1>My page content</h1>
-                    <p>Some content for the page</p>
-                  {% endblock %}
-                #}
-                {% block primary_content %}
-                <article class="module">
-                    {% block page_header %}
-                      <header class="module-content page-header">
-                        {% if self.content_action() | trim %}
-                          <div class="content_action">
-                            {% block content_action %}{% endblock %}
-                          </div>
-                        {% endif %}
-                        <ul class="nav nav-tabs">
-                          {% block content_primary_nav %}{% endblock %}
-                        </ul>
-                      </header>
-                    {% endblock %}
-                    <div class="module-content">
-                      {% block primary_content_inner %}
-                      {% endblock %}
+                {% block flash %}
+                    {% set flash_messages = h.flash.pop_messages() | list %}
+                    <div class="flash-messages">
+                    {% for message in flash_messages %}
+                        <div class="alert fade in {{ message.category }}">
+                    {{ h.literal(message) }}
+                        </div>
+                    {% endfor %}
                     </div>
-                  </article>
-                {% endblock %}
-              </div>
-            {% endblock %}
+                {% endblock flash %}
 
-            {% block secondary %}
-            <aside class="secondary {% block paint %} paintme {% endblock %}">
                 {#
-                The secondary_content block can be used to add content to the
-                sidebar of the page. This is the main block that is likely to be
-                used within a template.
-
-                Example:
-
-                  {% block secondary_content %}
-                    <h2>A sidebar item</h2>
-                    <p>Some content for the item</p>
-                  {% endblock %}
+                The pre_primary block can be used to add content to before the
+                rendering of the main content columns of the page.
                 #}
-                {% block secondary_content %}{% endblock %}
-            </div>
+                {% block pre_primary %}
+                
                 {% endblock %}
-              </aside>
-        {% endblock %}
-      </div>
-    </div>
-  {% endblock -%}
 
-  {#
-  Override the footer on a page by page basis by extending this block. If
-  making sitewide header changes it is preferable to override the footer.html-u
-  file.
-  #}
-  {%- block footer %}
-  {% include "footer.html" %} 
-  {% endblock -%}
-{%- endblock -%}
+                {% block primary %}
+            
+                    <div class="result-items">
+                
+                    {% block primary_content %}
+                
+                        {% block page_header %}
+                        
+                            {% if self.content_action() | trim %}
+                                <div class="content_action">
+                                {% block content_action %}{% endblock %}
+                                </div>
+                            {% endif %}
+                            <ul class="nav nav-tabs">
+                            {% block content_primary_nav %}{% endblock %}
+                            </ul>
+                        {% endblock page_header %}
+                    
+                        {% block primary_content_inner %}
+                        {% endblock %}
+                    
+                  
+                    {% endblock primary_content%}
+              </div>
+              
+             
+             </div>
+        </section>      
+      </div>
+    </section>
+             
+                {% endblock primary%}
+          
+            {% endblock main_content %}     
+         {% endblock content %}
+    {% endblock main-%}
+
+
+  
+  
+  
+  
+    {%- block footer %}
+      {% include "footer.html" %} 
+    {% endblock footer-%}
+{%- endblock page-%}
 
 {%- block scripts %}
     {% resource 'base/main' %}

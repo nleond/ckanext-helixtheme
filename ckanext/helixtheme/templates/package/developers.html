@@ -36,6 +36,11 @@
     {% endblock %}
     {% endif %}
 
+    {% if pkg.closed_tag %}
+        {% snippet "package/snippets/closed_tags.html", tags=pkg.closed_tag %}
+    {% endif %}  
+    
+
     {% if pkg.tags %}
     {% block package_side_tags %}
         {% snippet "package/snippets/tags.html", tags=pkg.tags %}

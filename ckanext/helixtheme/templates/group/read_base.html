@@ -7,6 +7,6 @@
 {% endblock %}
 
 {% block breadcrumb_content %}
-  <li>{% link_for _('Topics'), controller='group', action='index' %}</li>
-  <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</li>
+  <a  class="breadcrumbs-part">{% link_for _('Topics'), controller='group', action='index' %}</a>
+  <a class="breadcrumbs-part">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</a>
 {% endblock %}

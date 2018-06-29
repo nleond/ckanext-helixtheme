@@ -15,6 +15,14 @@
 {% endif %}
 {% endblock %}
 
+{% block breadcrumb_content_selected %}{% endblock %}
+
+{% block breadcrumb_content %}
+  {{ super() }}
+   <a class="breadcrumbs-part" href="">{{ h.resource_display_name(res)|truncate(30) }}</a>
+{% endblock %}
+
+
 {% block resource_item_service %}
  {% if (res.vectorstorer_resource or res.rasterstorer_resource) and res.format == 'wms' %}
     <li>
