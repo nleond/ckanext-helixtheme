@@ -1,17 +1,16 @@
 
-<h2 class="module-heading">
-{{ _('Topics') }}</h2>
+<h5 class="side-heading">
+{{ _('Topics') }}</h5>
 {% if tags %} 
-  <section class="tags">
+  <section class="side-content">
     {% set _class = _class or 'tag-list' %}
     {% block tag_list %}
-    <ul class="{{ _class }}">
-    {% for tag in tags %}
-      <li>
-        <a class="{% block tag_list_item_class %}tag{% endblock %}"  href="{% url_for controller='package', action='search', q=tag%}" >{{ h.truncate(tag, 22) }}</a>
-      </li>
+    
+    {% for tag in tags %}           {#{% if check%} topics-last {% else %}  topics {% endif %} #}
+      {% set check = loop.last%}  
+        <a class="topics"  href="{% url_for controller='package', action='search', q=tag%}" >{{tag | upper}}</a>
+        {% if check==false%} <hr /> {% endif %}
     {% endfor %}
-  </ul>
 {% endblock %}
   </section>
   {% else %}

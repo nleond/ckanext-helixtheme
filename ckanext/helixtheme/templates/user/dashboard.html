@@ -20,7 +20,7 @@
 
 {% block primary_content %}
     {% block page_header %}
-        <section class= "results-main-result-set"> 
+        <section class= "results-main-result-set dashboard"> 
     
         <div class = "page-header">
           <div class="content_action">
@@ -30,7 +30,7 @@
     <ul class="nav nav-tabs">
         {% block page_header_navtab_links %}
             {{ h.build_nav_icon('dashboard.datasets', _('My Datasets')) }}
-            {{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}
+            {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
             {{ h.build_nav_icon('dashboard.organizations', _('My Organizations')) }}
             {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }}  #}
             {{ h.build_nav_icon('dashboard.index', _('News feed')) }}

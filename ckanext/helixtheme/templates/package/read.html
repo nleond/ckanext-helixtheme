@@ -17,17 +17,20 @@
 {% do h.get_translated_dataset_groups([c.pkg_dict]) %}
 
 
+
+
+
 {% block breadcrumb_content %}
   {% if pkg %}
     {% set dataset = pkg.title or pkg.name %}
     {% if pkg.organization %}
 
-      <a class="breadcrumbs-part" {% link_for _('Organizations'), controller='organization', action='index' %}</a>
-      <a class="breadcrumbs-part" {% link_for org.title|truncate(30) or org.name, controller='organization', action='read', id=pkg.organization.name %}</a>
+      <a class="breadcrumbs-part" {% link_for _('ORGANIZATIONS'), controller='organization', action='index' %}</a>
+      <a class="breadcrumbs-part" {% link_for org.title|truncate(30)|upper or org.name|upper, controller='organization', action='read', id=pkg.organization.name %}</a>
     {% else %}
-      <a class="breadcrumbs-part" {% link_for _('Datasets'), controller='package', action='search' %}</a>
+      <a class="breadcrumbs-part" {% link_for _('DATASETS'), controller='package', action='search' %}</a>
     {% endif %}
-    <a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(30), controller='package', action='read', id=pkg.name %}</a>
+    <a class="breadcrumbs-part"{{ self.breadcrumb_content_selected()|upper }}{% link_for dataset|truncate(30)|upper, controller='package', action='read', id=pkg.name %}</a>
   {% else %}
     <a class="breadcrumbs-part" {% link_for _('Datasets'), controller='package', action='search' %}</a>
     <a class="breadcrumbs-part" href=""{{ _('Create Dataset') }}</a>
@@ -35,26 +38,19 @@
 {% endblock %}
 
 {% block page_heading %}
-{{ super() }}
+
 {% endblock %}
 
 {% block content_action %}
-    {% if h.check_access('package_update', {'id':pkg.id }) %}
-    {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-default btn-manage', icon='wrench' %}
-  {% endif %}
+    
 {% endblock %}
 
 {% block package_notes %}
-    {% block package_dates %}
-    <div class="dataset-dates">
-    <div> {{_('Publication:')}} {{ pkg.metadata_created.split('T')[0] or pkg.metadata_created or _('Never')}}</div>
-    <div> {{_('Last revision:')}} {{ pkg.metadata_modified.split('T')[0] or pkg.metadata_modified or  _('Never') }}</div>
-</div>
-{% endblock %}
-<hr class="border-divider"/>
-
-{{ super() }}
-<hr class="border-divider"/>
+{% if pkg.notes %}
+        <div class="package-notes">
+          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+        </div>
+{% endif %}
 {% endblock %}
 
 {% block package_tags %}{% endblock %}
@@ -65,7 +61,7 @@
 
 
 {% block package_additional_info %}
-<hr class="border-divider"/>
+
 {{ super() }}
 {% endblock %}
 

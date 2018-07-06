@@ -1,13 +1,21 @@
 
-<h2 class="module-heading">
-{{ _('Tags') }}</h2>
+<h5 class="side-heading grayed">
+{{ _('Tags') }}</h5>
 {# <i class="icon-medium icon-lock"></i> #}
 {% if tags %}
-  <section class="tags">
-    {% snippet 'snippets/tag_list.html', tags=tags, _class='tag-list well' %}
+  <section class="side-content">
+    {#{% snippet 'snippets/tag_list.html', tags=tags, _class='tag-list well' %} #}
+    {% set _class = 'tag-list well' or 'tag-list' %}
+    {% block tag_list %}
+    
+        {% for tag in tags %}
+                <a class="tags" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ tag.display_name|upper }}</a>
+        {% endfor %}
+    
+{% endblock %}
   </section>
   {% else %}
-    <section class="module-content"></section>
+    <section class="side-content"></section>
   {% endif %}
 
  

@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+
+{% block breadcrumb_content %}
+  <a class="breadcrumbs-part"{% link_for _('USERS'), controller='user', action='index'%} </a>
+  <a class="breadcrumbs-part"{% link_for user.display_name|truncate(35)|upper, controller='user', action='read', id=user.name %}</a>
+{% endblock %}
+
+
+{% block content_action %}
+  {% if h.check_access('user_update', user) %}
+    {% link_for _('Manage'), named_route='user.edit', id=user.name, class_='btn btn-default btn-manage', icon='wrench' %}
+  {% endif %}
+{% endblock %}
