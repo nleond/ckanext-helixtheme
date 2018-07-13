@@ -50,9 +50,10 @@
 
   {% block search_facets %}
     {% if facets %}
-      <p class="filter-list">
+      <p class="current-search-fields">
         {% for field in facets.fields %}
           {% set search_facets_items = facets.search.get(field)['items'] %}
+          <div class="search-field">
           <span class="facet">{{ facets.titles.get(field) }}:</span>
           {% for value in facets.fields[field] %}
             <span class="filtered pill">
@@ -63,6 +64,7 @@
               {%- endif %}
               <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="icon-remove"></i></a>
             </span>
+            </div>
           {% endfor %}
         {% endfor %}
       </p>

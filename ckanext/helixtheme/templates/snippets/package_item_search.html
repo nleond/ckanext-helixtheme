@@ -40,9 +40,9 @@ Example:
         {% endif %}
         
           {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }} 
-          <div class="pill data">
+          {#<div class="pill data">
                 DATA
-          </div>
+          </div> #}
         {% if package.get('state', '').startswith('draft') %}
           <span class="label label-info">{{ _('Draft') }}</span>
         {% elif package.get('state', '').startswith('deleted') %}
@@ -57,19 +57,22 @@ Example:
 
       {% if package.organization %}
       <div class="service">
-          <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}} > {{ package.organization.title|urlize }}</a>
+          <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}} > {{ package.organization.title|urlize|upper }}</a>
       </div>
       {% endif %}
  
     {% block package_item_resources %}
     {% if package.resources and not hide_resources %}
       <div class="tag-list">
-        {% for resource in package.resources %}
-          <a class="tag-box"
+         <a class="tag-box tag-box-other">{{ _('PUBLIC') }}</a>
+         <a class="tag-box tag-box-other">{{ _('OPEN') }} </a>
+         {% for resource in package.resources %}
+         
+          <a class="tag-box {% if loop.index==1 %}first-tag{%endif %}"
             href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
             data-format="{{ resource.format }}"
            >{{ resource.format|upper }}</a>
-
+            
         {% endfor %}
       </div>
     {% endif %} {# package.resources #}

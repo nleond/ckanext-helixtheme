@@ -2,11 +2,17 @@
 
 {% block subtitle %}{{ gettext('Error %(error_code)s', error_code=code[0]) }}{% endblock %}
 
-{% block primary %}
-  
-{% endblock %}
 
-{% block breadcrumb %}
+{% block content%}
+ <section class="main-results-page-content">
+                  <div class="results-main-content">
+
+{% block secondary %} 
+ {{ content}} 
+{% endblock %}
+ 
+{% block primary %}
+  {{super()}}
 {% endblock %}
 
 {% block flash %}
@@ -14,6 +20,10 @@
   {% set flash_messages = h.flash.pop_messages() %}
 {% endblock %}
 
-{% block secondary %} 
- {{ content}} 
+
 {% endblock %}
+{% block breadcrumb %}
+{% endblock %}
+
+
+

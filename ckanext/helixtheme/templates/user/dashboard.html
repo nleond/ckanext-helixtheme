@@ -4,21 +4,19 @@
 
 
 {% block breadcrumb_content %}
-  
+<a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}" >Dashboard</a>
 {% endblock %}
 
-{% block secondary %} 
-<section class="main-results-page-content">
-        <div class="results-main-content">
+{% block secondary%}
 
 
-
+     {{super()}}
 
 {% endblock %}
 
 
 
-{% block primary_content %}
+{% block primary %}
     {% block page_header %}
         <section class= "results-main-result-set dashboard"> 
     
@@ -49,6 +47,7 @@
       {% block primary_content_inner %}
       {{super() }}
       {% endblock %}
-      
-{% endblock primary_content%}
-</section>
+      </section>
+    
+{% endblock primary%}
+

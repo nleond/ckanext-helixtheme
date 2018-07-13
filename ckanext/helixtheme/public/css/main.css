@@ -876,7 +876,7 @@ p a{
     margin-top:-42px;
 }
 .search-medium > .search-form .search-input {
-    border: 2px #3EA0DD solid;
+    //border: 2px #3EA0DD solid;
 }
 .search-form .search-input.search-giant button i{
     font-size: 27px;
@@ -1730,7 +1730,7 @@ a.tag:hover{
 .btn:hover, .btn-hover{
     //border-radius: 0;
     //background: #4E59A4;
-    background-color: #D7DBDD !important;
+    //background-color: #D7DBDD !important;
     //border: 2px #4E59A4 solid;
     //cursor:pointer;
 }
@@ -2270,10 +2270,10 @@ format-label[data-format=csv], .format-label[data-format*=csv]
     font-weight:500;
 }
 
-.view-more {                /* view more facets*/
+/*.view-more {                / view more facets/
   display:none !important;
   transition: .25s ease;
-}
+}  */
 
 label.order-by::after{
   content: "" ;             /* remove : */
@@ -2324,7 +2324,7 @@ label > a{
 
 }
 
-.name{                                              /* for metadata table */
+.name{                                              /* for metadata table borders*/
     border-top:1px solid #898989 !important;
     border-bottom:1px solid #898989 !important;
     border-left: 1px solid #666666 !important;

@@ -1,17 +1,9 @@
 {% ckan_extends %}
 
-{% block secondary_content %}
-{% block paint %}{% endblock %}
-<div class="alt-side-style">
-  <section class="module module-narrow module-shallow">
-    <h2 class="module-heading"><i class="icon-medium icon-info-sign"></i> {{ _('Account Info') }}</h2>
-    <div class="module-content">
-      {% trans %}
-        Your profile lets other Geodata.gov.gr users know about who you are and what you
-        do.
-      {% endtrans %}
-    </div>
-  </section>
-</div>
+{% block breadcrumb_content %}
+  {#<a class="breadcrumbs-part" href="{{ h.url_for(controller='user', action='index') }}"{{ _('Users') }}</a> #}
+  <a class="breadcrumbs-part" {% link_for _('Users'), controller='user', action='index' %}</a>
+  {#<a class="breadcrumbs-part" href="{{ h.url_for(controller='user', action='read', id=c.user_dict.name) }}"{{ c.user_dict.display_name }}</a> #}
+  
+  <a class="breadcrumbs-part" {% link_for _('Manage Account'), controller='user', action='edit' %}</a>
 {% endblock %}
-

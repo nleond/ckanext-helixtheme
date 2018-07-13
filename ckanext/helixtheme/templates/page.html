@@ -9,7 +9,7 @@
 
 {%- block page -%}
 
-<body class="results-data data" >
+<body class="results-data data fixed" >
 
   
     {%- block header %}
@@ -25,19 +25,20 @@
     
             {% endblock %}
             <section class="main-results-page-content">
-                <div class="results-main-content">
-
-                {% block secondary %}
-        
-                    <section class="results-main-sidebar">  
-                    {% block searchbar %}{% endblock %}
+                  <div class="results-main-content">
+                          
+                    {% block secondary %}
+                        <section class="results-main-sidebar"> 
+                   
+                        {% block searchbar %}{% endblock %}
           
                 
-                    {% block secondary_content %}{% endblock %}
+                        {% block secondary_content %}{% endblock %}
             
-                {% endblock secondary %}
+                        </section>
+                    {% endblock secondary %}
               
-            </section>
+                    
         
     
             <section class="results-main-result-set">
@@ -64,7 +65,10 @@
             {% block altbar %} 
             {% endblock %}
     
+            {% block primary_border%}
             <div  class="main-results-border-bottom">
+            {% endblock%}
+            
             {% block gap %}
             
             {% endblock %}

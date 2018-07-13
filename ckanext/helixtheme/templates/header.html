@@ -2,7 +2,7 @@
 
 {% block header_wrapper %}
 {% block header_account %}
-<header class="header top-header" >   
+<header class="header fixed" >   
     
         {% block header_site_navigation %}
         
@@ -87,16 +87,12 @@
                 {% endif %}
                 {% endblock %}
         {% endif %}
-        {% endblock %}   
-                
-                
-                
-                
-           {#</ul>     ul user-menu 
-          
-          </ul>     ul menu-items 
-          </nav>  #}
-            
+        <div class="search-item">
+        <a href="#">
+          <i class="fa fa-search"></i>
+        </a>
+        </div>
+        {% endblock %}
           
           
 </header>

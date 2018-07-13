@@ -12,11 +12,11 @@ function handleFacets() {
     
     // Initially hide facet items with index over LIMIT
     function init_hide(){
-        var cat_list = $('.secondary .nav-facet');
+        var cat_list = $('.results-main-sidebar .switches');
         cat_list.each(function(index){
             $(this).addClass('li-hidden');
             
-            var list = $(this).find('li');
+            var list = $(this).find('label');
             list.each(function(index){
                 if (index>LIMIT){
                     $(this).css("display","none");
@@ -34,8 +34,9 @@ function handleFacets() {
     // Facet Show more/less handling
     function show_more(e){
         e.preventDefault();
-        var ul = $(this).parent().parent().find('.nav-facet');
-        var list = ul.find('li');
+        var ul = $(this).parent().parent();
+        
+        var list = ul.find('label');
         var title = ul.attr('title');
     
         //$(this).parent().parent().find('.read-more').text("Show Only Popular ");
@@ -52,8 +53,8 @@ function handleFacets() {
     };
         function show_less(e){
         e.preventDefault();            
-        var ul = $(this).parent().parent().find('.nav-facet');
-        var list = ul.find('li');
+        var ul = $(this).parent().parent();
+        var list = ul.find('label');
         var title = ul.attr('title');
 
         //$(this).parent().parent().find('.read-more').text("Show More");
@@ -91,7 +92,7 @@ function handleFacets() {
         $(this).parent().find('.sort-name-icon').removeClass("icon-chevron-down");
         $(this).parent().find('.sort-name-icon').removeClass("icon-chevron-up");
         //$(this).parent().find('.sort-name-icon').addClass("icon-minus");
-        var ul = $(this).parent().parent().parent().find('.nav-facet');
+        var ul = $(this).parent().parent().parent().find('.switches');
         var list = ul.find('li');
 
         ul.toggleClass("count_asc");
@@ -129,7 +130,7 @@ function handleFacets() {
         $(this).parent().find('.sort-name-icon').removeClass("icon-chevron-up");
         //$(this).parent().find('.sort-name-icon').addClass("icon-minus");
         e.preventDefault();
-        var ul = $(this).parent().parent().parent().find('.nav-facet');
+        var ul = $(this).parent().parent().parent().find('.switches');
         var list = ul.find('li');
 
         ul.toggleClass("count_asc");
@@ -176,7 +177,7 @@ function handleFacets() {
         $(this).parent().find('.sort-count-icon').removeClass("icon-chevron-up");
         //$(this).parent().find('.sort-count-icon').addClass("icon-minus");
         e.preventDefault();
-        var ul = $(this).parent().parent().parent().find('.nav-facet');
+        var ul = $(this).parent().parent().parent().find('.switches');
         var list = ul.find('li');
         ul.toggleClass("name_asc");
         ul.toggleClass("name_desc");
@@ -215,7 +216,7 @@ function handleFacets() {
         $(this).parent().find('.sort-count-icon').removeClass("icon-chevron-up");
         //$(this).parent().find('.sort-count-icon').addClass("icon-minus");
         e.preventDefault();
-        var ul = $(this).parent().parent().parent().find('.nav-facet');
+        var ul = $(this).parent().parent().parent().find('.switches');
         var list = ul.find('li');
 
         ul.toggleClass("name_asc");

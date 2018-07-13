@@ -4,9 +4,9 @@
 
 
 
-<body class="main-landing data">
+<body class="main-landing data fixed">
 
-<header class="header  home-header" >   
+<header class="header fixed" >   
     
         {% block header_site_navigation %}
         
@@ -91,15 +91,20 @@
                 {% endif %}
                 {% endblock %}
         {% endif %}
+        
+        <div class="search-item">
+        <a href="#">
+          <i class="fa fa-search"></i>
+        </a>
+        </div>
+        
+        
         {% endblock %}   
                 
                 
                 
                 
-           {#</ul>     ul user-menu 
-          
-          </ul>     ul menu-items 
-          </nav>  #}
+         
             
           
           
@@ -141,7 +146,7 @@
           
        <div class="col-sm-12">
           <div class="latest-border-bottom">
-            <label class="latest-datasets-order-by" for="latest-datasets-order-by">Order by
+            <label class="datasets-order-by" for="datasets-order-by">Order by
               <select name="latest-datasets-order-by" value="">
                 <option value="1">
                   Σχετικότητα
