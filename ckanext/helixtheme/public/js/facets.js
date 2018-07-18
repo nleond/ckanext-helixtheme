@@ -6,7 +6,7 @@ jQuery(document).ready(function ($, _) {
     handleFacets();
 });
 
-var LIMIT = 5;
+var LIMIT = 3;
 
 function handleFacets() {
     

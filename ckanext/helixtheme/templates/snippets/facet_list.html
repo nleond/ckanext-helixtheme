@@ -48,7 +48,7 @@ hide_section
 
 
 {% set hide_empty = hide_empty or false %}
-{% set LIMIT = 5 %}
+{% set LIMIT = 4 %}
 {% with items = items or h.get_facet_items_dict(name, limit=50) %}
 {% set label_function=labels.get(facet) %}
 {% if name == 'organization' %}
@@ -61,6 +61,10 @@ hide_section
             {% set facet_class = 'formats' %}
         {% elif name == 'license_id' %}
             {% set facet_class = 'licenses' %}
+        {% elif name == 'source_type' %}
+            {% set facet_class = 'source_type' %}
+        {% elif name == 'frequency' %}
+            {% set facet_class = 'frequency' %}        
 {% endif %}
 
 
@@ -95,7 +99,9 @@ hide_section
                     'closed_tags_facets': _('Topics'),
                     'tags': _('Tags'),
                     'res_format': _('Formats'),
-                    'license_id': _('Licenses'), } %}
+                    'license_id': _('Licenses'),
+                    'source_type': _('Source type'),
+                    'frequency': _('Frequency') } %}
 
                     {% set title = facet_titles.get(name)|upper %}
                     {{ title }} 
@@ -113,7 +119,7 @@ hide_section
               {% set label = label_function(item) if label_function else item.display_name %}
               {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
               {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %} 
-              <label for="switch-{{total_count[0]}}" {% if loop.index> LIMIT %} class="view-more" {% endif %}>
+              <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
                     <input type="checkbox" form="main-form-search" id="switch-{{total_count[0]}}" name="{{name|lower}}" 
                             {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}"{% else %} value="{{label}}"> {% endif %}
                   <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}"> 
@@ -121,7 +127,7 @@ hide_section
                   </a> 
                 </label> 
             {% endfor %}
-            {% if items|length >= LIMIT %}
+            {% if items|length > LIMIT %}
         <div class="more-link">
             <a href="#" class="read-more">{{ _('View More').format(facet_type=title) }}</a> 
             <a href="#" class="read-less hidden">{{ _('View Less').format(facet_type=title) }}</a> 

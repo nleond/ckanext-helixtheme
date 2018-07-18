@@ -35,6 +35,11 @@
     
 {% endblock %}    
               
+{% block primary %}
+            
+<div class="result-items">
+                              
+              
 {% block primary_content %}
         
     
@@ -44,13 +49,11 @@
       {% endblock %}
     
 
-    {% block page_pagination %}
-      {{ c.page.pager(q=c.q) }}
-    {% endblock %}
   
+</div>
 
   {% block package_search_results_api %}
-  <section class="module">
+  {#<section class="module">
     <div class="module-content">
       <small>
         {% set api_link = h.link_to(_('API'), h.url_for(controller='api', action='get_api', ver=3)) %}
@@ -67,11 +70,31 @@
         {%- endif %}
       </small>
     </div>
-  </section>
+  </section> #}
   {% endblock %}
   
 
 {% endblock %}
+
+    {% block page_pagination %}
+    <div class="main-results-border-bottom"> </div>
+    
+    
+    <div class="breadcrumbs-pagination bottom">
+      <div class=breadcrumbs>
+      {{ self.breadcrumb_content() }}
+      </div>
+      {{ c.page.pager(q=c.q) }}
+    </div>    
+     
+    {% endblock %}
+
+</div>
+        </section>      
+      </div>
+    </section>
+             
+{% endblock%}
 
 {% block scripts %}
 {{ super() }}
