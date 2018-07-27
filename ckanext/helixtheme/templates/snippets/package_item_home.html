@@ -47,13 +47,16 @@ Example:
       {% endif %}
   
       {% if package.resources and not hide_resources %}
-      <ul class="dataset-resources unstyled">
-        {% for resource in h.dict_list_reduce(package.resources, 'format') %}
-          <li>
-            <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label" data-format="{{ resource.lower() }}">{{ resource }}</a>
-          </li>
+      <div class="tags-list">
+          {#<a class="tag-box tag-box-other">{{ _('PUBLIC') }}</a>
+          <a class="tag-box tag-box-other">{{ _('OPEN') }} </a> #}
+        {% for resource in package.resources %}
+            <a class="tag-box"
+              href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
+              data-format="{{ resource.format }}"
+            >{{ resource.format|upper }}</a>
         {% endfor %}
-      </ul>
+      </div>
     {% endif %}
   {% endblock %}
 </div>

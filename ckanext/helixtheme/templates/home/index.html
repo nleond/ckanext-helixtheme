@@ -135,6 +135,184 @@
      
 <section class="data-landing-page-content">     
 
+  <div class="featured-datasets-container container-fluid">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <h4 class="featured-datasets-header">
+          Featured Data sets
+        </h4>
+      </div>
+      
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="featured-datasets-item">
+
+          <div class="date-of-entry">
+            Πριν από 8 ημέρες @ <a href="#">ΕΠΙΧΕΙΡΗΣΕΙΣ</a>
+          </div>
+          
+          <a href="#">
+            <h3 class="featured-dataset-title">
+              Research for Data
+            </h3>
+          </a>
+          
+          <div class="dataset-service">
+            <a href="#">ΓΕΝΙΚΗ ΓΡΑΜΜΑΤΕΙΑ</a>
+          </div>
+          
+          <div class="tags-list">
+            
+            <a href="#" class="tag-box">
+              <div>
+                SHAPEFILE
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WMS
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WFS
+              </div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="featured-datasets-item">
+
+          <div class="date-of-entry">
+            Πριν από 8 ημέρες @ <a href="#">ΕΠΙΧΕΙΡΗΣΕΙΣ</a>
+          </div>
+          
+          <a href="#">
+            <h3 class="featured-dataset-title">
+              Research for Data
+            </h3>
+          </a>
+          
+          <div class="dataset-service">
+            <a href="#">ΓΕΝΙΚΗ ΓΡΑΜΜΑΤΕΙΑ</a>
+          </div>
+          
+          <div class="tags-list">
+            
+            <a href="#" class="tag-box">
+              <div>
+                SHAPEFILE
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WMS
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WFS
+              </div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="featured-datasets-item">
+
+          <div class="date-of-entry">
+            Πριν από 8 ημέρες @ <a href="#">ΕΠΙΧΕΙΡΗΣΕΙΣ</a>
+          </div>
+          
+          <a href="#">
+            <h3 class="featured-dataset-title">
+              Research for Data
+            </h3>
+          </a>
+          
+          <div class="dataset-service">
+            <a href="#">ΓΕΝΙΚΗ ΓΡΑΜΜΑΤΕΙΑ</a>
+          </div>
+          
+          <div class="tags-list">
+            
+            <a href="#" class="tag-box">
+              <div>
+                SHAPEFILE
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WMS
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WFS
+              </div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="featured-datasets-item">
+
+          <div class="date-of-entry">
+            Πριν από 8 ημέρες @ <a href="#">ΕΠΙΧΕΙΡΗΣΕΙΣ</a>
+          </div>
+          
+          <a href="#">
+            <h3 class="featured-dataset-title">
+              Research for Data
+            </h3>
+          </a>
+          
+          <div class="dataset-service">
+            <a href="#">ΓΕΝΙΚΗ ΓΡΑΜΜΑΤΕΙΑ</a>
+          </div>
+          
+          <div class="tags-list">
+            
+            <a href="#" class="tag-box">
+              <div>
+                SHAPEFILE
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WMS
+              </div>
+            </a>
+            
+            <a href="#" class="tag-box">
+              <div>
+                WFS
+              </div>
+            </a>
+          </div>
+          
+        </div>
+      </div>
+
+
+      
+    </div>
+  </div>
+
     <div class="latest-datasets-container container-fluid">
       <div class="row">
           {#  Latest datasets #}
@@ -159,6 +337,11 @@
         
         {% snippet 'snippets/package_list_home.html', packages = h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
           
+        {# More button#}
+        <div class="latest-dataset-more-pill">
+          <a href="{{ h.url_for(controller='package', action='search')}}">MORE</a>
+        </div>
+
     {% endblock %}
 
   {% endblock %}

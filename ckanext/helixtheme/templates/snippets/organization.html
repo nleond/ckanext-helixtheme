@@ -27,18 +27,18 @@ Example:
     {% if organization %}
     {% block image %}
         <div class="image">
-            <a href="{{ url }}">
+            <a href="{% url_for controller='organization', action='read',  id=organization.name %}">
                 <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png')}}" width="200" alt="{{ organization.name }}" />
           </a>
         </div>
     {% endblock %}
-    <h1 class="heading">{{ organization.title or organization.name }}</h1>
-       {% if organization.description %}
+    {#<h1 class="heading">{{ organization.title or organization.name }}</h1> #}
+       {% if organization.description and show_desc %}
         <p>
           {{ h.markdown_extract(organization.description, 180) }}
           {% link_for _('read more'), controller='organization', action='about', id=organization.name %}
-        </p>
-      {% else %}
+        </p> 
+      {% elif not organization.description%}
         <p class="empty">{{ _('There is no description for this organization') }}</p>
         {% endif %}
       {% if show_nums %}
@@ -57,11 +57,12 @@ Example:
         </div>
       {% endif %}
       
-        {% if pkg %}
+        {% if pkg and show_contact%}
         {% block package_contact %}
             {% snippet "snippets/contact.html", pkg=pkg %}
         {% endblock %}
         {% endif %}
+        
 
       {% endif %}
         

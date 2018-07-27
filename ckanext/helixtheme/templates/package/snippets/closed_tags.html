@@ -3,7 +3,7 @@
 {{ _('Topics') }}</h5>
 {% if tags %} 
   <section class="side-content">
-    {% set _class = _class or 'tag-list' %}
+    {% set _class = _class or 'tags-list' %}
     {% block tag_list %}
     
     {% for tag in tags %}           {#{% if check%} topics-last {% else %}  topics {% endif %} #}

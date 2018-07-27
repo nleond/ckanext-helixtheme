@@ -31,6 +31,17 @@ Example:
           {% endif %}
       </div>
 
+      
+      <div class="btn-save">
+          <a href="#">
+              <img class="" src="/images/png/save.png">
+            </a>
+      </div>
+      <div class="btn-favorite">
+          <a href="#">
+            <img class="" src="/images/png/favorite.png">
+          </a></div>
+
       <h3 class="title">
         {% if package.private %}
           <span class="dataset-private label label-inverse">
@@ -63,7 +74,7 @@ Example:
  
     {% block package_item_resources %}
     {% if package.resources and not hide_resources %}
-      <div class="tag-list">
+      <div class="tags-list">
          <a class="tag-box tag-box-other">{{ _('PUBLIC') }}</a>
          <a class="tag-box tag-box-other">{{ _('OPEN') }} </a>
          {% for resource in package.resources %}
@@ -76,6 +87,9 @@ Example:
         {% endfor %}
       </div>
     {% endif %} {# package.resources #}
+
+   
+
     {% endblock %} {# package_item_resources #}
 
       {% endblock %}

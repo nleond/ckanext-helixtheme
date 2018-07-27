@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import datetime
 import copy
 import sets
+
 
 from pylons import  config
 from ckan.common import request

@@ -15,7 +15,7 @@ Example:
 {% set text_no_query = ''%}
 
 {% if type == 'dataset' %}
-  {% set text_query = ungettext('{number} dataset found for "{query}"', '{number} datasets found for "{query}"', count) %}
+  {% set text_query = ungettext('{number} datasets found', '{number} datasets found', count) %}
   {% set text_query_none = _('No datasets found for "{query}"') %}
   {% set text_no_query = ungettext('{number} dataset found', '{number} datasets found', count) %}
   {% set text_no_query_none = _('No datasets found') %}
