@@ -16,8 +16,8 @@ Example:
 #}
 {% if packages %}
   <div class="col-sm-12">
-    {% for package in packages %}
-      {% snippet 'snippets/package_item_home.html', package=package, item_class=item_class, hide_resources=false, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+    {% for package in packages[:3] %} 
+        {% snippet 'snippets/package_item_home.html', package=package, item_class=item_class, hide_resources=false, banner=banner, truncate=truncate, truncate_title=truncate_title %}
     {% endfor %}
   </ul>
 {% endif %}

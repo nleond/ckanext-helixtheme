@@ -65,7 +65,7 @@ function init() {
     }
 
     //Breadcrumbs auto hide all but last element
-    var bread_items = $('.breadcrumb li:first').next().nextAll();
+    var bread_items = $('.breadcrumbs a:first').next().nextAll();
     bread_items = bread_items.not(':last');
 
     bread_items.each(function(idx) {
@@ -74,7 +74,7 @@ function init() {
         $(this).addClass('breadcrumb-hide-text');
     });
        
-    var toolbar = $('.toolbar');
+    var toolbar = $('.breadcrumbs');
     toolbar.on('mouseenter', function(){
         bread_items.each(function(idx) {
             //console.log($(this).context.innerText);
@@ -100,3 +100,4 @@ function init() {
         //$(this).addClass('breadcrumb-hide-text');
     //});
 }
+

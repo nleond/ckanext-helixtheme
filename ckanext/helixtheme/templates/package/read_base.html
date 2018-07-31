@@ -1,6 +1,22 @@
 {% ckan_extends %}
 
 
+{% block content_primary_nav %}
+
+
+{% if h.check_access('package_update', {'id':pkg.id }) %}
+  {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-default btn-manage', icon='wrench' %}
+{% endif %}
+
+<div class="nav-menu-other">
+  {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
+  {{ h.build_nav_icon('dataset_groups', _('Topics'), id=pkg.name) }}
+  {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}
+  {{ h.build_nav_icon('dataset_apis', _('Developers'), id=pkg.name, icon='code') }}
+</div>
+{% endblock %}
+
+
               
 {% block scripts %}
 {{ super() }}
@@ -8,4 +24,4 @@
 {% endblock %}
 
 
-
+{% block content_action %} {% endblock%}

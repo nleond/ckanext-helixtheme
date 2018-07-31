@@ -38,7 +38,7 @@
           <li class="account-item" data-module="me" data-me="{{ c.userobj.id }}">
               {% block header_account_logged %}
               
-                <a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="viewprofile" title="{{ _('View profile') }}">
+                <a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="viewprofile" ">
                     
                     <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab">
                     </a>
@@ -69,7 +69,7 @@
                     
                     {% block header_account_log_out_link %}
                     <li>
-                        <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
+                        <a href="{{ h.url_for('/user/logout') }}" title="{{ _('Log out') }}">
                         <span>{{ _('Logout')}}</span>
                         </a>
                     </li>
@@ -79,13 +79,19 @@
             {% endblock %}
             </li>
              
-          {% else %}         
+          {% else %}      
+           <li class="account-item logged-off" data-module="me" data-me="{{ c.userobj.id }}">   
                 {% block header_account_notlogged %}
-                <li class="account-item">{% link_for _('Log in'), controller='user', action='login' %}</li>
+                <a> <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab"></a>
+                <ul>
+                <li><a href="{{ h.url_for(controller='user', action='login') }}">  <span>{{ _('Log in')}}</span></a> </li>
+                
                 {% if h.check_access('user_create') %}
-                <li class="account-item">{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
+                <li ><a href="{{ h.url_for(controller='user', action='register') }}">  <span>{{ _('Register')}}</span></a> </li>
                 {% endif %}
                 {% endblock %}
+                </ul>
+            </li>
         {% endif %}
         <div class="search-item">
         <a href="#">

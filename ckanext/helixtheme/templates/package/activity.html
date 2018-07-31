@@ -24,6 +24,10 @@
     {% endblock %}
     {% endif %}
 
+    {% if pkg.closed_tag %}
+        {% snippet "package/snippets/closed_tags.html", tags=pkg.closed_tag %}
+    {% endif %}  
+
     {% if pkg.tags %}
     {% block package_side_tags %}
         {% snippet "package/snippets/tags.html", tags=pkg.tags %}
@@ -39,9 +43,9 @@
         {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=pkg.spatial %}
     {% endif %}
 
-    {% block package_social %}
+    {#{% block package_social %}
         {% snippet "snippets/social.html" %}
-    {% endblock %} 
+    {% endblock %} #}
 {% endblock %}
 
 {% block primary_content_inner %}

@@ -49,7 +49,7 @@
                     {% block breadcrumb %}
                         {% if self.breadcrumb_content() | trim %}
                         <div class="breadcrumbs-pagination top">
-                            <div class="breadcrumbs">
+                            <div class="breadcrumbs" data-module="breadcrumb-overflow">
                                 {% block breadcrumb_content %}{% endblock %}
                             </div>
                             {% if self.page_primary_action() | trim %}

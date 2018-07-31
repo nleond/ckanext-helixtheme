@@ -75,7 +75,11 @@ Example:
     {% block package_item_resources %}
     {% if package.resources and not hide_resources %}
       <div class="tags-list">
+          {%if package.dataset_category %} 
+          <a class="tag-box tag-box-category">{{package.dataset_category[0]}}</a>
+          {% endif%}
          <a class="tag-box tag-box-other">{{ _('PUBLIC') }}</a>
+         
          <a class="tag-box tag-box-other">{{ _('OPEN') }} </a>
          {% for resource in package.resources %}
          
