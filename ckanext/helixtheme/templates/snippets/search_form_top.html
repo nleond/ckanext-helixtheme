@@ -7,7 +7,7 @@
 
 
 <div class = search-form-wrapper>
-<form class="landing-search-form" id="main-form-search" method="get" data-module="select-switch" >
+<form class="landing-search-form" id="main-form-search" method="get" data-module="select-switch checkbox-state" >
 
   {% block search_input %}
  
@@ -49,7 +49,7 @@
   {% endblock %}  #}
 
   {% block search_facets %}
-    {% if facets %}
+    {#{% if facets %}
       <p class="current-search-fields">
         {% for field in facets.fields %}
           {% set search_facets_items = facets.search.get(field)['items'] %}
@@ -68,7 +68,7 @@
           {% endfor %}
         {% endfor %}
       </p>
-    {% endif %}
+    {% endif %}  #}
   {% endblock %}
 
 </form>

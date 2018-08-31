@@ -5,7 +5,7 @@ jQuery(document).ready(function ($) {
     
     var console = window.console
     var debug = $.proxy(console, 'debug') 
-    
+    $('[data-toggle="tooltip"]').tooltip(); 
     init();
 });
 

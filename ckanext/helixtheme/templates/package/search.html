@@ -23,7 +23,9 @@
     <a class="breadcrumbs-part"  {{ h.nav_link(_(breadcrumb|upper), controller='package', action='search', highlight_actions = 'new index') }}</a>
 {% endblock %}
 
-
+{% block pagination_top %}
+{{ c.page.pager(q=c.q) }}
+{% endblock %}
 
 {% block searchbar %}
         

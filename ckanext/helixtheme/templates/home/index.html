@@ -84,12 +84,18 @@
             </li>
              
           {% else %}         
-                {% block header_account_notlogged %}
-                <li class="account-item">{% link_for _('Log in'), controller='user', action='login' %}</li>
-                {% if h.check_access('user_create') %}
-                <li class="account-item">{% link_for _('Register'), controller='user', action='register', class_='sub' %}</li>
-                {% endif %}
-                {% endblock %}
+          <li class="account-item logged-off" data-module="me" data-me="{{ c.userobj.id }}">   
+              {% block header_account_notlogged %}
+              <a> <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab"></a>
+              <ul>
+              <li><a href="{{ h.url_for(controller='user', action='login') }}">  <span>{{ _('Log in')}}</span></a> </li>
+              
+              {% if h.check_access('user_create') %}
+              <li ><a href="{{ h.url_for(controller='user', action='register') }}">  <span>{{ _('Register')}}</span></a> </li>
+              {% endif %}
+              {% endblock %}
+              </ul>
+          </li>
         {% endif %}
         
         <div class="search-item">
@@ -140,7 +146,7 @@
 
       <div class="col-sm-12">
         <h4 class="featured-datasets-header">
-          Featured Data sets
+          Featured Datasets
         </h4>
       </div>
       
@@ -318,19 +324,20 @@
           {#  Latest datasets #}
           <div class="col-sm-12">
            <h4 class="latest-datasets-header">
-             Latest Data sets
+             Latest Datasets
            </h4>
           </div>
           
        <div class="col-sm-12">
           <div class="latest-border-bottom">
+            {#
             <label class="datasets-order-by" for="datasets-order-by">Order by
               <select name="latest-datasets-order-by" value="">
                 <option value="1">
                   Σχετικότητα
                 </option>
               </select>
-            </label>
+            </label> #}
           </div>
         </div>
             

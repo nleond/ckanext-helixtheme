@@ -13,15 +13,24 @@ Example:
   {% snippet 'snippets/package_item_home.html', package=c.datasets[0] %}
 
 #}
-{% set truncate = truncate or 180 %}
+{% set truncate = truncate or 230 %}
 {% set truncate_title = truncate_title or 80 %}
 {% set title = package.title or package.name %}
 {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
 {% set modified = package.metadata_modified %}
 
+{%if package.dataset_category %} 
+  {%  if package.dataset_category[0]=='GEO'%}
+    {% set tag_tooltip ='Geospatial dataset' %}
+  {%  elif package.dataset_category[0]=='BIO'%}
+    {% set tag_tooltip ='Biological dataset' %}
+  {%  elif package.dataset_category[0]=='STAT'%}
+    {% set tag_tooltip ='Statistical dataset' %}
+  {% endif%}
+{% endif%}
+
 <div class="result-item data">
   {% block package_item_content %}
-  
       <div class="date-of-entry">
           {% if package.groups %}
           {% set group = package.groups[0] %}
@@ -33,12 +42,13 @@ Example:
 
       
       <div class="btn-save">
-          <a href="#">
-              <img class="" src="/images/png/save.png">
+          <a href="#" data-toggle="tooltip" data-placement="bottom" title="Save">
+             
+              <img class="" src="/images/png/save.png"> 
             </a>
       </div>
       <div class="btn-favorite">
-          <a href="#">
+          <a href="#" data-toggle="tooltip" data-placement="bottom" title="Favorite" >
             <img class="" src="/images/png/favorite.png">
           </a></div>
 
@@ -64,7 +74,9 @@ Example:
       {% if banner %}
         <span class="banner">{{ _('Popular') }}</span>
       {% endif %}
-        
+      {% if notes %}
+      <div class="notes"> {{ notes |urlize }} </div>
+      {% endif %} 
 
       {% if package.organization %}
       <div class="service">
@@ -76,17 +88,23 @@ Example:
     {% if package.resources and not hide_resources %}
       <div class="tags-list">
           {%if package.dataset_category %} 
-          <a class="tag-box tag-box-category">{{package.dataset_category[0]}}</a>
+          <a class="tag-box tag-box-category" data-toggle="tooltip" data-placement="bottom" 
+              title="{{tag_tooltip}}">{{package.dataset_category[0]}}</a>
           {% endif%}
-         <a class="tag-box tag-box-other">{{ _('PUBLIC') }}</a>
+         <a class="tag-box tag-box-other" data-toggle="tooltip" data-placement="bottom" 
+              title="Data available with an open license" >{{ _('PUBLIC') }}  </a>
          
-         <a class="tag-box tag-box-other">{{ _('OPEN') }} </a>
+         <a class="tag-box tag-box-other"  data-toggle="tooltip" data-placement="bottom" 
+              title="Data available by a public authority with an open license">{{ _('OPEN') }} </a>
          {% for resource in package.resources %}
          
           <a class="tag-box {% if loop.index==1 %}first-tag{%endif %}"
             href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
             data-format="{{ resource.format }}"
-           >{{ resource.format|upper }}</a>
+           >{%if resource.size  %} {{ resource.format|upper }}
+          {%else%} {{ _('URL') }}
+          {% endif%}  
+        </a>
             
         {% endfor %}
       </div>

@@ -1,0 +1,42 @@
+{% extends "package/base.html" %}
+
+{% set logged_in = true if c.userobj else false %}
+{% set res = c.resource %}
+
+{% block breadcrumb_content_selected %}{% endblock %}
+
+{% block breadcrumb_content %}
+  {{ super() }}
+  {% if res %}
+    <a class="breadcrumbs-part"{% link_for h.resource_display_name(res)|truncate(30)|upper, controller='package', action='resource_read', id=pkg.name, resource_id=res.id %}</a>
+    <a class="breadcrumbs-part"{% block breadcrumb_edit_selected %} class="active"{% endblock %} href="">{{ _('EDIT') }}</a>
+  {% endif %}
+{% endblock %}
+
+
+{% block content_action %}
+  {% link_for _('All resources'), controller='package', action='resources', id=pkg.name, class_='btn btn-default', icon='arrow-left' %}
+  {% if res %}
+    {% link_for _('View resource'), controller='package', action='resource_read', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='eye' %}
+  {% endif %}
+{% endblock %}
+
+{% block content_primary_nav %}
+  {{ h.build_nav_icon('resource_edit', _('Edit resource'), id=pkg.name, resource_id=res.id) }}
+  {% block inner_primary_nav %}{% endblock %}
+  {{ h.build_nav_icon('views', _('Views'), id=pkg.name, resource_id=res.id) }}
+{% endblock %}
+
+{% block primary_content_inner %}
+  <h1 class="hide-heading">{% block form_title %}{{ _('Edit resource') }}{% endblock %}</h1>
+  {% block form %}{% endblock %}
+{% endblock %}
+
+{% block secondary_content %}
+  {% snippet 'package/snippets/resource_info.html', res=res %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% resource 'vendor/fileupload' %}
+{% endblock %}

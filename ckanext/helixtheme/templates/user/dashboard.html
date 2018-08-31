@@ -4,7 +4,7 @@
 
 
 {% block breadcrumb_content %}
-<a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}" >Dashboard</a>
+<a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}" >DASHBOARD</a>
 {% endblock %}
 
 {% block secondary%}
@@ -22,14 +22,14 @@
     
         <div class = "page-header">
           <div class="content_action">
-          {% link_for _('Edit setting'), controller='user', action='edit', id=user.name, class_='btn', icon='cog' %}
+          {% link_for _('Edit settings'), controller='user', action='edit', id=user.name, class_='btn btn-manage', icon='cog' %}
           </div>
          </div> 
     <ul class="nav nav-tabs">
         {% block page_header_navtab_links %}
             {{ h.build_nav_icon('dashboard.datasets', _('My Datasets')) }}
             {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
-            {{ h.build_nav_icon('dashboard.organizations', _('My Organizations')) }}
+            {{ h.build_nav_icon('dashboard.organizations', _('My Publishers')) }}
             {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }}  #}
             {{ h.build_nav_icon('dashboard.index', _('News feed')) }}
     
@@ -46,8 +46,10 @@
 
       {% block primary_content_inner %}
       {{super() }}
-      {% endblock %}
-      </section>
     
+      {% endblock %}
+    </section>
+</section>
+</section>
 {% endblock primary%}
 

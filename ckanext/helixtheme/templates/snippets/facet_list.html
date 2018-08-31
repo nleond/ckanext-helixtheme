@@ -95,7 +95,7 @@ hide_section
         <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img>
         {% endif %}
         #}
-        {% set facet_titles = {'organization': _('Organizations'),
+        {% set facet_titles = {'organization': _('PUBLISHERS'),
                     'closed_tags_facets': _('Topics'),
                     'tags': _('Tags'),
                     'res_format': _('Formats'),
@@ -113,16 +113,17 @@ hide_section
                         </a> 
                     </div> #}
       </h5>
-        <div  class="switches">  
+        <div  class="switches"> 
             {% for item in items %}   {% if total_count.append(total_count.pop() + 1) %}{% endif %} 
               {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
               {% set label = label_function(item) if label_function else item.display_name %}
-              {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
+              {#{% set label_truncated = h.truncate(label, 70) if not label_function else label %} #}
+              {% set label_truncated = label %}
               {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %} 
               <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
-                    <input type="checkbox" form="main-form-search" id="switch-{{total_count[0]}}" name="{{name|lower}}" 
+                    <input type="checkbox" form="main-form-search" {% if item.active %} checked {% endif %}id="switch-{{total_count[0]}}" name="{{name|lower}}" 
                             {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}"{% else %} value="{{label}}"> {% endif %}
-                  <a href="{{ href }}" title="{{ label if label != label_truncated else '' }}"> 
+                  <a  title="{{ label if label != label_truncated else '' }}"> 
                       {{ label_truncated }} {{ count }}
                   </a> 
                 </label> 

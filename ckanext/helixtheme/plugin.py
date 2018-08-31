@@ -38,7 +38,7 @@ def list_menu_items (limit=21):
     return groups
 
 def friendly_date(date_str):
-    return render_datetime(date_str, '%d, %B, %Y')
+    return render_datetime(date_str, '%d %B %Y')
 
 def get_contact_point(pkg):
     

@@ -1,73 +1,108 @@
-
-{% set tags = h.get_facet_items_dict('tags', limit=3) %}
-{% set placeholder = _('Search Datasets') %}
+ {% set tags = h.get_facet_items_dict('tags', limit=3) %} {% set placeholder = _('Search Datasets') %}
 
 
 <section>
-    <div class="landing-section">
+  <div class="landing-section">
 
-      <div class="search-form-wrapper">
+    <div class="search-form-wrapper">
 
-        <form class="landing-search-form" method="get" action="{% url_for controller='package', action='search' %} ">
-          
-          <div class="main-form-content">
-            <input type="text" class="landing-search-text" name="q" value="" placeholder="Αναζητήστε δεδομένα, δημοσιεύσεις, εργαλεία έρευνας">
-            
-            <div class="domain-pills">
-           
-              <div class="advanced-search-link">
-                Σύνθετη αναζήτηση
-              </div>
+      <form class="landing-search-form" autocomplete="off" method="get" action="{% url_for controller='package', action='search' %} ">
+
+        <div class="main-form-content">
+          <input type="text" class="landing-search-text"  name="q" value="" placeholder="Αναζητήστε δεδομένα, δημοσιεύσεις, εργαλεία έρευνας">
+
+          <div class="domain-pills">
+
+            <div class="advanced-search-link">
+              <a href="#myModal" class="" data-toggle="modal">Σύνθετη αναζήτηση</a>
             </div>
-            
-            <!-- <div class="closable state-open"> -->
-            <div class="closable">
-              
-              <div class="close-btn">
-                CLOSE
-              </div>
 
-              <div class="search-options">
-                <label for="input-organizations"><span class="label-content">ORGANIZATIONS</span>
-                  <input list="organizations" id="input-organizations" name="input-organizations" value="" placeholder="- SELECT -">
-                  <datalist id="organizations">
-                    <option value=""></option>
-                  </datalist>
-                </label>
-                <label for="input-tags"><span class="label-content">TAGS</span>
-                  <input list="tags" id="input-tags" name="input-tags" value="" placeholder="- SELECT -">
-                  <datalist id="tags">
-                    <option value=""></option>
-                  </datalist>
-                </label>
-                <label for="input-licences"><span class="label-content">LICENCES</span>
-                  <input list="licences" id="input-licences" name="input-licences" value="" placeholder="- SELECT -">
-                  <datalist id="licences">
-                    <option value=""></option>
-                  </datalist>
-                </label>
-                <label for="input-topics"><span class="label-content">TOPICS</span>
-                  <input list="topics" id="input-topics" name="input-topics" value="" placeholder="- SELECT -">
-                  <datalist id="topics">
-                    <option value=""></option>
-                  </datalist>
-                </label>
-                <label for="input-formats"><span class="label-content">FORMATS</span>
-                  <input list="formats" id="input-formats" name="input-formats" value="" placeholder="- SELECT -">
-                  <datalist id="formats">
-                    <option value=""></option>
-                  </datalist>
-                </label>
-                  
-                </div>
-              
-              </div>
-              
-             
           </div>
-         <button type="submit" name="landing-search-button" class="landing-search-button">
-              <i class="fa fa-search"></i>
-            </button>
+
+          <!-- <div class="closable state-open"> -->
+          <div class="closable">
+
+            <div class="close-btn">
+              CLOSE
+            </div>
+
+            <div class="search-options">
+              <label for="input-organizations">
+                <span class="label-content">PUBLISHERS</span>
+                <input list="organizations" id="input-organizations" name="input-organizations" value="" placeholder="- SELECT -">
+                <datalist id="organizations">
+                  <option value=""></option>
+                </datalist>
+              </label>
+              <label for="input-tags">
+                <span class="label-content">TAGS</span>
+                <input list="tags" id="input-tags" name="input-tags" value="" placeholder="- SELECT -">
+                <datalist id="tags">
+                  <option value=""></option>
+                </datalist>
+              </label>
+              <label for="input-licences">
+                <span class="label-content">LICENCES</span>
+                <input list="licences" id="input-licences" name="input-licences" value="" placeholder="- SELECT -">
+                <datalist id="licences">
+                  <option value=""></option>
+                </datalist>
+              </label>
+              <label for="input-topics">
+                <span class="label-content">TOPICS</span>
+                <input list="topics" id="input-topics" name="input-topics" value="" placeholder="- SELECT -">
+                <datalist id="topics">
+                  <option value=""></option>
+                </datalist>
+              </label>
+              <label for="input-formats">
+                <span class="label-content">FORMATS</span>
+                <input list="formats" id="input-formats" name="input-formats" value="" placeholder="- SELECT -">
+                <datalist id="formats">
+                  <option value=""></option>
+                </datalist>
+              </label>
+
+            </div>
+
+          </div>
+
+
+        </div>
+        <button type="submit" name="landing-search-button" class="landing-search-button">
+          <i class="fa fa-search"></i>
+        </button>
       </form>
     </div>
-  </section>
+  </div>
+
+  <!-- Modal HTML -->
+  <div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="advanced-search">
+            <form class="landing-search-form" method="get" action="{% url_for controller='package', action='search' %} ">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="title">Advanced Search</h4>
+                </div>
+                <div class="col-md-6 text-right">
+                  <i data-dismiss="modal" class="fa fa-remove btn"></i>
+                </div>
+              </div>
+              <div class="row">
+                <input type="text" class="landing-search-text" name="q" value="" placeholder="Αναζητήστε δεδομένα, δημοσιεύσεις, εργαλεία έρευνας">
+              </div>
+              <section class="footer">
+                <button type="submit" name="landing-search-button" class="landing-search-button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </section>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
