@@ -43,13 +43,14 @@ hide_section
 {% set total_count=[0]%}
 
 
-{% with labels = c.facet_labels or {} %}
+{% with labels = c.facet_labels or {} %} 
+{# {% set show_publishers = hide_publishers or false %} #}
   {% for name, title in c.facet_titles.items() %}
 
 
 {% set hide_empty = hide_empty or false %}
 {% set LIMIT = 4 %}
-{% with items = items or h.get_facet_items_dict(name, limit=50) %}
+{% with items = items or h.get_facet_items_dict(name, limit=50) %} 
 {% set label_function=labels.get(facet) %}
 {% if name == 'organization' %}
             {% set facet_class = 'organizations' %}

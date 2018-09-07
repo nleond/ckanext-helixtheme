@@ -3,7 +3,7 @@
 
 {% block breadcrumb_content %}
   <a class="breadcrumbs-part"{% link_for _('USERS'), controller='user', action='index'%} </a>
-  <a class="breadcrumbs-part"{% link_for user.display_name|truncate(35)|upper, controller='user', action='read', id=user.name %}</a>
+  <a class="breadcrumbs-part"{% link_for user.display_name|truncate(35), controller='user', action='read', id=user.name %}</a>
 {% endblock %}
 
 

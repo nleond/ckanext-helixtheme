@@ -1386,7 +1386,7 @@ a.tag:hover{
 .toggle-show-more{
     height:34px;
     border-radius:0;
-    background: #3EA0DD;
+    background: #3EA0DD !important;
 }
 .toggle-show-more:hover{
 }
@@ -1999,9 +1999,6 @@ a.tag:hover{
     margin-bottom: 0px !important;
 }
 
-.select2-result-label{
-    background-color: #fff;
-}
 
 /* closed-tags class(select-multiple) */
 
@@ -2034,12 +2031,40 @@ iframe{
     min-height: 450px;
 }
 /* New package */
+
+.stages{
+    margin: -20px -30px 20px;
+}
+
+
 .stages li {
     width: 33.33%;  /* edit (added) */
+    padding: 10px 20px;
+    right:1px;
+}
+
+.stages li:after{
+    border-width: 34px;
+    margin-top: -34px;
+    left:-3px;
+}
+
+.stages li .highlight{
+    left:1px;
+    padding: 10px 25px 5px 52px;
+}
+
+.stages li.last{
+    right:1px ;
+}
+
+.stages li.middle .highlight{
+    //padding: 14px 52px;
+    //line-height: 20px;
 }
 
 .stages li button.highlight {
-    padding: 5px 52px;
+    //padding: 5px 52px;
     line-height: 20px;
 }
 
@@ -2363,4 +2388,15 @@ label > a{
     overflow:hidden;
 }
 
+.wide{
+    display:inline-block; //for dashboard organizations overlap
+}
+
+.activity{
+    display:inline-block;
+}
+
+//.image-upload{
+//    display:inline-block;
+//}
 

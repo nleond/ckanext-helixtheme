@@ -3,12 +3,51 @@
 
 {% block content_primary_nav %}
 
+<div class="package-language">
+  <a href="#"> {{pkg.foo.languagecode|truncate(2,True, '')|upper}}</a>
+</div>
+<div class="btn-save">
+  <a href="#"><img class="" src="/images/png/save.png"></a>
+</div>
+<div class="btn-favorite">
+  <a href="#"> <img class="" src="/images/png/favorite.png"></a>
+</div>
+
+    
+  <h1 class="package-title">
+{{ pkg.title or pkg.name }}
+
+{% if pkg.get('state', '').startswith('draft') %}
+<span class="label package-state label-info state-draft">{{ _('Draft') }}</span>
+{% elif pkg.get('state', '').startswith('deleted') %}
+<span class="label package-state label-danger state-deleted">{{ _('Deleted') }}</span>
+{% elif pkg.get('state', '').startswith('invalid') %}
+<span class="label package-state label-danger state-invalid">{{ _('Invalid') }}</span>
+{% endif %} {# state #}
+
+{% block page_heading_info %}
+{% if h.is_multilingual_dataset and pkg.language and pkg.translated_to_language %}
+{% snippet "package/snippets/multilingual_info.html", pkg=pkg %}
+{% endif %}
+{% endblock %} {# page_heading_info #}
+
+</h1>
+{% block package_dates %}
+  <div class="dataset-dates">
+  <div class="title"> {{_('PUBLICATION:')}} </div>
+         <div class="date"> {{ pkg.metadata_created.split('T')[0]|upper or pkg.metadata_created|upper or _('NEVER')}}</div>
+         
+  <div class="title"> {{_('LAST REVISION:') }} </div> 
+         <div class="date"> {{ pkg.metadata_modified.split('T')[0]|upper or pkg.metadata_modified|upper or  _('NEVER') }}</div>
+         
+  </div>
+  {% endblock %}
 
 {% if h.check_access('package_update', {'id':pkg.id }) %}
   {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-manage pull-right', icon='wrench' %}
 {% endif %}
 
-<div class="nav-menu-other">
+<div class="nav-menu">
   {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
   {{ h.build_nav_icon('dataset_groups', _('Topics'), id=pkg.name) }}
   {{ h.build_nav_icon('dataset_activity', _('Activity Stream'), id=pkg.name) }}

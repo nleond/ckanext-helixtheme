@@ -8,23 +8,25 @@
 {% block breadcrumb_content %}
   {{ super() }}
   {% if res %}
-    <a class="breadcrumbs-part"{% link_for h.resource_display_name(res)|truncate(30)|upper, controller='package', action='resource_read', id=pkg.name, resource_id=res.id %}</a>
-    <a class="breadcrumbs-part"{% block breadcrumb_edit_selected %} class="active"{% endblock %} href="">{{ _('EDIT') }}</a>
+    <a class="breadcrumbs-part"{% link_for h.resource_display_name(res)|truncate(30), controller='package', action='resource_read', id=pkg.name, resource_id=res.id %}</a>
+    <a class="breadcrumbs-part"{% block breadcrumb_edit_selected %} {% endblock %} href="">{{ _('EDIT') }}</a>
   {% endif %}
 {% endblock %}
 
 
 {% block content_action %}
-  {% link_for _('All resources'), controller='package', action='resources', id=pkg.name, class_='btn btn-default', icon='arrow-left' %}
+  {% link_for _('All resources'), controller='package', action='resources', id=pkg.name, class_='btn btn-manage pull-right', icon='arrow-left' %}
   {% if res %}
-    {% link_for _('View resource'), controller='package', action='resource_read', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='eye' %}
+    {% link_for _('View resource'), controller='package', action='resource_read', id=pkg.name, resource_id=res.id, class_='btn btn-manage pull-right', icon='eye' %}
   {% endif %}
 {% endblock %}
 
 {% block content_primary_nav %}
+<div class="nav-menu">
   {{ h.build_nav_icon('resource_edit', _('Edit resource'), id=pkg.name, resource_id=res.id) }}
   {% block inner_primary_nav %}{% endblock %}
   {{ h.build_nav_icon('views', _('Views'), id=pkg.name, resource_id=res.id) }}
+</div>
 {% endblock %}
 
 {% block primary_content_inner %}

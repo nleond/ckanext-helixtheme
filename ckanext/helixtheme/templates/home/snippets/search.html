@@ -1,5 +1,5 @@
  {% set tags = h.get_facet_items_dict('tags', limit=3) %} {% set placeholder = _('Search Datasets') %}
-
+ {% set search_placeholder= _('Search for open scientific data')%}
 
 <section>
   <div class="landing-section">
@@ -9,12 +9,12 @@
       <form class="landing-search-form" autocomplete="off" method="get" action="{% url_for controller='package', action='search' %} ">
 
         <div class="main-form-content">
-          <input type="text" class="landing-search-text"  name="q" value="" placeholder="Αναζητήστε δεδομένα, δημοσιεύσεις, εργαλεία έρευνας">
+          <input type="text" class="landing-search-text"  name="q" value="" placeholder="{{search_placeholder}}">
 
           <div class="domain-pills">
 
             <div class="advanced-search-link">
-              <a href="#myModal" class="" data-toggle="modal">Σύνθετη αναζήτηση</a>
+              <a href="#myModal" class="" data-toggle="modal">{{_('Advanced search')}}</a>
             </div>
 
           </div>

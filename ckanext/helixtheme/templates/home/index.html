@@ -146,7 +146,7 @@
 
       <div class="col-sm-12">
         <h4 class="featured-datasets-header">
-          Featured Datasets
+          {{_('Featured Datasets')}}
         </h4>
       </div>
       
@@ -324,7 +324,7 @@
           {#  Latest datasets #}
           <div class="col-sm-12">
            <h4 class="latest-datasets-header">
-             Latest Datasets
+            {{_('Latest Datasets')}}
            </h4>
           </div>
           
@@ -346,7 +346,7 @@
           
         {# More button#}
         <div class="latest-dataset-more-pill">
-          <a href="{{ h.url_for(controller='package', action='search')}}">MORE</a>
+          <a href="{{ h.url_for(controller='package', action='search')}}">{{_('MORE')}}</a>
         </div>
 
     {% endblock %}

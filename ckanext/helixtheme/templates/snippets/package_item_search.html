@@ -20,11 +20,12 @@ Example:
 {% set modified = package.metadata_modified %}
 
 {%if package.dataset_category %} 
-  {%  if package.dataset_category[0]=='GEO'%}
+  {% set dataset_category = package.dataset_category[0]%}
+  {%  if dataset_category=='GEO'%}
     {% set tag_tooltip ='Geospatial dataset' %}
-  {%  elif package.dataset_category[0]=='BIO'%}
+  {%  elif dataset_category=='BIO'%}
     {% set tag_tooltip ='Biological dataset' %}
-  {%  elif package.dataset_category[0]=='STAT'%}
+  {%  elif dataset_category=='STAT'%}
     {% set tag_tooltip ='Statistical dataset' %}
   {% endif%}
 {% endif%}
@@ -80,7 +81,7 @@ Example:
 
       {% if package.organization %}
       <div class="service">
-          <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}} > {{ package.organization.title|urlize|upper }}</a>
+          <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}} > {{ package.organization.title|urlize }}</a>
       </div>
       {% endif %}
  
@@ -88,8 +89,8 @@ Example:
     {% if package.resources and not hide_resources %}
       <div class="tags-list">
           {%if package.dataset_category %} 
-          <a class="tag-box tag-box-category" data-toggle="tooltip" data-placement="bottom" 
-              title="{{tag_tooltip}}">{{package.dataset_category[0]}}</a>
+          <a class="tag-box tag-box-category"  href="{% url_for controller='package', action='search', q=dataset_category %}" 
+           data-toggle="tooltip" data-placement="bottom" title="{{tag_tooltip}}">{{dataset_category}}</a>
           {% endif%}
          <a class="tag-box tag-box-other" data-toggle="tooltip" data-placement="bottom" 
               title="Data available with an open license" >{{ _('PUBLIC') }}  </a>

@@ -25,8 +25,10 @@
           {% link_for _('Edit settings'), controller='user', action='edit', id=user.name, class_='btn btn-manage', icon='cog' %}
           </div>
          </div> 
-    <ul class="nav nav-tabs">
-        {% block page_header_navtab_links %}
+        <div class=result-items>
+        <ul class="nav-bar dashboard">
+            <div class="nav-menu">
+            {% block page_header_navtab_links %}
             {{ h.build_nav_icon('dashboard.datasets', _('My Datasets')) }}
             {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
             {{ h.build_nav_icon('dashboard.organizations', _('My Publishers')) }}
@@ -36,8 +38,10 @@
             {# {% if c.is_sysadmin %} 
                 {{ h.build_nav_icon('user_dashboard_maps', _('Maps'), icon='globe') }}
             {% endif %} #}
-     </ul>       
-        {% endblock page_header_navtab_links %}
+            </div>
+        </ul>       
+        </div>
+            {% endblock page_header_navtab_links %}
 
    
     {% endblock page_header%}
