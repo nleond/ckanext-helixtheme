@@ -13,9 +13,8 @@
    
     
     {% if sorting %}
-      
        <label class="datasets-order-by" for="order-by">{{ _('Order by') }}
-        <select id="order-by"  name="sort" >
+        <select class="select-menu btn-group-main btn-add-dataset" id="order-by"  name="sort" >
           {% for label, value in sorting %}
             {% if label and value %}
               <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
@@ -23,7 +22,7 @@
           {% endfor %}
         </select>
        </label>
-    
+      
     {% endif %}   
    </form> 
    

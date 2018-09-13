@@ -29,7 +29,7 @@
   <h1 class="hide-heading">{{ _('Topics') }}</h1>
     {% block groups_list %}
     {% if c.page.items or request.params %}
-      {% if c.page.items %}
+      {% if c.page.items %} 
         {% snippet "group/snippets/group_list.html", groups=c.page.items %}
       {% endif %}
     {% else %}

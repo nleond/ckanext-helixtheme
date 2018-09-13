@@ -22,12 +22,13 @@ Example:
 <div class="latest-dataset-item">
   {% block package_item_content %}
       <div class="date-of-entry">
-          {% if package.groups %}
+         {# {% if package.groups %}
           {% set group = package.groups[0] %}
           {{ h.friendly_date(modified|urlize)}} @ <a href={{ h.url_for(controller='group', action='read', id= group.name) }}> {{group.title|urlize }}</a>
           {% else %}
           {{ h.friendly_date(modified|urlize)}} 
-          {% endif %}
+          {% endif %} #}
+          {{ h.friendly_date(modified|urlize)}}
       </div>
       <a href={{h.url_for(controller='package', action='read', id=package.name)}}>
       <h3 class="latest-dataset-title">
@@ -41,7 +42,7 @@ Example:
       
       {% if package.organization %}
       {% set org = h.get_organization(package.organization.name) %}
-      <div class="dataset-postheading">
+      <div class="dataset-service">
           <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}}> {{ package.organization.title|urlize }}</a>
       </div>
       {% endif %}
@@ -51,10 +52,12 @@ Example:
           {#<a class="tag-box tag-box-other">{{ _('PUBLIC') }}</a>
           <a class="tag-box tag-box-other">{{ _('OPEN') }} </a> #}
         {% for resource in package.resources %}
+          {% if resource.format%}
             <a class="tag-box"
               href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
               data-format="{{ resource.format }}"
             >{{ resource.format|upper }}</a>
+          {% endif %}
         {% endfor %}
       </div>
     {% endif %}

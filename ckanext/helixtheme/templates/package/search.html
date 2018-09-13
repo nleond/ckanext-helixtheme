@@ -19,7 +19,7 @@
         
 {% block breadcrumb_content %}
 {% set breadcrumb = c.q if c.q else 'ALL' %}    
-    <a class="breadcrumbs-part"  {{ h.nav_link(_('RESULTS'), controller='package', action='search', highlight_actions = 'new index') }}</a>
+    <a class="breadcrumbs-part"  {{ h.nav_link(_('DATASETS'), controller='package', action='search', highlight_actions = 'new index') }}</a>
     <a class="breadcrumbs-part"  {{ h.nav_link(_(breadcrumb), controller='package', action='search', highlight_actions = 'new index') }}</a>
 {% endblock %}
 

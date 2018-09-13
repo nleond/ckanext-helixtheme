@@ -33,12 +33,14 @@ Example:
 <div class="result-item data">
   {% block package_item_content %}
       <div class="date-of-entry">
-          {% if package.groups %}
-          {% set group = package.groups[0] %}
+         {# {% if package.groups %}
+          {% set group = package.groups[0] %} 
           <div>{{ h.friendly_date(modified|urlize)}} @ <span> <a href={{ h.url_for(controller='group', action='read', id= group.name) }}> {{group.title|urlize }}</span></div> </a>
           {% else %}
           <div>{{ h.friendly_date(modified|urlize)}} </div>
           {% endif %}
+          #}
+          <div>{{ h.friendly_date(modified|urlize)}} </div>
       </div>
 
       
@@ -56,7 +58,6 @@ Example:
       <h3 class="title">
         {% if package.private %}
           <span class="dataset-private label label-inverse">
-            <i class="icon-lock"></i>
             {{ _('Private') }}
         </span>
         {% endif %}
@@ -102,8 +103,7 @@ Example:
           <a class="tag-box {% if loop.index==1 %}first-tag{%endif %}"
             href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
             data-format="{{ resource.format }}"
-           >{%if resource.size  %} {{ resource.format|upper }}
-          {%else%} {{ _('URL') }}
+           >{%if resource.format  %} {{ resource.format|upper }}
           {% endif%}  
         </a>
             

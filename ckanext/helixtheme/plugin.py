@@ -29,6 +29,17 @@ def most_recent_datasets(limit=10):
 
     return datasets.get('results')
 
+def get_featured_datasets(limit=4):
+    datasets = toolkit.get_action('group_package_show')(
+        data_dict={'id': 'featured-datasets'})
+
+    # Add terms for translation and call get_translation_terms
+    #locale = helpers.lang()
+    #translated = get_translated_dataset_groups(datasets.get('results'), locale)
+
+    return datasets
+
+
 def list_menu_items (limit=21):
     groups = toolkit.get_action('group_list')(
         data_dict={'sort': 'name desc', 'all_fields':True})
@@ -224,6 +235,7 @@ class HelixthemePlugin(plugins.SingletonPlugin):
     def get_helpers(self):
         return {
             'newest_datasets': most_recent_datasets,
+            'featured_datasets': get_featured_datasets,
             'list_menu_items': list_menu_items,
             'friendly_date': friendly_date,
             'friendly_name': friendly_name,

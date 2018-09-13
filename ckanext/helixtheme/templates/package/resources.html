@@ -14,7 +14,7 @@
       {% for resource in pkg.resources %}
         {% snippet 'package/snippets/resource_item.html', pkg=pkg, res=resource, url_is_edit=true, can_edit=can_edit %}
       {% endfor %}
-    </div>
+      </div>
     </div>
   {% else %}
     {% trans url=h.url_for(controller='package', action='new_resource', id=pkg.name) %}

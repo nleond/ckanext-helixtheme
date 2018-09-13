@@ -6,7 +6,7 @@
     <a href=#>{{_('Pubs')}}</a>
 </li>
 <li class = "menu-item domain-item" >
-    <a href=#>{{_('Lab')}}</a>
+    <a href="http://192.168.10.163:8080/">{{_('Lab')}}</a>
 </li>
 {#<li>
     <a href="{{ h.url_for(controller='group', action='index')}}">{{_('Topics')}}</a>
@@ -15,11 +15,46 @@
     <a href="{{ h.url_for(controller='organization', action='index')}}">{{_('Organizations')}}</a>
 </li>
 #}
-<li class = "menu-item aux-item" >
-    <a href="{{ h.redirect_wp('about') }}">{{_('About')}}</a>
+<li class = "menu-item aux-item has-sub-menu" >
+     
+    <a href="http://core.hellenicdataservice.gr/core/project/page/about">{{_('About')}}</a>
+    
+    <ul class="sub-menu">
+         <li>  
+             <a href="http://core.hellenicdataservice.gr/core/project/page/about">{{_('About 1 ')}}</a>
+         </li> 
+         <li>  
+                <a href="http://core.hellenicdataservice.gr/core/project/page/about">{{_('About 2')}}</a>
+        </li> 
+    </ul>
+    
 </li>
 <li class = "menu-item aux-item" >
-<a href="{{ h.redirect_wp('news') }}">{{_('News')}}</a>
+<a href="http://core.hellenicdataservice.gr/core/news">{{_('News')}}</a>
 </li>
+
+{#<li id="menu-item-project" className="menu-item aux-item has-sub-menu">
+        <NavLink to={StaticRoutes.PROJECT} activeClassName="active-link" strict={false}>About</NavLink>
+        <ul className="sub-menu">
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.WhatIsHelix])}>What is HELIX?</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Services])}>Services</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.FAQ])}>FAQ</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.PublishData])}>Publish Data</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Software])}>Software</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Project])}>The project</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Media])}>Media</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.AcknowledgeHelix])}>Acknowledge Helix</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Contact])}>Contact</NavLink></li>
+          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.TermsOfUse])}>Terms of use</NavLink></li>
+        </ul>
+      </li>
+
+    <li id="menu-item-news" className="menu-item aux-item has-sub-menu">
+        <NavLink to={StaticRoutes.NEWS} activeClassName="active-link">News</NavLink>
+        <ul className="sub-menu">
+          <li><NavLink to={StaticRoutes.NEWS}>News</NavLink></li>
+          <li><a href="#">Events</a></li>
+     </ul>
+    </li> #}
 
 
