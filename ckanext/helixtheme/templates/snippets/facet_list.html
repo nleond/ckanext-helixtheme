@@ -123,8 +123,8 @@ hide_section
               {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %} 
               <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
                     <input type="checkbox" form="main-form-search" {% if item.active %} checked {% endif %}id="switch-{{total_count[0]}}" name="{{name|lower}}" 
-                            {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}"{% else %} value="{{label}}"> {% endif %}
-                  <a  title="{{ label if label != label_truncated else '' }}"> 
+                            {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}"{% else %} value="{{label}}" {% endif %} >
+                  <a  title="{{ label if label != label_truncated else '' }}" > 
                       {{ label_truncated }} {{ count }}
                   </a> 
                 </label> 

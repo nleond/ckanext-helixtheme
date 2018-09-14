@@ -16,7 +16,7 @@ from ckan.lib import helpers, munge
 from ckan.lib.base import c
 from ckan.lib.helpers import render_datetime, resource_preview, url_for_static
 
-import ckanext.publicamundi.themes.geodata.mapsdb as mapsdb
+#import ckanext.publicamundi.themes.geodata.mapsdb as mapsdb
 import ckanext.publicamundi.lib.template_helpers as ext_template_helpers
 
 def most_recent_datasets(limit=10):
