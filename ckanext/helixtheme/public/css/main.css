@@ -2294,7 +2294,7 @@ format-label[data-format=csv], .format-label[data-format*=csv]
 }
 
 .help-block{
-    padding-left:140px;
+    margin-left:165px;
     padding-bottom:12px;
     margin-top: -10px !important;
     font-size:1.2rem;
