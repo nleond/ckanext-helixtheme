@@ -3,57 +3,124 @@
 {% set user = c.userobj %}
 
 
-{% block breadcrumb_content %}
-<a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}" >DASHBOARD</a>
+
+
+
+
+
+
+{%- block content %}
+{% block maintag %}
+
 {% endblock %}
+<section class="main-results-page-content">
+    <div class="results-main-content">
 
-{% block secondary%}
-
-
-     {{super()}}
-
-{% endblock %}
-
+        {% block secondary %}
+        
+        {% endblock secondary %}
 
 
-{% block primary %}
-    {% block page_header %}
-        <section class= "results-main-result-set dashboard"> 
-    
-        <div class = "page-header">
-          <div class="content_action">
-          {% link_for _('Edit settings'), controller='user', action='edit', id=user.name, class_='btn btn-manage', icon='cog' %}
-          </div>
-         </div> 
-        <div class=result-items>
-        <ul class="nav-bar dashboard">
-            <div class="nav-menu">
-            {% block page_header_navtab_links %}
-            {{ h.build_nav_icon('dashboard.datasets', _('My Datasets')) }}
-            {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
-            {{ h.build_nav_icon('dashboard.organizations', _('My Publishers')) }}
-            {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }}  #}
-            {{ h.build_nav_icon('dashboard.index', _('News feed')) }}
-    
-            {# {% if c.is_sysadmin %} 
-                {{ h.build_nav_icon('user_dashboard_maps', _('Maps'), icon='globe') }}
-            {% endif %} #}
+
+
+        <section class="results-main-result-set center-content">
+            {% block search_title%}
+            {% endblock %}
+            {% block toolbar %}
+
+            {% block breadcrumb %}
+            {% if self.breadcrumb_content() | trim %}
+            <div class="breadcrumbs-pagination top">
+                <div class="breadcrumbs" data-module="breadcrumb-overflow">
+                    {% block breadcrumb_content %}
+                        <a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}">DASHBOARD</a>
+                    {% endblock %}
+                </div>
+                {% block pagination_top %}{% endblock %}
+                {% if self.page_primary_action() | trim %}
+                <div class="page_primary_action">
+                    {% block page_primary_action %}{% endblock %}
+                </div>
+                {% endif %}
             </div>
-        </ul>       
-        </div>
-            {% endblock page_header_navtab_links %}
+            {% endif %}
+            {% endblock breadcrumb %}
+            {% endblock toolbar%}
 
-   
-    {% endblock page_header%}
-   
-   
+            {% block altbar %}
+            {% endblock %}
 
-      {% block primary_content_inner %}
-      {{super() }}
-    
-      {% endblock %}
-    </section>
+            {% block primary_border%}
+            <div class="main-results-border-bottom">
+                {% endblock%}
+
+                {% block gap %}
+
+                {% endblock %}
+                {% block main_content %}
+
+                {# Add Order by plus result number for search #}
+            </div>
+            {% block flash %}
+            {% set flash_messages = h.flash.pop_messages() | list %}
+            <div class="flash-messages">
+                {% for message in flash_messages %}
+                <div class="alert fade in {{ message.category }}">
+                    {{ h.literal(message) }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endblock flash %}
+
+            {#
+            The pre_primary block can be used to add content to before the
+            rendering of the main content columns of the page.
+            #}
+            {% block pre_primary %}
+
+            {% endblock %}
+
+            {% block primary %}
+            {% block page_header %}
+            <section class="results-main-result-set dashboard">
+
+                <div class="page-header">
+                    <div class="content_action">
+                        {% link_for _('Edit settings'), controller='user', action='edit', id=user.name, class_='btn
+                        btn-manage', icon='cog' %}
+                    </div>
+                </div>
+                <div class=result-items>
+                    <ul class="nav-bar dashboard">
+                        <div class="nav-menu">
+                            {% block page_header_navtab_links %}
+                            {{ h.build_nav_icon('dashboard.datasets', _('My Datasets')) }}
+                            {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
+                            {{ h.build_nav_icon('dashboard.organizations', _('My Publishers')) }}
+                            {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }} #}
+                            {{ h.build_nav_icon('dashboard.index', _('News feed')) }}
+
+                            {# {% if c.is_sysadmin %}
+                            {{ h.build_nav_icon('user_dashboard_maps', _('Maps'), icon='globe') }}
+                            {% endif %} #}
+                        </div>
+                    </ul>
+                </div>
+                {% endblock page_header_navtab_links %}
+
+
+                {% endblock page_header%}
+
+
+
+                {% block primary_content_inner %}
+                {{super() }}
+
+                {% endblock %}
+            </section>
+        </section>
 </section>
-</section>
-{% endblock primary%}
+            {% endblock primary%}
 
+{% endblock main_content %}
+{% endblock content %}

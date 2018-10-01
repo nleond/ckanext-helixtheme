@@ -221,7 +221,7 @@ def get_term_translation(term):
     return term
 
 class HelixthemePlugin(plugins.SingletonPlugin):
-    '''Theme plugin for geodata.gov.gr.
+    '''Theme plugin for helix.
     '''
 
     plugins.implements(plugins.IConfigurer)

@@ -9,6 +9,6 @@
 
 {% block content_action %}
   {% if h.check_access('user_update', user) %}
-    {% link_for _('Manage'), named_route='user.edit', id=user.name, class_='btn btn-default btn-manage', icon='wrench' %}
+    {% link_for _('Manage'), named_route='user.edit', id=user.name, class_='btn btn-default btn-manage pull-right', icon='wrench' %}
   {% endif %}
 {% endblock %}

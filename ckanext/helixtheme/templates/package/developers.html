@@ -31,11 +31,11 @@
     {% endblock %}
     {% endif %}
 
-    {% if pkg.groups %}
+    {#{% if pkg.groups %}
     {% block package_group %}
         {% snippet "snippets/group.html", group=pkg.groups %}
     {% endblock %}
-    {% endif %}
+    {% endif %} #}
 
     {% if pkg.closed_tag %}
         {% snippet "package/snippets/closed_tags.html", tags=pkg.closed_tag %}
