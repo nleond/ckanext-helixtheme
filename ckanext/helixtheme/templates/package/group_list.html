@@ -33,18 +33,17 @@
     {% endblock %}
     {% endif %}
 
+    {% if pkg.spatial %}
+        {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=pkg.spatial %}
+    {% endif %}
 
     {% block package_license %}
         {% snippet "snippets/license.html", pkg_dict=pkg %}
     {% endblock %}
     
-    {% if pkg.spatial %}
-        {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=pkg.spatial %}
-    {% endif %}
-
-    {% block package_social %}
+    {#{% block package_social %}
         {% snippet "snippets/social.html" %}
-    {% endblock %} 
+    {% endblock %} #}
 {% endblock %}
 
 {% block primary_content_inner %}

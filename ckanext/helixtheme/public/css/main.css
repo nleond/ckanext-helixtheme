@@ -2369,8 +2369,16 @@ label > a{
 tr{
     // border-top:1px solid #898989 !important;
     //border-bottom:1px solid #898989 !important;
-    border: 1px solid #666666 !important;
+    //border: 1px solid #666666 !important;
     background-color:  #f1f1f1 !important; 
+}
+
+th{
+    border: 1px solid #acacac !important;
+}
+
+td{
+    border: 1px solid #acacac !important;
 }
 
 .toggle-show-more{

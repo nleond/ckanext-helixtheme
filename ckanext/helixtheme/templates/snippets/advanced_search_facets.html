@@ -1,0 +1,82 @@
+{% set total_count=[0]%}
+
+{# update facets with Topics#}
+{% do h.correct_facets() %}
+{# {% set show_publishers = hide_publishers or false %} #}
+{% set facet_titles = {'organization': _('Publishers'),
+'closed_tags_facets': _('Subject'),
+'tags': _('Tags'),
+'res_format': _('Formats'),
+'license_id': _('Licenses')
+}
+%}
+
+
+{% for name in c.facet_titles %}
+
+{% set hide_empty = hide_empty or false %}
+{% set LIMIT = 4 %}
+
+{% with items = h.get_facet_items_dict(name, limit=50) %}
+{% if name == 'organization' %}
+{% set facet_class = 'organizations' %}
+{% elif name == 'closed_tags_facets' %}
+{% set facet_class = 'topics' %}
+{% elif name == 'tags' %}
+{% set facet_class = 'tags' %}
+{% elif name == 'res_format' %}
+{% set facet_class = 'formats' %}
+{% elif name == 'license_id' %}
+{% set facet_class = 'licenses' %}
+{% endif %}
+
+
+{% if items %}
+
+<div class="col-md-4">
+
+  <div class="{{ facet_class  }} param-box">
+
+    <h5 class="title">
+      {% set title = facet_titles.get(name)|upper %}
+      {{ title }}
+    </h5>
+    <div class="switches">
+      {% for item in items %} {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+      {% set href="#" %}
+      {#{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if
+      item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url)
+      %}
+      #}{% set label = label_function(item) if label_function else item.display_name %}
+      {#{% set label_truncated = h.truncate(label, 70) if not label_function else label %} #}
+      {% set label_truncated = label %}
+      {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
+      <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
+        <input type="checkbox" form="advanced-form-search" {% if item.active %} checked {% endif %}id="switch-{{total_count[0]}}"
+          name="{{name|lower}}" {# {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}" {% else %}
+          value="{{label}}" {% endif %} #} value="{{item.name}}">
+        <a title="{{ label if label != label_truncated else '' }}">
+          {{ label_truncated }} {{ count }}
+        </a>
+      </label>
+      {% endfor %}
+      {% if items|length > LIMIT %}
+      <div class="more-link">
+        <a href="#" class="read-more">{{ _('View More').format(facet_type=title) }}</a>
+        <a href="#" class="read-less hidden">{{ _('View Less').format(facet_type=title) }}</a>
+      </div>
+      {% endif %}
+
+    </div> {# switches #}
+  </div>
+</div>
+
+{% else %}
+<p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title)
+  }}</p>
+
+
+{% endif %} {# items #}
+{% endwith %}
+{% endfor %}
+

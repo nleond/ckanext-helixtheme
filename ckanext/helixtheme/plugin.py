@@ -39,6 +39,55 @@ def get_featured_datasets(limit=4):
 
     return datasets
 
+def correct_facets():
+        import logging
+        log1=logging.getLogger(__name__)
+        log1.info('\nIN CORRECT FACETS\n')
+        facets = OrderedDict()
+
+        default_facet_titles = {
+                'organization': _('Organizations'),
+                'groups': _('Groups'),
+                'tags': _('Tags'),
+                'res_format': _('Formats'),
+                'license_id': _('Licenses'),
+            }
+
+        for facet in h.facets():
+            if facet in default_facet_titles:
+                facets[facet] = default_facet_titles[facet]
+            else:
+                facets[facet] = facet
+        log1.debug('\n CORRECT  FACETS %s\n', facets)
+        # Facet titles
+        for plugin in p.PluginImplementations(p.IFacets):
+            facets = plugin.dataset_facets(facets, package_type)
+
+        c.facet_titles = facets
+        log1.debug('\n CORRECT AFTER UPDATE FACETS %s, search facets %s\n', facets, c.search_facets)
+        data_dict = {
+                'q': q,
+                'fq': fq.strip(),
+                'facet.field': facets.keys(),
+                'rows': limit,
+                'start': (page - 1) * limit,
+                'sort': sort_by,
+                'extras': search_extras,
+                'include_private': asbool(config.get(
+                    'ckan.search.default_include_private', True)),
+        }
+
+        query = get_action('package_search')(context, data_dict)
+        c.sort_by_selected = query['sort']
+
+        c.page = h.Page(
+                collection=query['results'],
+                page=page,
+                url=pager_url,
+                item_count=query['count'],
+                items_per_page=limit
+        )
+        c.search_facets = query['search_facets']
 
 def list_menu_items (limit=21):
     groups = toolkit.get_action('group_list')(
@@ -236,6 +285,7 @@ class HelixthemePlugin(plugins.SingletonPlugin):
         return {
             'newest_datasets': most_recent_datasets,
             'featured_datasets': get_featured_datasets,
+            'correct_fcets' : correct_facets,
             'list_menu_items': list_menu_items,
             'friendly_date': friendly_date,
             'friendly_name': friendly_name,

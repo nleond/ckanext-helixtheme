@@ -42,15 +42,21 @@ hide_section
 
 {% set total_count=[0]%}
 
-
 {% with labels = c.facet_labels or {} %} 
 {# {% set show_publishers = hide_publishers or false %} #}
-  {% for name, title in c.facet_titles.items() %}
-
+  {% set facet_titles = {'organization': _('Publishers'),
+                    'closed_tags_facets': _('Subject'),
+                    'tags': _('Tags'),
+                    'res_format': _('Formats'),
+                    'license_id': _('Licenses')
+                    }
+  %} 
+  {% for name in c.facet_titles %}
 
 {% set hide_empty = hide_empty or false %}
 {% set LIMIT = 4 %}
-{% with items = items or h.get_facet_items_dict(name, limit=50) %} 
+
+{% with items = h.get_facet_items_dict(name, limit=50) %} 
 {% set label_function=labels.get(facet) %}
 {% if name == 'organization' %}
             {% set facet_class = 'organizations' %}
@@ -82,42 +88,16 @@ hide_section
     <div class="{{ facet_class  }} param-box">
 
     <h5 class="title">
-       {# {% if name == 'organization' %}
-        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/organizations.svg') }}"></img>
-        {% elif name == 'groups' %}
-        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/topics.svg') }}"></img>
-        {% elif name == 'closed_tags_facets' %}
-        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/tags.svg') }}"></img>
-        {% elif name == 'tags' %}
-        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/tags.svg') }}"></img>
-        {% elif name == 'res_format' %}
-        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/filetype.svg') }}"></img>
-        {% elif name == 'license_id' %}
-        <img class="facet-icon" src="{{ h.url_for_static('/images/icons/various/license.svg') }}"></img>
-        {% endif %}
-        #}
-        {% set facet_titles = {'organization': _('PUBLISHERS'),
-                    'closed_tags_facets': _('Topics'),
-                    'tags': _('Tags'),
-                    'res_format': _('Formats'),
-                    'license_id': _('Licenses'),
-                    'source_type': _('Source type'),
-                    'frequency': _('Frequency') } %}
+        
 
                     {% set title = facet_titles.get(name)|upper %}
                     {{ title }} 
-                    {#<div class="sorting">
-                        <a href="#" class="sort-name">{{_('A...Z ')}} 
-                            <i class="fa fa-sort"></i>
-                        </a> 
-                        <a href="#" class="sort-count">{{_('1...9 ')}} <i class="fa fa-sort"></i>
-                        </a> 
-                    </div> #}
       </h5>
         <div  class="switches"> 
             {% for item in items %}   {% if total_count.append(total_count.pop() + 1) %}{% endif %} 
-              {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
-              {% set label = label_function(item) if label_function else item.display_name %}
+            {% set href="#" %}
+             {#} {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+              #}{% set label = label_function(item) if label_function else item.display_name %}
               {#{% set label_truncated = h.truncate(label, 70) if not label_function else label %} #}
               {% set label_truncated = label %}
               {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %} 

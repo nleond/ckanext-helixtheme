@@ -22,9 +22,9 @@ function handleFacets() {
                 if (index > LIMIT) {
                     $(this).css("display", "none");
                 }
-                if (index == LIMIT) {
-                    $(this).addClass("no-bottom-border");
-                }
+                //if (index == LIMIT) {
+                //    $(this).addClass("no-bottom-border");
+                //}
                 //checkboxes =  $(this).find('input');
                 //texts = $(this).find('a');
                 
@@ -66,7 +66,7 @@ function handleFacets() {
         list.parent().removeClass('li-hidden');
         list.each(function (index) {
             $(this).css("display", "block");
-            $(this).removeClass("no-bottom-border");
+            //$(this).removeClass("no-bottom-border");
         });
         $('.read-less').one('click', show_less);
     };
@@ -88,9 +88,9 @@ function handleFacets() {
             if (index > LIMIT) {
                 $(this).css("display", "none");
             };
-            if (index == LIMIT) {
-                $(this).addClass("no-bottom-border");
-            }
+            //if (index == LIMIT) {
+            //    $(this).addClass("no-bottom-border");
+            //}
         });
         $('.read-more').one('click', show_more);
     };
@@ -120,12 +120,12 @@ function handleFacets() {
         list.sort(asc_count_sort).appendTo(ul);
         if (ul.hasClass("li-hidden")) {
             list.each(function (index) {
-                $(this).removeClass("no-bottom-border");
+                //$(this).removeClass("no-bottom-border");
                 if (index <= LIMIT) {
                     $(this).css("display", "block");
-                    if (index == LIMIT) {
-                        $(this).addClass("no-bottom-border");
-                    }
+                   // if (index == LIMIT) {
+                    //    $(this).addClass("no-bottom-border");
+                    //}
                 } else {
                     $(this).css("display", "none");
                 }
@@ -158,12 +158,12 @@ function handleFacets() {
 
         if (ul.hasClass("li-hidden")) {
             list.each(function (index) {
-                $(this).removeClass("no-bottom-border");
+                //$(this).removeClass("no-bottom-border");
                 if (index <= LIMIT) {
                     $(this).css("display", "block");
-                    if (index == LIMIT) {
-                        $(this).addClass("no-bottom-border");
-                    }
+                    //if (index == LIMIT) {
+                    //    $(this).addClass("no-bottom-border");
+                    //}
 
                 } else {
                     $(this).css("display", "none");
@@ -203,12 +203,12 @@ function handleFacets() {
 
         if (ul.hasClass("li-hidden")) {
             list.each(function (index) {
-                $(this).removeClass("no-bottom-border");
+                //$(this).removeClass("no-bottom-border");
                 if (index <= LIMIT) {
                     $(this).css("display", "block");
-                    if (index == LIMIT) {
-                        $(this).addClass("no-bottom-border");
-                    }
+                    //if (index == LIMIT) {
+                    //    $(this).addClass("no-bottom-border");
+                    //}
 
                 } else {
                     $(this).css("display", "none");
@@ -243,12 +243,12 @@ function handleFacets() {
 
         if (ul.hasClass("li-hidden")) {
             list.each(function (index) {
-                $(this).removeClass("no-bottom-border");
+                //$(this).removeClass("no-bottom-border");
                 if (index <= LIMIT) {
                     $(this).css("display", "block");
-                    if (index == LIMIT) {
-                        $(this).addClass("no-bottom-border");
-                    }
+                   // if (index == LIMIT) {
+                    //    $(this).addClass("no-bottom-border");
+                    //}
 
                 } else {
                     $(this).css("display", "none");

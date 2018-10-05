@@ -6,241 +6,226 @@
 
 <body class="main-landing data fixed">
 
-<header class="header fixed" >   
-    
-        {% block header_site_navigation %}
-        
-        <div class="logo-area">
-        {# The .header-image class hides the main text and uses image replacement for the title #}
-        
+  <header class="header fixed">
 
-         <a href="{{ h.url('home.index') }}">
-           <img class="logo-image" src="{{ h.url_for_static('/images/Data-logo.svg') }}" alt="{{ g.site_title }} Logo"  />
-           </a>
-          {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
-        
-        
-        </div>
-         <div class="menu-wrapper">
-            <nav class="nav-menu">
-                <ul class="menu-items">
-              {% block header_site_navigation_tabs %}
-                {% snippet 'snippets/main_menu.html' %}                            
-            {% endblock %}
-                </ul>
-           
-             </nav>   
-              {% block header_lang %}
-                <li class="language-selector">
-                {% snippet "snippets/language_selector_simple.html" %}
-                </li>
-            {% endblock %}  
-                
-             {% block header_account_container_content %}
-        
-        {% if c.userobj %}
-          <li class="account-item" data-module="me" data-me="{{ c.userobj.id }}">
-              {% block header_account_logged %}
-              
-                <a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="viewprofile" title="{{ _('View profile') }}">
-                    
-                    <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab">
-                    </a>
-                <ul>
-                    {% if c.userobj.sysadmin %}
-                    <li>
-                        <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
-                        <span>{{ _('Sysadmin settings') }}</span>
-                        </a>
-                    </li>
-                    {% endif %}
+    {% block header_site_navigation %}
 
-                    {% set new_activities = h.new_activities() %}
-                    <li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
-                        {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities) %}
-                        <a href="{{ h.url_for('dashboard.index') }}" title="{{ notifications_tooltip }}">
-                        <span>{{ _('Dashboard') }}</span>
-                        </a>
-                    </li>
-                    
-                    {% block header_account_settings_link %}
-                    <li>
-                        <a href="{{ h.url_for(controller='user', action='edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
-                        <span>{{ _('Settings')}}</span>
-                        </a>
-                    </li>
-                    {% endblock %}
-                    
-                    {% block header_account_log_out_link %}
-                    <li>
-                        <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
-                        <span>{{ _('Logout')}}</span>
-                        </a>
-                    </li>
-                    {% endblock %}
-                    
-            </ul>
-            {% endblock %}
-            </li>
-             
-          {% else %}         
-          <li class="account-item logged-off" data-module="me" data-me="{{ c.userobj.id }}">   
-              {% block header_account_notlogged %}
-              <a> <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab"></a>
-              <ul>
-              <li><a href="{{ h.url_for(controller='user', action='login') }}">  <span>{{ _('Log in')}}</span></a> </li>
-              
-              {% if h.check_access('user_create') %}
-              <li ><a href="{{ h.url_for(controller='user', action='register') }}">  <span>{{ _('Register')}}</span></a> </li>
-              {% endif %}
-              {% endblock %}
-              </ul>
+    <div class="logo-area">
+      {# The .header-image class hides the main text and uses image replacement for the title #}
+
+
+      <a href="{{ h.url('home.index') }}">
+        <img class="logo-image" src="{{ h.url_for_static('/images/Data-logo.svg') }}" alt="{{ g.site_title }} Logo" />
+      </a>
+      {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
+
+
+    </div>
+    <div class="menu-wrapper">
+      <nav class="nav-menu">
+        <ul class="menu-items">
+          {% block header_site_navigation_tabs %}
+          {% snippet 'snippets/main_menu.html' %}
+          {% endblock %}
+        </ul>
+
+      </nav>
+      {% block header_lang %}
+      <li class="language-selector">
+        {% snippet "snippets/language_selector_simple.html" %}
+      </li>
+      {% endblock %}
+
+      {% block header_account_container_content %}
+
+      {% if c.userobj %}
+      <li class="account-item" data-module="me" data-me="{{ c.userobj.id }}">
+        {% block header_account_logged %}
+
+        <a href="{{ h.url_for(controller='user', action='read', id=c.userobj.name) }}" class="viewprofile" title="{{ _('View profile') }}">
+
+          <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab">
+        </a>
+        <ul>
+          {% if c.userobj.sysadmin %}
+          <li>
+            <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
+              <span>{{ _('Sysadmin settings') }}</span>
+            </a>
           </li>
-        {% endif %}
-        
-        <div class="search-item">
+          {% endif %}
+
+          {% set new_activities = h.new_activities() %}
+          <li class="notifications {% if new_activities > 0 %}notifications-important{% endif %}">
+            {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)',
+            new_activities) %}
+            <a href="{{ h.url_for('dashboard.index') }}" title="{{ notifications_tooltip }}">
+              <span>{{ _('Dashboard') }}</span>
+            </a>
+          </li>
+
+          {% block header_account_settings_link %}
+          <li>
+            <a href="{{ h.url_for(controller='user', action='edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
+              <span>{{ _('Settings')}}</span>
+            </a>
+          </li>
+          {% endblock %}
+
+          {% block header_account_log_out_link %}
+          <li>
+            <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
+              <span>{{ _('Logout')}}</span>
+            </a>
+          </li>
+          {% endblock %}
+
+        </ul>
+        {% endblock %}
+      </li>
+
+      {% else %}
+      <li class="account-item logged-off" data-module="me" data-me="{{ c.userobj.id }}">
+        {% block header_account_notlogged %}
+        <a> <img class="account-icon" src="/images/svg/Avatar.svg" alt="Account tab"></a>
+        <ul>
+          <li><a href="{{ h.url_for(controller='user', action='login') }}"> <span>{{ _('Log in')}}</span></a> </li>
+
+          {% if h.check_access('user_create') %}
+          <li><a href="{{ h.url_for(controller='user', action='register') }}"> <span>{{ _('Register')}}</span></a> </li>
+          {% endif %}
+          {% endblock %}
+        </ul>
+      </li>
+      {% endif %}
+
+      <div class="search-item">
         <a href="#">
           <i class="fa fa-search"></i>
         </a>
-        </div>
-        
-        
-        {% endblock %}   
-                
-                
-                
-                
-         
-            
-          
-          
-</header>
-       
-            
-{% endblock %}
-
-{% set homepage_style = ( g.homepage_style or '1' ) %}
-{% set homepage_style = ( g.homepage_style or '_slider' ) %}
-
-
-{% block content %}
-{% block maintag %}{% endblock %}
-{% block toolbar %}{% endblock %}
-
-
-        {{ self.flash() }}
-    
-    {% block primary_content %}
-     {%- block main %}
-
-    
-            {% endblock %}
-
-     {% snippet 'home/snippets/search.html' %}   {# includes <section> #}
-     
-     
-<section class="data-landing-page-content">     
-
-  <div class="featured-datasets-container container-fluid">
-    <div class="row">
-
-      <div class="col-sm-12">
-        <h4 class="featured-datasets-header">
-          {{_('Featured Datasets')}}
-        </h4>
-      </div>
-      
-      {% for package in h.get_translated_dataset_groups(h.featured_datasets())[:4] %}
-      {% set title = package.title or package.name %}
-      {% set truncate = truncate or 180 %}
-      {% set truncate_title = truncate_title or 80 %}
-      {% set modified = package.metadata_modified %}
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="featured-datasets-item">
-
-          <div class="date-of-entry">
-              {{ h.friendly_date(modified|urlize)}} 
-          </div>
-          
-          <a href="#">
-            <h3 class="featured-dataset-title">
-                {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}
-            </h3>
-          </a>
-          
-          <div class="dataset-service">
-              <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}}> {{ package.organization.title|urlize }}</a>
-          </div>
-          
-          <div class="tags-list">
-            {% for resource in package.resources %}
-              {% if resource.format%}
-            <a class="tag-box" href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
-            data-format="{{ resource.format }}"
-          >{{ resource.format|upper }} </a>
-             {% endif%}
-            {% endfor%}
-            
-          </div>
-          
-        </div>
       </div>
 
-      {% endfor %}
-      
-     
-      
-      
-
-
-      
-    </div>
-  </div>
-
-    <div class="latest-datasets-container container-fluid">
-      <div class="row">
-          {#  Latest datasets #}
-          <div class="col-sm-12">
-           <h4 class="latest-datasets-header">
-            {{_('Latest Datasets')}}
-           </h4>
-          </div>
-          
-       <div class="col-sm-12">
-          <div class="latest-border-bottom">
-            {#
-            <label class="datasets-order-by" for="datasets-order-by">Order by
-              <select name="latest-datasets-order-by" value="">
-                <option value="1">
-                  Σχετικότητα
-                </option>
-              </select>
-            </label> #}
-          </div>
-        </div>
-            
-        
-        {% snippet 'snippets/package_list_home.html', packages = h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
-          
-        {# More button#}
-        <div class="latest-dataset-more-pill">
-          <a href="{{ h.url_for(controller='package', action='search')}}">{{_('MORE')}}</a>
-        </div>
-
+    </div> {# menu-wrapper#}
     {% endblock %}
 
+  </header>
+
+
   {% endblock %}
-  
 
-        
+  {% set homepage_style = ( g.homepage_style or '1' ) %}
+  {% set homepage_style = ( g.homepage_style or '_slider' ) %}
+
+
+  {% block content %}
+  {% block maintag %}{% endblock %}
+  {% block toolbar %}{% endblock %}
+
+
+  {{ self.flash() }}
+
+  {% block primary_content %}
+  {%- block main %}
+
+
+  {% endblock %}
+
+  {% snippet 'home/snippets/search.html' %} {# includes <section> #}
+
+
+    <section class="data-landing-page-content">
+
+      <div class="featured-datasets-container container-fluid">
+        <div class="row">
+
+          <div class="col-sm-12">
+            <h4 class="featured-datasets-header">
+              {{_('Featured Datasets')}}
+            </h4>
+          </div>
+
+          {% for package in h.get_translated_dataset_groups(h.featured_datasets())[:4] %}
+          {% set title = package.title or package.name %}
+          {% set truncate = truncate or 180 %}
+          {% set truncate_title = truncate_title or 80 %}
+          {% set modified = package.metadata_modified %}
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="featured-datasets-item">
+
+              <div class="date-of-entry">
+                {{ h.friendly_date(modified|urlize)}}
+              </div>
+
+              <a href="#">
+                <h3 class="featured-dataset-title">
+                  {{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read',
+                  id=package.name)) }}
+                </h3>
+              </a>
+
+              <div class="dataset-service">
+                <a href={{ h.url_for(controller='organization', action='read', id= package.organization.name)}}> {{
+                  package.organization.title|urlize }}</a>
+              </div>
+
+              <div class="tags-list">
+                {% for resource in package.resources %}
+                {% if resource.format%}
+                <a class="tag-box" href="{{ h.url_for(controller='package', action='resource_read', id=package.name, resource_id=resource.id) }}"
+                  data-format="{{ resource.format }}">{{ resource.format|upper }} </a>
+                {% endif%}
+                {% endfor%}
+
+              </div>
+
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
       </div>
-    </div>
-  </section>  
 
-{% block footer %}
-{{ super() }}
-{% endblock %}
-{% endblock %}
+      <div class="latest-datasets-container container-fluid">
+        <div class="row">
+          {# Latest datasets #}
+          <div class="col-sm-12">
+            <h4 class="latest-datasets-header">
+              {{_('Latest Datasets')}}
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="latest-border-bottom">
+
+            </div>
+          </div>
+
+
+          {% snippet 'snippets/package_list_home.html', packages =
+          h.get_translated_dataset_groups(h.newest_datasets()), hide_resources=true %}
+
+          {# More button#}
+          <div class="latest-dataset-more-pill">
+            <a href="{{ h.url_for(controller='package', action='search')}}">{{_('MORE')}}</a>
+          </div>
+
+          {% endblock %}
+
+          {% endblock %}
+        </div>
+      </div>
+    </section>
+
+    {% block footer %}
+    {{ super() }}
+    {% endblock %}
+
 
 </body>
-    
+{% endblock page %}
+
+{% block scripts %}
+{{ super() }}
+{% resource 'ckanext-helix-theme/advanced-search-facets' %}
+{% endblock %}
