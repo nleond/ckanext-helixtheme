@@ -2295,10 +2295,16 @@ format-label[data-format=csv], .format-label[data-format*=csv]
 
 .help-block{
     margin-left:165px;
-    padding-bottom:12px;
+    margin-bottom:12px;
     margin-top: -10px !important;
     font-size:1.2rem;
 }
+
+.resource-help-block{
+    font-size:1.2rem;
+    color: #737373;
+}
+
 
 .editor textarea{
     border-radius: 4px;
