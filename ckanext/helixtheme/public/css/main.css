@@ -2201,6 +2201,11 @@ format-label[data-format=csv], .format-label[data-format*=csv]
 {
     background-image: url("../../images/icons/resources/jpg.svg");
 }
+.format-label[data-format=jpeg], .format-label[data-format*=jpeg]
+{
+    background-image: url("../../images/icons/resources/jpg.svg");
+}
+
 .format-label[data-format=png], .format-label[data-format*=png]
 {
     background-image: url("../../images/icons/resources/png.svg");

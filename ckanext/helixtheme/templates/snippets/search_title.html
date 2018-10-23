@@ -9,25 +9,23 @@
     
    {% block search_sortby %}
    
-   <form  method="get" data-module="select-switch" >
    
-    
     {% if sorting %}
-       <label class="datasets-order-by" for="order-by">{{ _('Order by') }}
-        <select class="select-menu btn-group-main btn-add-dataset" id="order-by"  name="sort" >
+       <label class="datasets-order-by" for="field-order-by">{{ _('Order by') }}
+      
+        <select class="select-menu btn-group-main btn-add-dataset" form="main-form-search" id="field-order-by" data-module="order-by"  name="sort" >
           {% for label, value in sorting %}
             {% if label and value %}
               <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
             {% endif %}
           {% endfor %}
         </select>
-       </label>
-      
+      </label>
     {% endif %}   
-   </form> 
    
    {% endblock %} 
   {% endblock %}
 
 
 
+  {% resource 'ckanext-publicamundi/order-by' %}

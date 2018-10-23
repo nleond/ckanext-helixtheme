@@ -7,12 +7,12 @@
 
 
 <div class = search-form-wrapper>
-<form class="landing-search-form" id="main-form-search" method="get" data-module="select-switch checkbox-state" >
+<form class="landing-search-form" id="main-form-search" method="get"  >
 
   {% block search_input %}
  
   <div class="main-form-content">
-      <input type="text" class="landing-search-text" name="q" value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}">
+      <input type="text" id="landing-search-text" class="landing-search-text" name="q" value="{{ query }}" autocomplete="off" placeholder="{{ placeholder }}">
       
     </div>
     {% endblock %}
@@ -26,6 +26,7 @@
     {%- endif %}
   {% endblock %}
   {#{% block search_sortby %}
+  <div class="test-order">
   {% if sorting %}
       
         <label for="field-order-by">{{ _('Order by') }}</label>
@@ -39,6 +40,7 @@
         
     
     {% endif %} 
+  </div>
   {% endblock %} #}
 
   {#

@@ -1,135 +1,180 @@
 {#
 Construct a facet module populated with links to filtered results.
 
-    name
-    The field name identifying the facet field, eg. "tags"
+name
+The field name identifying the facet field, eg. "tags"
 
-    title
-    The title of the facet, eg. "Tags", or "Tag Cloud"
+title
+The title of the facet, eg. "Tags", or "Tag Cloud"
 
-    label_function
-    Renders the human-readable label for each facet value.
-    If defined, this should be a callable that accepts a `facet_item`.
-  eg. lambda facet_item: facet_item.display_name.upper()
-  By default it displays the facet item's display name, which should
-  usually be good enough
+label_function
+Renders the human-readable label for each facet value.
+If defined, this should be a callable that accepts a `facet_item`.
+eg. lambda facet_item: facet_item.display_name.upper()
+By default it displays the facet item's display name, which should
+usually be good enough
 
 if_empty
-  A string, which if defined, and the list of possible facet items is empty,
-  is displayed in lieu of an empty list.
+A string, which if defined, and the list of possible facet items is empty,
+is displayed in lieu of an empty list.
 
 count_label
-  A callable which accepts an integer, and returns a string.  This controls
-  how a facet-item's count is displayed.
+A callable which accepts an integer, and returns a string. This controls
+how a facet-item's count is displayed.
 
 extras
-  Extra info passed into the add/remove params to make the url
+Extra info passed into the add/remove params to make the url
 
 alternative_url
-  URL to use when building the necessary URLs, instead of the default
-  ones returned by url_for. Useful eg for dataset types.
+URL to use when building the necessary URLs, instead of the default
+ones returned by url_for. Useful eg for dataset types.
 
 hide_empty
-  Do not show facet if there are none, Default: false.
+Do not show facet if there are none, Default: false.
 
 within_tertiary
-  Boolean for when a facet list should appear in the the right column of the
-  page and not the left column.
+Boolean for when a facet list should appear in the the right column of the
+page and not the left column.
 
-hide_section 
-  Parameter to hide organization/group facet section when only one item is present
+hide_section
+Parameter to hide organization/group facet section when only one item is present
 #}
 
 {% set total_count=[0]%}
 
-{% with labels = c.facet_labels or {} %} 
+{% with labels = c.facet_labels or {} %}
 {# {% set show_publishers = hide_publishers or false %} #}
-  {% set facet_titles = {'organization': _('Publishers'),
-                    'closed_tags_facets': _('Subject'),
-                    'tags': _('Tags'),
-                    'res_format': _('Formats'),
-                    'license_id': _('Licenses')
-                    }
-  %} 
-  {% for name in c.facet_titles %}
+{% set facet_titles = {'organization': _('Publishers'),
+'closed_tags_facets': _('Subject'),
+'tags': _('Tags'),
+'res_format': _('Formats'),
+'res_size': _('Resource size'),
+'license_id': _('Licenses')
+}
+%}
+{% for name in c.facet_titles %}
 
 {% set hide_empty = hide_empty or false %}
 {% set LIMIT = 4 %}
 
-{% with items = h.get_facet_items_dict(name, limit=50) %} 
+{% with items = h.get_facet_items_dict(name, limit=50) %}
 {% set label_function=labels.get(facet) %}
 {% if name == 'organization' %}
-            {% set facet_class = 'organizations' %}
-        {% elif name == 'closed_tags_facets' %}
-            {% set facet_class = 'topics' %}
-        {% elif name == 'tags' %}
-            {% set facet_class = 'tags' %}
-        {% elif name == 'res_format' %}
-            {% set facet_class = 'formats' %}
-        {% elif name == 'license_id' %}
-            {% set facet_class = 'licenses' %}
-        {% elif name == 'source_type' %}
-            {% set facet_class = 'source_type' %}
-        {% elif name == 'frequency' %}
-            {% set facet_class = 'frequency' %}        
+{% set facet_class = 'organizations' %}
+{% elif name == 'closed_tags_facets' %}
+{% set facet_class = 'topics' %}
+{% elif name == 'tags' %}
+{% set facet_class = 'tags' %}
+{% elif name == 'res_format' %}
+{% set facet_class = 'formats' %}
+{% elif name == 'license_id' %}
+{% set facet_class = 'licenses' %}
+{% elif name == 'res_size' %}
+{% set facet_class = 'res_size' %}
+{% elif name == 'source_type' %}
+{% set facet_class = 'source_type' %}
+{% elif name == 'frequency' %}
+{% set facet_class = 'frequency' %}
 {% endif %}
 
 
 
-
 {% if not hide_section and items|length >= 1 %}
-  {% if items or not hide_empty %}
-    {% if within_tertiary %}
-      {% set nav_class = 'nav nav-pills nav-stacked' %}
-      {% set nav_item_class = ' ' %}
-      {% set wrapper_class = 'nav-facet nav-facet-tertiary' %}
-    {% endif %}
-    {% if items %}
-    <div class="{{ facet_class  }} param-box">
+<div class="{{ facet_class  }} param-box">
 
-    <h5 class="title">
-        
+  <h5 class="title">
+    {% set title = facet_titles.get(name)|upper %}
+    {{ title }}
+  </h5>
+  <div class="switches">
+    {# group sizes on resource size facet #}
+    {% if name=='res_size' %}
+      {% set less_1 = [0]%}
+      {% set less_10 = [0]%}
+      {% set less_100 = [0]%}
+      {% set other = [0]%}
 
-                    {% set title = facet_titles.get(name)|upper %}
-                    {{ title }} 
-      </h5>
-        <div  class="switches"> 
-            {% for item in items %}   {% if total_count.append(total_count.pop() + 1) %}{% endif %} 
-            {% set href="#" %}
-             {#} {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
-              #}{% set label = label_function(item) if label_function else item.display_name %}
-              {#{% set label_truncated = h.truncate(label, 70) if not label_function else label %} #}
-              {% set label_truncated = label %}
-              {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %} 
-              <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
-                  <input type="checkbox" form="main-form-search" {% if item.active %} checked {% endif %}id="switch-{{total_count[0]}}" name="{{name|lower}}" 
-                           {# {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}"{% else %} value="{{label}}" {% endif %} #}
-                           value="{{item.name}}">
-                  <a  title="{{ label if label != label_truncated else '' }}" > 
-                      {{ label_truncated }} {{ count }}
-                  </a> 
-                </label> 
-            {% endfor %}
-            {% if items|length > LIMIT %}
-        <div class="more-link">
-            <a href="#" class="read-more">{{ _('View More').format(facet_type=title) }}</a> 
-            <a href="#" class="read-less hidden">{{ _('View Less').format(facet_type=title) }}</a> 
-        </div>
+      {% for item in items %} 
+        {% if item.name|int <= 1048576 %} 
+          {% if less_1.append(less_1.pop() + 1) %}{% endif %}
+        {% elif item.name|int <= 10485760 %} 
+          {% if less_10.append(less_10.pop() + 1) %}{% endif %}
+        {% elif item.name|int <= 104857600 %}
+          {% if less_100.append(less_100.pop() + 1) %}{% endif %}
+        {% else %}
+          {% if other.append(other.pop() + 1) %}{% endif %}  
         {% endif %}
-        {% endif %}
-          </div>
-        
+      {% endfor %}
+      {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+      <label for="switch-{{total_count[0]}}">
+          <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
+            name=""  value="1">
+          <a title="{{ label if label != label_truncated else '' }}">
+            Less than 1MB {{ less_1 }}
+          </a>
+      </label>
+      {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+      <label for="switch-{{total_count[0]}}">
+        <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
+          name=""  value="10">
+        <a title="{{ label if label != label_truncated else '' }}">
+          1 - 10 MB {{ less_10 }}
+        </a>
+      </label>
+      {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+      <label for="switch-{{total_count[0]}}">
+        <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
+          name=""  value="100">
+        <a title="{{ label if label != label_truncated else '' }}">
+          10 - 100 MB {{ less_100 }}
+        </a>
+      </label>
+    </label>
+    {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+    <label for="switch-{{total_count[0]}}">
+      <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
+        name=""  value="1000">
+      <a title="{{ label if label != label_truncated else '' }}">
+        100 - 1000 MB {{ less_100 }}
+      </a>
+    </label>
+     
+      
+         
+    {% else %}
+      {% for item in items %} {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+        {% set href="#" %}
+        {#{% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active
+        else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+        #}{% set label = label_function(item) if label_function else item.display_name %}
+        {#{% set label_truncated = h.truncate(label, 70) if not label_function else label %} #}
+        {% set label_truncated = label %}
+        {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
+        <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
+          <input type="checkbox" form="main-form-search" {% if item.active %} checked {% endif %}id="switch-{{total_count[0]}}"
+            name="{{name|lower}}"  value="{{item.name}}">
+          <a title="{{ label if label != label_truncated else '' }}">
+            {{ label_truncated }} {{ count }}
+          </a>
+        </label>
+      {% endfor %}
+    {% if items|length > LIMIT %}
+    <div class="more-link">
+      <a href="#" class="read-more">{{ _('View More').format(facet_type=title) }}</a>
+      <a href="#" class="read-less hidden">{{ _('View Less').format(facet_type=title) }}</a>
     </div>
-      {% else %}
-        <p class="module-content empty">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
-        {% endif %}
-   {% endif %}
-  {% endwith %} 
+    {% endif %}
+  {% endif %}  
+  </div>
+
+</div>
+
+{% endif %}
+{% endwith %}
 
 
- {% endfor %}
-{% endwith %} 
+{% endfor %}
+{% endwith %}
 
 
-
-
+{% resource 'ckanext-publicamundi/res-facet' %}

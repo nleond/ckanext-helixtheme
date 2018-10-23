@@ -39,10 +39,9 @@ def get_featured_datasets(limit=4):
 
     return datasets
 
-def correct_facets():
+def update_facets():
         import logging
         log1=logging.getLogger(__name__)
-        log1.info('\nIN CORRECT FACETS\n')
         facets = OrderedDict()
 
         default_facet_titles = {
@@ -285,7 +284,7 @@ class HelixthemePlugin(plugins.SingletonPlugin):
         return {
             'newest_datasets': most_recent_datasets,
             'featured_datasets': get_featured_datasets,
-            'correct_fcets' : correct_facets,
+            'correct_fcets' : update_facets,
             'list_menu_items': list_menu_items,
             'friendly_date': friendly_date,
             'friendly_name': friendly_name,
