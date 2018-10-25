@@ -40,10 +40,13 @@ hide_section
 Parameter to hide organization/group facet section when only one item is present
 #}
 
+{# update facets with Topics, resource size#}
+{% do h.update_facets() %}
+
 {% set total_count=[0]%}
 
 {% with labels = c.facet_labels or {} %}
-{# {% set show_publishers = hide_publishers or false %} #}
+ {% set hide_publishers = hide_publishers or false %} 
 {% set facet_titles = {'organization': _('Publishers'),
 'closed_tags_facets': _('Subject'),
 'tags': _('Tags'),
@@ -52,7 +55,7 @@ Parameter to hide organization/group facet section when only one item is present
 'license_id': _('Licenses')
 }
 %}
-{% for name in c.facet_titles %}
+{% for name in c.facet_titles if not name == 'organization' and hide_publishers %}
 
 {% set hide_empty = hide_empty or false %}
 {% set LIMIT = 4 %}

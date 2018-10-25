@@ -13,7 +13,7 @@ function handleFacets() {
     // Initially hide facet items with index over LIMIT
     function init_hide() {
         var cat_list = $('.results-main-sidebar .switches');
-        var search_form = $('.results-main-sidebar .landing-search-form');
+        var search_form = $('.landing-search-form');
         cat_list.each(function (index) {
             $(this).addClass('li-hidden');
 

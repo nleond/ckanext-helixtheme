@@ -44,12 +44,12 @@ Example:
       {% if show_nums %}
         <div class="nums">
           <dl>
-            <dt>{{ _('Followers') }}</dt>
-            <dd>{{ h.SI_number_span(organization.num_followers) }}</dd>
+            {{ _('Followers') }}:
+            {{ h.SI_number_span(organization.num_followers) }}</dd>
           </dl>
           <dl>
-            <dt>{{ _('Datasets') }}</dt>
-            <dd>{{ h.SI_number_span(organization.package_count) }}</dd>
+            {{ _('Datasets') }}:
+            {{ h.SI_number_span(organization.package_count) }}
           </dl>
         </div>
         <div class="follow_button">

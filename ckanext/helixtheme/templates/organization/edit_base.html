@@ -9,8 +9,17 @@
   {% endblock %}
 {% endblock %}
 
+
+{% block content_primary_nav %}
+<div class="nav-menu">
+  {{ h.build_nav_icon(group_type + '_edit', _('Edit'), id=c.group_dict.name) }}
+  {{ h.build_nav_icon(group_type + '_bulk_process', _('Datasets'), id=c.group_dict.name) }}
+  {{ h.build_nav_icon(group_type + '_members', _('Members'), id=c.group_dict.name) }}
+</div>
+{% endblock %}
+
 {% block content_action %}
   {% if organization and h.check_access('organization_update', {'id': organization.id}) %}
-    {% link_for _('View'), controller='ckanext.publicamundi.plugins:ExtrametadataController', action='read', id=organization.name, class_='btn btn-default', icon='eye', named_route=group_type + '_read' %}
+    {% link_for _('View'), controller='ckanext.publicamundi.plugins:ExtrametadataController', action='read', id=organization.name, class_='btn btn-default btn-manage pull-right', icon='eye', named_route=group_type + '_read' %}
   {% endif %}
 {% endblock %}
