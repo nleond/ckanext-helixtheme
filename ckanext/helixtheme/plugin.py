@@ -57,13 +57,11 @@ def update_facets():
                 facets[facet] = default_facet_titles[facet]
             else:
                 facets[facet] = facet
-        log1.debug('\n CORRECT  FACETS %s\n', facets)
         # Facet titles
         for plugin in p.PluginImplementations(p.IFacets):
             facets = plugin.dataset_facets(facets, package_type)
 
         c.facet_titles = facets
-        log1.debug('\n CORRECT AFTER UPDATE FACETS %s, search facets %s\n', facets, c.search_facets)
         data_dict = {
                 'q': q,
                 'fq': fq.strip(),
@@ -284,7 +282,7 @@ class HelixthemePlugin(plugins.SingletonPlugin):
         return {
             'newest_datasets': most_recent_datasets,
             'featured_datasets': get_featured_datasets,
-            'correct_fcets' : update_facets,
+            'correct_facets' : update_facets,
             'list_menu_items': list_menu_items,
             'friendly_date': friendly_date,
             'friendly_name': friendly_name,

@@ -1058,6 +1058,10 @@ p a{
     display: block;
     margin-top:3px;
 }
+
+.module-heading{
+    border-bottom-color: #4d4d4d;
+}
 .secondary .module-content{
     text-align: left;
 }

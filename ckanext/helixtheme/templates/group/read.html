@@ -38,7 +38,7 @@
         
   {% endfor %} #}
   
-  {{ h.snippet('snippets/facet_list.html', title=title, name=facet, extras={'id':c.group_dict.id}) }}
+  {{ h.snippet('snippets/facet_list.html', title=title, name=facet, hide_empty=true, extras={'id':c.group_dict.id}) }}
 {% endblock %}
 
 {% block scripts %}
