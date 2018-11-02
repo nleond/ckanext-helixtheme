@@ -2309,10 +2309,6 @@ format-label[data-format=csv], .format-label[data-format*=csv]
     font-size:1.2rem;
 }
 
-.resource-help-block{
-    font-size:1.2rem;
-    color: #737373;
-}
 
 
 .editor textarea{
@@ -2355,7 +2351,7 @@ label > a{
     }
 
 .form-horizontal .controls{
-    margin-bottom:10px;
+    margin-bottom:50px;
 }
 
 .field-optional{
@@ -2368,7 +2364,7 @@ label > a{
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #3EA0DD !important;
+    border-top: 2px solid #3EA0DD !important;
     //margin: 1em 0;
     padding: 0;
 }

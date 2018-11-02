@@ -19,37 +19,54 @@ Example:
 {% if s2 != 'uncomplete' %}{% set class = 'stage-2' %}{% endif %}
 {% if s3 != 'uncomplete' %}{% set class = 'stage-3' %}{% endif %}
 <div style="margin-top:20px"></div>
-<ol class="stages {{ class }}">
-  <li class="first {{ s1 }}">
+<div class="steps {{ class }}">
+  <div class="first step {{ s1 }}">
     {% if s1 != 'complete' %}
-      <span class="highlight">{{ _('Create dataset') }}</span>
+      <div class='circle'><span>1</span></div>
     {% else %}
-      <button class="highlight" name="save" value="go-dataset" type="submit">{{ _('Create dataset') }}</button>
+    <div class='circle'>
+        <span class="check"></span>
+    </div>
+      {#<button class="highlight step-title" name="save" value="go-dataset" type="submit">{{ _('Create dataset') }}</button>#}
     {% endif %}
-  </li>
-  <li class="middle {{ s2 }}">
-    {% if s2 != 'complete' %}
-      <span class="highlight">{{ _('Add data') }}</span>
+    <div class="step-title">{{ _('Create dataset') }}</div>
+    <div class="bar-left"></div>
+    <div class="bar-right"></div>
+  </div>
+  <div class="middle step {{ s2 }}"> 
+    {% if s2 == 'active' %}
+      <div class='circle'><span>2</span></div>
+      
     {% else %}
-      {% if s1 == 'active' or s3 == 'active'%}
+      {% if s1 == 'active' %}
         {# stage 1 #}
-        <button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data') }}</button>
+        <div class='circle inactive'><span>2</span></div>
+        {#<button class="highlight" name="save" value="go-resources" type="submit">{{ _('Add data') }}</button>#}
+        {% elif s3 == 'active'%}
+        <div class='circle'>
+            <span class="check"></span>
+        </div>
       {% else %}
-        {% link_for _('Add data'), controller='package', action='new', class_="highlight" %}
+        {#{% link_for _('Add dat'), controller='package', action='new', class_="highlight" %}#}
       {% endif %}
     {% endif %}
-  </li>
-  <li class="last {{ s3 }}">
-    {% if s3 != 'complete' %}
-      <span class="highlight">{{ _('Finalize') }}</span>
-
-    {% else %}
-      {% if s1 == 'active' or s2 == 'active' %}
+    <div class="step-title">{{ _('Add data') }}</div>
+    <div class="bar-left"></div>
+    <div class="bar-right"></div>
+  </div>
+  <div class="last step {{ s3 }}"> 
+    {% if s3 == 'active' %}
+      <div class='circle'><span>3</span></div>
+      {% elif s1 == 'active' or s2 == 'active' %}
+      <div class='circle inactive'><span>3</span></div>
         {# stage 1 #}
-        <button class="highlight" name="save" value="go-metadata" type="submit">{{ _('Finalize') }}</button>
+        {#<button class="highlight" name="save" value="go-metadata" type="submit">{{ _('Finalize') }}</button>#}
       {% else %}
-        {% link_for _('Additional info'), controller='package', action='new', class_="highlight" %}{{ s2 }}
-      {% endif %}
+        {#{% link_for _('Additional info'), controller='package', action='new', class_="highlight" %}{{ s2 }}#}
+      
     {% endif %}
-  </li>
-</ol>
+    <div class="step-title">{{ _('Finalize') }}</div>
+    <div class="bar-left"></div>
+    <div class="bar-right"></div>
+  </div>
+</div>
