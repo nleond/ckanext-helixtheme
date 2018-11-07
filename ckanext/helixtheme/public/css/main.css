@@ -79,7 +79,7 @@ p a{
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url('../images/background.jpg');
-    background-position: -1px 51%
+    background-position: -1px 51%;
 }
 
 /* Header */
@@ -1983,11 +1983,7 @@ a.tag:hover{
 .select2-search-choice-close, .select2-container-multi .select2-search-choice-close{
     top: 4px;
 }
-.select2-container .select2-choice .select2-arrow{
-    background-image:none;
-    background: #fff;
-    
-}
+
 
 
 .select2-container{
@@ -2302,13 +2298,6 @@ format-label[data-format=csv], .format-label[data-format*=csv]
     cursor:default;  //remove pointer from hovering field titles
 }
 
-.help-block{
-    margin-left:165px;
-    margin-bottom:12px;
-    margin-top: -10px !important;
-    font-size:1.2rem;
-}
-
 
 
 .editor textarea{
@@ -2359,13 +2348,11 @@ label > a{
 }
 
 .form-separator  {
-    margin-left: 8% !important;
-    width:90%;
+    width:100%;
     display: block;
     height: 1px;
     border: 0;
     border-top: 2px solid #3EA0DD !important;
-    //margin: 1em 0;
     padding: 0;
 }
 
