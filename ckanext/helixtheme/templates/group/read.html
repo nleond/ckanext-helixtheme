@@ -2,11 +2,14 @@
 
 
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part"{% link_for _('Topics'), controller='group', action='index' %}</a>
-  <a class="breadcrumbs-part"{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name %}</a>
+  <a class="breadcrumbs-part"{% link_for _('Topics') if c.group_dict.type.startswith('group') else h.pluralize(c.group_dict.type), controller='group', action='index', named_route=group_type + '_index' %}</a>
+  <a class="breadcrumbs-part"{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name, named_route=group_type + '_read' %}</a>
 {% endblock %}
 
-{% block content_action %}
+{% block content_action %} 
+
+
+{% set pluralized = h.pluralize(c.group_dict.type)%}
   {% if h.check_access('group_update', {'id': c.group_dict.id}) %}
     {% link_for _('Manage'), controller='group', action='edit', id=c.group_dict.name, class_='btn btn-manage pull-right', icon='wrench', named_route=group_type + '_edit' %}
   {% endif %}

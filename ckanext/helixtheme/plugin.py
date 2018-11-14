@@ -3,7 +3,7 @@
 import datetime
 import copy
 import sets
-
+import string
 
 from pylons import  config
 from ckan.common import request
@@ -18,6 +18,10 @@ from ckan.lib.helpers import render_datetime, resource_preview, url_for_static
 
 #import ckanext.publicamundi.themes.geodata.mapsdb as mapsdb
 import ckanext.publicamundi.lib.template_helpers as ext_template_helpers
+
+
+import logging
+log1=logging.getLogger(__name__)
 
 def most_recent_datasets(limit=10):
     datasets = toolkit.get_action('package_search')(
@@ -39,9 +43,47 @@ def get_featured_datasets(limit=4):
 
     return datasets
 
+# pluralize
+def pluralize( name):
+    if name.endswith('y'):
+        name = name[:-1] + 'ies' 
+    elif not name.endswith('s'):
+        name =  name + 's' 
+    return name
+
+# remove featured-datasets and other types of groups 
+def get_topics(package_id):
+    dataset = toolkit.get_action('package_show')(
+        data_dict={'id': package_id})
+    #log1.debug('Package groups are %s', dataset['groups'])
+    groups= dataset['groups']
+    log1.debug('Groups type %s', type(groups))
+    for group in groups:
+        temp_group = toolkit.get_action('group_show')(
+            data_dict={'id': group['id']})
+        if temp_group['type'] != 'group' or temp_group['name'] == 'featured-datasets' :
+            groups.remove(group)
+
+    return  groups  
+
+# get communities user is member of
+def get_communities(user):
+    groups = toolkit.get_action('group_list_authz')(
+        data_dict={'am_member':True})
+    #log1.debug('Name is %s, Groups are  %s',user, groups)
+    for group in groups:
+        temp_group = toolkit.get_action('group_show')(
+            data_dict={'id': group['id']})
+        users = temp_group['users']
+        log1.debug('Users: %s, type: %s, user1: %s',users, type(users), users[0].values() )   
+        if user not in users or temp_group['type'] !='communities':
+            #groups.remove(group)
+            log1.debug('Ok')
+        log1.debug('Temp group, name: %s users: %s type: %s', temp_group['name'], users, temp_group['type'] )  
+       
+    return  groups  
+
 def update_facets():
-        import logging
-        log1=logging.getLogger(__name__)
         facets = OrderedDict()
 
         default_facet_titles = {
@@ -293,6 +335,9 @@ class HelixthemePlugin(plugins.SingletonPlugin):
             'can_preview_resource_or_ingested': can_preview_resource_or_ingested,
             'get_translated_dataset_groups' : get_translated_dataset_groups,
             'get_term_translation': get_term_translation,
+            'pluralize': pluralize,
+            'get_topics':get_topics,
+            'get_communities': get_communities,
         }
     
     # IConfigurer

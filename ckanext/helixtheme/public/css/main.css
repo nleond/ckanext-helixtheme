@@ -671,9 +671,7 @@ p a{
     width: 697px;
     //width: 70%;  /* edit for 2.8*/
 }
-//.module-content:first-child{
-//    padding-top:0;
-//}
+
 #menu-block, #menu-block-home{
     z-index: 2000;
     position:absolute;
@@ -1120,16 +1118,6 @@ p a{
 .secondary .sort-count:hover, .sort-name:hover{
     color: #000;
     text-decoration: none;
-}
-.alt-side-style .module-heading{
-    font-size:20px;
-    background-color: transparent; 
-    border-bottom: none;
-    text-align: left;
-}
-.alt-side-style .module{
-    padding-left:18px;
-    padding-right:18px;
 }
 .social{
     background: #fff;
@@ -2347,14 +2335,7 @@ label > a{
     font-weight: normal;
 }
 
-.form-separator  {
-    width:100%;
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 2px solid #3EA0DD !important;
-    padding: 0;
-}
+
 
 .module-resource{
     background-color: #f1f1f1;

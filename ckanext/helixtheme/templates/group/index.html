@@ -9,12 +9,7 @@
 
 {% block page_header %}{% endblock %}
 {% block searchbar %}
-<div class="searchbar">
-    {% block groups_search_form %}
-    
-    {% snippet 'snippets/search_form_top.html', type='group', query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search topics...'), show_empty=request.params, no_bottom_border=true if c.page.items %}
-  {% endblock %}
-</div>
+    {% block groups_search_form %}{% endblock %}
   {% endblock %}
 
 
@@ -52,6 +47,9 @@
 {% block paint %}{% endblock %}
     <div class="alt-side-style">
         {% snippet "group/snippets/helper.html" %}
+    </div>
+    <div class="group-search">
+      {% snippet 'snippets/search_form_top.html', type='group', query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search topics...'), show_empty=request.params, no_bottom_border=true if c.page.items %}
     </div>
     {% endblock %}
 
