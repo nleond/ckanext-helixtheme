@@ -1374,14 +1374,6 @@ a.tag:hover{
 }
 
 
-.show-more, .show-less{
-    position:relative;
-    color: #fff;
-    font-size: 14px;
-}
-.show-more:hover, .show-less:hover{
-    color: #fff;
-}
 
 /*
 .table-toggle-more:after{
@@ -2344,27 +2336,6 @@ label > a{
 
 
 
-
-tr{
-    // border-top:1px solid #898989 !important;
-    //border-bottom:1px solid #898989 !important;
-    //border: 1px solid #666666 !important;
-    background-color:  #f1f1f1 !important; 
-}
-
-th{
-    border: 1px solid #acacac !important;
-}
-
-td{
-    border: 1px solid #acacac !important;
-}
-
-.toggle-show-more{
-    height:34px;
-    border-radius:0;
-    background: #3EA0DD !important;
-}
 
 .resource-item{
     overflow:hidden;
