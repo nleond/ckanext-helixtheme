@@ -37,14 +37,14 @@
             <form class="landing-search-form" id="advanced-form-search" method="get" action="{% url_for controller='package', action='search' %} ">
               <div class="row title display-flex">
                 <div class="col-md-6">
-                  <h4 class="title">{{_('Advanced search')}}</h4>
+                  <h4 class="modal-title">{{_('Advanced search')}}</h4>
                 </div>
                 <div class="col-md-6 text-right">
                   <i data-dismiss="modal" class="fa fa-remove btn"></i>
                 </div>
               </div>
               <div class="row">
-                <div class="col text-center">
+                <div class="col search-text text-center">
                   <input type="text" class="search-text" name="q" value="" placeholder="{{search_placeholder}}">
                 </div>
               </div>

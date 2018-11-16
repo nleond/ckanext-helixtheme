@@ -18,7 +18,6 @@ Example:
 {% if s1 != 'uncomplete' %}{% set class = 'stage-1' %}{% endif %}
 {% if s2 != 'uncomplete' %}{% set class = 'stage-2' %}{% endif %}
 {% if s3 != 'uncomplete' %}{% set class = 'stage-3' %}{% endif %}
-<div style="margin-top:20px"></div>
 <div class="steps {{ class }}">
   <div class="first step {{ s1 }}">
     {% if s1 != 'complete' %}
