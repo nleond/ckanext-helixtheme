@@ -18,25 +18,6 @@
 
 
 
-
-
-{% block breadcrumb_content %}
-  {% if pkg %}
-    {% set dataset = pkg.title or pkg.name %}
-    {% if pkg.organization %}
-
-      {#<a class="breadcrumbs-part" {% link_for _('PUBLISHERS'), controller='organization', action='index' %}</a> #}
-      <a class="breadcrumbs-part" {% link_for org.title|truncate(50) or org.name, controller='organization', action='read', id=pkg.organization.name %}</a>
-    {% else %}
-      <a class="breadcrumbs-part" {% link_for _('DATASETS'), controller='package', action='search' %}</a>
-    {% endif %}
-    <a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(70), controller='package', action='read', id=pkg.name %}</a>
-  {% else %}
-    <a class="breadcrumbs-part" {% link_for _('DATASETS'), controller='package', action='search' %}</a>
-    <a class="breadcrumbs-part" href=""{{ _('CREATE DATASET') }}</a>
-  {% endif %}
-{% endblock %}
-
 {% block page_heading %}
 
 {% endblock %}
@@ -56,7 +37,7 @@
 {% block package_tags %}{% endblock %}
   
     {% block dataset_type %}
-  {% set api_controller = 'ckanext.publicamundi.controllers.api:Controller' %}
+  {% set api_controller = 'ckanext.helix.controllers.api:Controller' %}
   {% endblock %}
 
 

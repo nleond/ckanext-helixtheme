@@ -10,7 +10,7 @@ ckan.module('contact-form', function ($, _) {
             },
             _modalReceived: false,
             _generateCaptcha: function() {
-                var url = '/publicamundi/util/generate_captcha';
+                var url = '/helix/util/generate_captcha';
                 $.ajax({
                     url: url,
                     type: 'POST',
@@ -58,7 +58,7 @@ ckan.module('contact-form', function ($, _) {
             },
             _onSubmit: function(e){
                 e.preventDefault();
-                var url = '/publicamundi/util/send_email';
+                var url = '/helix/util/send_email';
                 var data = {
                     'name': $("#contact-form-modal #contact-name").val(),
                     'email': $("#contact-form-modal #contact-email").val(), 

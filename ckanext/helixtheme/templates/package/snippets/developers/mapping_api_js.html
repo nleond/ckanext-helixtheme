@@ -6,11 +6,11 @@
     &lt;script src=&quot;http://labs.geodata.gov.gr/mapping-api/lib/jQuery/jquery-2.1.0.min.js&quot;&gt;&lt;/script&gt;
     &lt;script src=&quot;http://labs.geodata.gov.gr/mapping-api/lib/bootstrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
     &lt;link rel=&quot;stylesheet&quot; href=&quot;http://labs.geodata.gov.gr/mapping-api/lib/bootstrap/css/bootstrap.css&quot; /&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://labs.geodata.gov.gr/mapping-api/lib/PublicaMundi/build/lib/ol/ol3-layerswitcher.css&quot; /&gt; 
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://labs.geodata.gov.gr/mapping-api/lib/PublicaMundi/build/lib/ol/ol.css&quot; /&gt; 
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://labs.geodata.gov.gr/mapping-api/lib/helix/build/lib/ol/ol3-layerswitcher.css&quot; /&gt; 
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://labs.geodata.gov.gr/mapping-api/lib/helix/build/lib/ol/ol.css&quot; /&gt; 
     &lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;content/css/default.css&quot; /&gt;--&gt;
-&lt;!-- PublicaMundi API script --&gt;
- &lt;script src=&quot;http://labs.geodata.gov.gr/mapping-api/lib/PublicaMundi/build/publicamundi.js&quot; data-library=&quot;ol&quot;&gt;&lt;/script&gt;  
+&lt;!-- helix API script --&gt;
+ &lt;script src=&quot;http://labs.geodata.gov.gr/mapping-api/lib/helix/build/helix.js&quot; data-library=&quot;ol&quot;&gt;&lt;/script&gt;  
 &lt;/head&gt;
 
 &lt;body&gt;
@@ -18,7 +18,7 @@
     &lt;div id=&quot;map&quot; class=&quot;map&quot;&gt;&lt;/div&gt;
 &lt;/body&gt;
 &lt;script&gt;
-    PublicaMundi.noConflict();
+    helix.noConflict();
     
     //Popup handling with Bootstrap
     var onFeatureClick = function(features, coordinate) {
@@ -50,13 +50,13 @@
         layers: [
         {
             title: 'Open Street Maps',
-            type: PublicaMundi.LayerType.TILE,
+            type: helix.LayerType.TILE,
             url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         },
         {
             title: '{{res.name}}',
             name: '{{res.name}}',
-            type: PublicaMundi.LayerType.{{res.format|upper}},
+            type: helix.LayerType.{{res.format|upper}},
             url: '{% if res.format == 'wfs' %}{{res.wfs_server}}{% elif res.format == 'wms' %}{{res.wms_server}}{% endif %}',
             params: { 'layers' : '{% if res.format == 'wfs' %}{{res.wfs_layer}}{% elif res.format == 'wms' %}{{res.wms_layer}}{% endif %}'}, 
         }
@@ -65,10 +65,10 @@
 
     var map, popup;
 
-    PublicaMundi.ready(function () {
+    helix.ready(function () {
         
         //Initialize map with provided options
-        map = PublicaMundi.map(options);
+        map = helix.map(options);
 
         //Initialize popup handler
         popup = map.addOverlay(document.getElementById('popup'));

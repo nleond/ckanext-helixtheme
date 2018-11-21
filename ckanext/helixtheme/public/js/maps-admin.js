@@ -31,7 +31,7 @@ jQuery(document).ready(function ($, _) {
     
     // look for previously saved config options    
     $.ajax({
-            url: '/publicamundi/util/get_maps_configuration',
+            url: '/helix/util/get_maps_configuration',
             type: 'POST',
             beforeSend: loadStart,
             complete: loadEnd,
@@ -317,7 +317,7 @@ jQuery(document).ready(function ($, _) {
                     //var d = tree.fancytree("getTree").toDict(true);
                     //var dict = { tree_node_id: tree_node_id, config: d};
                     $.ajax({
-                        url: '/publicamundi/util/save_maps_configuration',
+                        url: '/helix/util/save_maps_configuration',
                         type: 'POST',
                         //data: {dirty:JSON.stringify({bool:dirty_tree}), resources:JSON.stringify({resources:resources}), json: JSON.stringify(dict)},
                         //data: {resources:JSON.stringify(resources), tree_nodes: JSON.stringify(tree_nodes), resources_fields:JSON.stringify(resources_fields), resources_queryable: JSON.stringify(resources_queryable), config: JSON.stringify(dict)},
@@ -809,7 +809,7 @@ jQuery(document).ready(function ($, _) {
                 else{
                     //fetch resource fields with ajax
                     $.ajax({
-                            url: '/publicamundi/util/get_resource_queryable',
+                            url: '/helix/util/get_resource_queryable',
                             type: 'POST',
                             data: {id: data.node.data.id},
                             beforeSend: loadStartSec,
@@ -865,7 +865,7 @@ jQuery(document).ready(function ($, _) {
                 else{
                     //fetch resource queryable with ajax
                     $.ajax({
-                            url: '/publicamundi/util/get_resource_queryable',
+                            url: '/helix/util/get_resource_queryable',
                             type: 'POST',
                             data: {id: active.data.id},
                             beforeSend: loadStartSec,

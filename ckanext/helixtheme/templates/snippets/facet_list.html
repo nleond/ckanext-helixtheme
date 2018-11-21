@@ -107,39 +107,47 @@ Parameter to hide organization/group facet section when only one item is present
             {% if other.append(other.pop() + 1) %}{% endif %}  
           {% endif %}
         {% endfor %}
-        {% if total_count.append(total_count.pop() + 1) %}{% endif %}
-        <label for="switch-{{total_count[0]}}">
+        {% if less_1 !=[0] %}
+          {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+          <label for="switch-{{total_count[0]}}">
+              <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
+                name=""  value="1">
+              <a title="{{ label if label != label_truncated else '' }}">
+                Less than 1MB {{ less_1 }}
+              </a>
+          </label>
+        {% endif%}
+        {% if less_10 !=[0] %}
+          {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+          <label for="switch-{{total_count[0]}}">
             <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
-              name=""  value="1">
+              name=""  value="10">
             <a title="{{ label if label != label_truncated else '' }}">
-              Less than 1MB {{ less_1 }}
+              1 - 10 MB {{ less_10 }}
             </a>
+          </label>
+        {% endif %} 
+        {% if less_100 !=[0]%}
+          {% if total_count.append(total_count.pop() + 1) %}{% endif %}
+          <label for="switch-{{total_count[0]}}">
+            <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
+              name=""  value="100">
+            <a title="{{ label if label != label_truncated else '' }}">
+              10 - 100 MB {{ less_100 }}
+            </a>
+          </label>
         </label>
+      {% endif %}
+      {% if other !=[0] %}
         {% if total_count.append(total_count.pop() + 1) %}{% endif %}
         <label for="switch-{{total_count[0]}}">
           <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
-            name=""  value="10">
+            name=""  value="1000">
           <a title="{{ label if label != label_truncated else '' }}">
-            1 - 10 MB {{ less_10 }}
+            100 - 1000 MB {{ other }}
           </a>
         </label>
-        {% if total_count.append(total_count.pop() + 1) %}{% endif %}
-        <label for="switch-{{total_count[0]}}">
-          <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
-            name=""  value="100">
-          <a title="{{ label if label != label_truncated else '' }}">
-            10 - 100 MB {{ less_100 }}
-          </a>
-        </label>
-      </label>
-      {% if total_count.append(total_count.pop() + 1) %}{% endif %}
-      <label for="switch-{{total_count[0]}}">
-        <input type="checkbox" form="main-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
-          name=""  value="1000">
-        <a title="{{ label if label != label_truncated else '' }}">
-          100 - 1000 MB {{ other }}
-        </a>
-      </label>
+      {% endif %}
       
         
           
@@ -179,4 +187,4 @@ Parameter to hide organization/group facet section when only one item is present
 {% endwith %}
 
 
-{% resource 'ckanext-publicamundi/res-facet' %}
+{% resource 'ckanext-helix/res-facet' %}

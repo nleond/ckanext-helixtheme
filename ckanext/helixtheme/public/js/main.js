@@ -1,5 +1,5 @@
 this.ckanext || (this.ckanext = {})
-this.ckanext.publicamundi || (this.ckanext.publicamundi = {})
+this.ckanext.helix || (this.ckanext.helix = {})
 
 jQuery(document).ready(function ($) {
     

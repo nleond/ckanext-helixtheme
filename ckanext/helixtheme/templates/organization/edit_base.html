@@ -4,8 +4,8 @@
 {% block breadcrumb_content %}
   <a class="breadcrumbs-part"{% link_for _('PUBLISHERS'), controller='organization', action='index', named_route=group_type + '_index' %}</a>
   {% block breadcrumb_content_inner %}
-    <a class="breadcrumbs-part"{% link_for organization.display_name|truncate(35), controller='ckanext.publicamundi.plugins:ExtrametadataController', action='read', id=organization.name, named_route=group_type + '_read' %}</a>
-    <a class="breadcrumbs-part"{% link_for _('MANAGE'), controller='ckanext.publicamundi.plugins:ExtrametadataController', action='edit', id=organization.name, named_route=group_type + '_edit' %}</a>
+    <a class="breadcrumbs-part"{% link_for organization.display_name|truncate(35), controller='ckanext.helix.controllers.organization:Controller', action='read', id=organization.name, named_route=group_type + '_read' %}</a>
+    <a class="breadcrumbs-part"{% link_for _('MANAGE'), controller='ckanext.helix.controllers.organization:Controller', action='edit', id=organization.name, named_route=group_type + '_edit' %}</a>
   {% endblock %}
 {% endblock %}
 
@@ -20,6 +20,6 @@
 
 {% block content_action %}
   {% if organization and h.check_access('organization_update', {'id': organization.id}) %}
-    {% link_for _('View'), controller='ckanext.publicamundi.plugins:ExtrametadataController', action='read', id=organization.name, class_='btn btn-default btn-manage pull-right', icon='eye', named_route=group_type + '_read' %}
+    {% link_for _('View'), controller='ckanext.helix.controllers.organization:Controller', action='read', id=organization.name, class_='btn btn-default btn-manage pull-right', icon='eye', named_route=group_type + '_read' %}
   {% endif %}
 {% endblock %}
