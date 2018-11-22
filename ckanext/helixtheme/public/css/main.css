@@ -1023,7 +1023,7 @@ p a{
 [role=main] .secondary {
     width: 239px;
     font-color: #666666;
-    float: left;         /* edit (added) */
+    float: left;       
     //border: 1px #4E59A4 solid;
     //border: 1px #666666 solid;
 }
@@ -1939,7 +1939,7 @@ a.tag:hover{
     background-clip: none;
 }
 
-.select2-choices {  /* edit (added)*/
+.select2-choices {  
     //width: 517px;  
     padding: 0px !important;
     border-radius: 4px !important;
@@ -2009,7 +2009,7 @@ iframe{
 
 
 .stages li {
-    width: 33.33%;  /* edit (added) */
+    width: 33.33%; 
     padding: 10px 20px;
     right:1px;
 }
@@ -2307,12 +2307,6 @@ label.order-by::after{
 label > a{
   color: #6F6F6F !important;
 }
-
-.inline { /*for Data and Resources distance*/
-    margin-bottom: 20px;
-}
-
-
 
 .field-qname-datacite\.publisher{
     display:none;

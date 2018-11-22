@@ -20,19 +20,24 @@
 
 {% block content_primary_nav %}
 
-<div class="package-language">
-  <a href="#"> {{pkg.datacite.languagecode|truncate(2,True, '')|upper}}</a>
-</div>
-<div class="btn-save">
-  <a href="#"><img class="" src="/images/png/save.png"></a>
-</div>
-<div class="btn-favorite">
-  <a href="#"> <img class="" src="/images/png/favorite.png"></a>
-</div>
+
 
     
   <h1 class="package-title">
 {{ pkg.title or pkg.name }}
+</h1>
+<div>
+<div class="btn-favorite">
+  <a href="#"> <img class="" src="/images/png/favorite.png"></a>
+</div>
+<div class="btn-save">
+  <a href="#"><img class="" src="/images/png/save.png"></a>
+</div>
+<div class="package-language">
+  <a href="#"> {{pkg.datacite.languagecode|truncate(2,True, '')|upper}}</a>
+</div>
+</div>
+
 
 {% if pkg.get('state', '').startswith('draft') %}
 <span class="draft-state">{{ _('Draft') }}</span>
@@ -48,7 +53,7 @@
 {% endif %}
 {% endblock %} {# page_heading_info #}
 
-</h1>
+
 {% block package_dates %}
   <div class="dataset-dates">
   <div class="title"> {{_('PUBLICATION:')}} </div>
@@ -61,7 +66,7 @@
   {% endblock %}
 
 {% if h.check_access('package_update', {'id':pkg.id }) %}
-  {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-manage pull-right', icon='wrench' %}
+  {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-manage dataset pull-right', icon='wrench' %}
 {% endif %}
 
 <div class="nav-menu">
