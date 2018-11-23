@@ -1,4 +1,4 @@
-{% ckan_extends %}
+{% extends "user/edit_base.html" %}
 {% if not user%}
     {% set user = c.userobj %}
 {% endif %}
@@ -116,8 +116,18 @@
 
 
                 {% block primary_content_inner %}
-                {{super() }}
-
+                <div data-module="dashboard">
+                        {% snippet 'user/snippets/followee_dropdown.html', context=dashboard_activity_stream_context, followees=followee_list %}
+                        <h2 class="page-heading">
+                          {% block page_heading %}
+                            {{ _('News feed') }}
+                          {% endblock %}
+                          <small>{{ _("Activity from items that I'm following") }}</small>
+                        </h2>
+                        {% block activity_stream %}
+                          {{ dashboard_activity_stream|safe }}
+                        {% endblock %}
+                      </div>              
                 {% endblock %}
             </section>
         </section>

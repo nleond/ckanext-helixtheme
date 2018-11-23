@@ -4,7 +4,7 @@
 {% do h.update_facets() %}
 {# {% set show_publishers = hide_publishers or false %} #}
 {% set facet_titles = {'organization': _('Publishers'),
-'closed_tags_facets': _('Subject'),
+'closed_tags': _('Subjects'),
 'tags': _('Tags'),
 'res_format': _('Formats'),
 'res_size': _('Resource size'),
@@ -21,7 +21,7 @@
 {% with items = h.get_facet_items_dict(name, limit=50) %}
 {% if name == 'organization' %}
   {% set facet_class = 'organizations' %}
-{% elif name == 'closed_tags_facets' %}
+{% elif name == 'closed_tags' %}
   {% set facet_class = 'topics' %}
 {% elif name == 'tags' %}
   {% set facet_class = 'tags' %}
@@ -47,28 +47,13 @@
     <div class="switches">
 
         {% if name=='res_size' %}
-          {% set less_1 = [0]%}
-          {% set less_10 = [0]%}
-          {% set less_100 = [0]%}
-          {% set other = [0]%}
-  
-        {% for item in items %} 
-          {% if item.name|int <= 1048576 %} 
-            {% if less_1.append(less_1.pop() + 1) %}{% endif %}
-          {% elif item.name|int <= 10485760 %} 
-            {% if less_10.append(less_10.pop() + 1) %}{% endif %}
-          {% elif item.name|int <= 104857600 %}
-            {% if less_100.append(less_100.pop() + 1) %}{% endif %}
-          {% else %}
-            {% if other.append(other.pop() + 1) %}{% endif %}  
-          {% endif %}
-        {% endfor %}
+          
         {% if total_count.append(total_count.pop() + 1) %}{% endif %}
         <label for="switch-{{total_count[0]}}">
             <input type="checkbox" form="advanced-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
               name=""  value="1">
             <a title="{{ label if label != label_truncated else '' }}">
-              Less than 1MB {{ less_1 }}
+              Less than 1MB 
             </a>
         </label>
         {% if total_count.append(total_count.pop() + 1) %}{% endif %}
@@ -76,7 +61,7 @@
           <input type="checkbox" form="advanced-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
             name=""  value="10">
           <a title="{{ label if label != label_truncated else '' }}">
-            1 - 10 MB {{ less_10 }}
+            1 - 10 MB
           </a>
         </label>
         {% if total_count.append(total_count.pop() + 1) %}{% endif %}
@@ -84,7 +69,7 @@
           <input type="checkbox" form="advanced-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
             name=""  value="100">
           <a title="{{ label if label != label_truncated else '' }}">
-            10 - 100 MB {{ less_100 }}
+            10 - 100 MB 
           </a>
         </label>
       </label>
@@ -93,7 +78,7 @@
         <input type="checkbox" form="advanced-form-search" data-module="res-facet" id="switch-{{total_count[0]}}" class="res-size" 
           name=""  value="1000">
         <a title="{{ label if label != label_truncated else '' }}">
-          100 - 1000 MB {{ less_100 }}
+          100 - 1000 MB 
         </a>
       </label>
        
@@ -112,10 +97,9 @@
       {% set count = count_label(item['count']) if count_label else ('(%d)' % item['count']) %}
       <label for="switch-{{total_count[0]}}" {% if loop.index>= LIMIT %} class="view-more" {% endif %}>
         <input type="checkbox" form="advanced-form-search" {% if item.active %} checked {% endif %}id="switch-{{total_count[0]}}"
-          name="{{name|lower}}" {# {%if name=='organization' %}value="{{label|lower|replace(" ", "-")}}" {% else %}
-          value="{{label}}" {% endif %} #} value="{{item.name}}">
+          name="{{name|lower}}"  value="{{item.name}}">
         <a title="{{ label if label != label_truncated else '' }}">
-          {{ label_truncated }} {{ count }}
+          {{ label_truncated }} 
         </a>
       </label>
       {% endfor %}

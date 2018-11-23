@@ -1,5 +1,5 @@
 
-<h5 class="side-heading grayed">
+<h5 class="side-heading ">
 {{ _('Tags') }}</h5>
 {# <i class="icon-medium icon-lock"></i> #}
 {% if tags %}
@@ -10,7 +10,8 @@
     
         {% for tag in tags %}
                 <a class="tags" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ tag.display_name }}</a>
-        {% endfor %}
+                <span class="arrow"></span>
+                {% endfor %}
     
 {% endblock %}
   </section>

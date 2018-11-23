@@ -28,7 +28,8 @@ Example:
           {% else %}
           {{ h.friendly_date(modified|urlize)}} 
           {% endif %} #}
-          {{ h.friendly_date(modified|urlize)}}
+          {{ h.render_datetime(modified, date_format='%d-%m-%Y') }}
+         {# {{ h.friendly_date(modified|urlize)}}#}
       </div>
       <a href={{h.url_for(controller='package', action='read', id=package.name)}}>
       <h3 class="latest-dataset-title">

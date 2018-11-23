@@ -1,6 +1,10 @@
 
-<li class = "menu-item domain-item current-item" >
-    <a href="{{ h.url_for(controller='package', action='search')}}">{{_('Data')}}</a>
+<li class = "menu-item domain-item current-item has-sub-menu" >
+    <a href="{{ h.url('home.index') }}">{{_('Data')}}</a>
+    <ul>
+        <li><a href="{{ h.url_for(controller='package', action='search')}}">{{_('Datasets')}}</a></li>
+        <li><a href="{{ h.url_for(controller='organization', action='index')}}">{{_('Publishers')}}</a></li>
+    </ul>
 </li>
 <li class = "menu-item domain-item" >
     <a href=#>{{_('Pubs')}}</a>
@@ -20,16 +24,16 @@
     <a href="http://core.hellenicdataservice.gr/project/page/about">{{_('About')}}</a>
     
     <ul > 
-        <li><a href="http://core.hellenicdataservice.gr/project/page/what-is-helix">What is HELIX?</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/services">Services</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/faq">FAQ</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/publish">Publish Data</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/software">Software</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/the-project">The project</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/media">Media</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/acknowledge-helix">Acknowledge Helix</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/contacs">Contact</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/project/page/terms-of-use">Terms of use</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/what-is-helix">{{_('What is HELIX?')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/services">{{_('Services')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/faq">{{_('FAQ')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/publish">{{_('Publish Data')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/software">{{_('Software')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/the-project">{{_('The Project')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/media">{{_('Media')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/acknowledge-helix">{{_('Acknowledge HELIX')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/contacs">{{_('Contact')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/project/page/terms-of-use">{{_('Terms of Use')}}</a></li>
     </ul>
     
 </li>
@@ -37,36 +41,13 @@
     <a href="http://core.hellenicdataservice.gr/news">{{_('News')}}</a>
 
     <ul>
-        <li><a href="http://core.hellenicdataservice.gr/news">News</a></li>
-        <li><a href="http://core.hellenicdataservice.gr/news">Events</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/news">{{_('News')}}</a></li>
+        <li><a href="http://core.hellenicdataservice.gr/news">{{_('Events')}}</a></li>
 
 
 
     </ul>
 </li>
 
-{#<li id="menu-item-project" className="menu-item aux-item has-sub-menu">
-        <NavLink to={StaticRoutes.PROJECT} activeClassName="active-link" strict={false}>About</NavLink>
-        <ul className="sub-menu">
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.WhatIsHelix])}>What is HELIX?</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Services])}>Services</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.FAQ])}>FAQ</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.PublishData])}>Publish Data</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Software])}>Software</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Project])}>The project</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Media])}>Media</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.AcknowledgeHelix])}>Acknowledge Helix</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.Contact])}>Contact</NavLink></li>
-          <li><NavLink to={buildPath(DynamicRoutes.PROJECT_PAGE, [WordPressPages.TermsOfUse])}>Terms of use</NavLink></li>
-        </ul>
-      </li>
-
-    <li id="menu-item-news" className="menu-item aux-item has-sub-menu">
-        <NavLink to={StaticRoutes.NEWS} activeClassName="active-link">News</NavLink>
-        <ul className="sub-menu">
-          <li><NavLink to={StaticRoutes.NEWS}>News</NavLink></li>
-          <li><a href="#">Events</a></li>
-     </ul>
-    </li> #}
 
 

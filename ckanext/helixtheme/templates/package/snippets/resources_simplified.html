@@ -5,12 +5,11 @@
     {% for resource in resources %}
         {% if not resource.format == 'data_table' %}
         {% set res_display_name = pkg.title|truncate(25)+' ('+resource.format|upper+')' %}
-        <li class="topics {{ ' active' if active == resource.id }}">
+        <li class="{{ ' active' if active == resource.id }}">
           {#{% link_for res_display_name|truncate(34), controller='package', action=action or 'resource_read', id=pkg.name, resource_id=resource.id, inner_span=false %} #}
-          <a class="topics" href="{% url_for controller='package', action='resource_read',id=pkg.name, resource_id=resource.id  %}">{{ res_display_name|truncate(34)|upper }}</a> 
+          <a class="resource" href="{% url_for controller='package', action='resource_read',id=pkg.name, resource_id=resource.id  %}">{{ res_display_name|truncate(34)|upper }}</a> 
           </li>
         {% endif %}
-        <hr />
       {% endfor %}
     </section>
   

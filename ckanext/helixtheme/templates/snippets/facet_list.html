@@ -46,7 +46,7 @@ Parameter to hide organization/group facet section when only one item is present
 {% with labels = c.facet_labels or {} %}
  {% set hide_publishers = hide_publishers or false %} 
 {% set facet_titles = {'organization': _('Publishers'),
-'closed_tags_facets': _('Subject'),
+'closed_tags': _('Subjects'),
 'tags': _('Tags'),
 'res_format': _('Formats'),
 'res_size': _('Resource size'),
@@ -62,7 +62,7 @@ Parameter to hide organization/group facet section when only one item is present
 {% set label_function=labels.get(facet) %}
 {% if name == 'organization' %}
 {% set facet_class = 'organizations' %}
-{% elif name == 'closed_tags_facets' %}
+{% elif name == 'closed_tags' %}
 {% set facet_class = 'topics' %}
 {% elif name == 'tags' %}
 {% set facet_class = 'tags' %}

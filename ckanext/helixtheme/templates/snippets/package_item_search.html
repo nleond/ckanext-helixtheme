@@ -40,7 +40,8 @@ Example:
           <div>{{ h.friendly_date(modified|urlize)}} </div>
           {% endif %}
           #}
-          <div>{{ h.friendly_date(modified|urlize)}} </div>
+          {#<div>{{ h.friendly_date(modified|urlize)}} </div>#}
+          <div>{{ h.render_datetime(modified, date_format='%d-%m-%Y') }}</div>
       </div>
 
       

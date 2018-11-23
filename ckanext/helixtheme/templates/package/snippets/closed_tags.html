@@ -7,9 +7,9 @@
     {% block tag_list %}
     
     {% for tag in tags %}           {#{% if check%} topics-last {% else %}  topics {% endif %} #}
-      {% set check = loop.last%}  
+   
         <a class="topics"  href="{% url_for controller='package', action='search', q=tag%}" >{{tag | upper}}</a>
-        {% if check==false%} <hr /> {% endif %}
+        
     {% endfor %}
 {% endblock %}
   </section>
