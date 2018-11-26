@@ -11,16 +11,17 @@
    
    
     {% if sorting %}
-       <label class="datasets-order-by" for="field-order-by">{{ _('Order by') }}
-      
+      <div class="datasets-order-by">
+       <label for="field-order-by">{{ _('Order by') }} </label>
         <select class="select-menu btn-group-main btn-add-dataset" form="main-form-search" id="field-order-by" data-module="order-by"  name="sort" >
           {% for label, value in sorting %}
             {% if label and value %}
               <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
             {% endif %}
           {% endfor %}
+          <span class="caret">A</span>
         </select>
-      </label>
+      </div>
     {% endif %}   
    
    {% endblock %} 

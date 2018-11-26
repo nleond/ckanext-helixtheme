@@ -6,7 +6,7 @@
     {% set _class = _class or 'tags-list' %}
     {% block tag_list %}
     
-    {% for tag in tags %}           {#{% if check%} topics-last {% else %}  topics {% endif %} #}
+    {% for tag in tags %}          
    
         <a class="topics"  href="{% url_for controller='package', action='search', q=tag%}" >{{tag | upper}}</a>
         
