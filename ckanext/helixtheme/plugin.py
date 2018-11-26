@@ -15,6 +15,7 @@ from ckan import model
 from ckan.lib import helpers, munge
 from ckan.lib.base import c
 from ckan.lib.helpers import render_datetime, resource_preview, url_for_static
+from ckan.logic import NotFound
 
 import ckanext.helix.lib.template_helpers as ext_template_helpers
 
@@ -35,8 +36,13 @@ def most_recent_datasets(limit=10):
 
 
 def get_featured_datasets(limit=4):
-    datasets = toolkit.get_action('group_package_show')(
-        data_dict={'id': 'featured-datasets'})
+    
+    group_name = 'featured-datasets'
+    try: 
+        datasets = toolkit.get_action('group_package_show')(data_dict={'id': group_name})
+    except NotFound as ex:
+        log1.warn("No featured datasets: group \"%s\" is empty!" % (group_name))
+        datasets = []
 
     # Add terms for translation and call get_translation_terms
     #locale = helpers.lang()

@@ -2,7 +2,14 @@
 ckanext-helixtheme
 =============
 
-Ckan theming plugin to work alongside ckan-helix
+Ckan theming plugin to work alongside `ckanext-helix` extension.
+
+
+------------
+Prerequisites
+------------
+
+1. Create a group named `featured-datasets`    
 
 
 ------------
