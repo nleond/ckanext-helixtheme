@@ -96,7 +96,7 @@ Parameter to hide organization/group facet section when only one item is present
         {% set less_100 = [0]%}
         {% set other = [0]%}
       
-        {% for item in items %} 
+        {% for item in items %} {{item.name}}-
           {% if item.name|int <= 1048576 %} 
             {% if less_1.append(less_1.pop() + 1) %}{% endif %}
           {% elif item.name|int <= 10485760 %} 
