@@ -30,12 +30,11 @@ function handleFacets() {
             });
             
         });
-        // turn to uppercase and remove greek accent 
-        var org_switch = $('.results-main-sidebar .organizations .switches');
-        var list2 = org_switch.find('label');
+        // turn to uppercase and remove greek intonation 
+        var list2 = $('.upper');
         list2.each(function (index) {
-            //console.log($(this).find('a').text().toUpperCase().replace('Ά', 'Α').replace('Έ', 'Ε').replace('Ή', 'Η').replace('Ί', 'Ι').replace('Ό', 'Ο').replace('Ύ', 'Υ').replace('Ώ', 'Ω'));
-            $(this).find('a').text($(this).find('a').text().toUpperCase().replace(/Ά/g, 'Α').replace(/Έ/g, 'Ε').replace(/Ή/g, 'Η').replace(/Ί/g, 'Ι').replace( /Ό/g, 'Ο').replace(/Ύ/g, 'Υ').replace(/Ώ/g, 'Ω'));
+            console.log($(this).text())
+            $(this).text().toUpperCase().replace(/Ά/g, 'Α').replace(/Έ/g, 'Ε').replace(/Ή/g, 'Η').replace(/Ί/g, 'Ι').replace( /Ό/g, 'Ο').replace(/Ύ/g, 'Υ').replace(/Ώ/g, 'Ω');
         });
     };
     init_hide();

@@ -1,22 +1,22 @@
 
-<li class = "menu-item domain-item current-item has-sub-menu" >
+<li id="menu-item-data" class = "menu-item domain-item current-item has-sub-menu" >
     <a href="{{ h.url('home.index') }}">Data</a>
-    <ul>
+    <ul class="sub-menu">
         <li><a href="{{ h.url_for(controller='package', action='search')}}">{{_('Datasets')}}</a></li>
         <li><a href="{{ h.url_for(controller='organization', action='index')}}">{{_('Publishers')}}</a></li>
     </ul>
 </li>
-<li class = "menu-item domain-item" >
+<li id="menu-item-pubs" class = "menu-item domain-item" >
     <a href="https://hellenicdataservice.gr/pubs/">{{_('Pubs')}}</a>
 </li>
-<li class = "menu-item domain-item" >
+<li id="menu-item-lab" class = "menu-item domain-item" >
     <a href="https://lab.hellenicdataservice.gr/">{{_('Lab')}}</a>
 </li>
-<li class = "menu-item aux-item has-sub-menu" >
+<li id="menu-item-project" class = "menu-item aux-item has-sub-menu" >
      
     <a href="https://hellenicdataservice.gr/project/page/about">{{_('About')}}</a>
     
-    <ul > 
+    <ul class="sub-menu"> 
         <li><a href="https://hellenicdataservice.gr/project/page/what-is-helix">{{_('What is HELIX?')}}</a></li>
         <li><a href="https://hellenicdataservice.gr/project/page/services">{{_('Services')}}</a></li>
         <li><a href="https://hellenicdataservice.gr/project/page/faq">{{_('FAQ')}}</a></li>
@@ -30,12 +30,12 @@
     </ul>
     
 </li>
-<li class = "menu-item aux-item has-sub-menu" >
-    <a href="https://hellenicdataservice.gr/news">{{_('News')}}</a>
+<li id="menu-item-news" class = "menu-item aux-item has-sub-menu" >
+    <a href="https://hellenicdataservice.gr/news/">{{_('News')}}</a>
 
-    <ul>
-        <li><a href="https://hellenicdataservice.gr/news">{{_('News')}}</a></li>
-        <li><a href="https://hellenicdataservice.gr/news">{{_('Events')}}</a></li>
+    <ul class="sub-menu">
+        <li><a href="https://hellenicdataservice.gr/news/">{{_('News')}}</a></li>
+        <li><a href="https://hellenicdataservice.gr/news/events">{{_('Events')}}</a></li>
     </ul>
 </li>
 

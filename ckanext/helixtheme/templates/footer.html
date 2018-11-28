@@ -1,12 +1,13 @@
 <footer id="footer" class="data-footer">
   <div class="footer-content">
+    <div class="content">
     {% block footer_content %}
     {% block footer_links %}
             {% endblock %}
 
     <div class="footer-column logo">
         
-          <a href="{{ h.url('home.index') }}">
+          <a href="https://hellenicdataservice.gr/main/">
                <img src="{{ h.url_for_static('/images/svg/Helix-logo-White-on-Blue.svg') }}" alt="" >
           </a>
     </div>
@@ -16,10 +17,10 @@
             {{_('About')}}
         </h3>
         <ul>
-          <li><a href="#">{{_('Home')}}</a></li>
-          <li><a href="#">{{_('The Project')}}</a></li>
-          <li><a href="#">{{_('Contact')}}</a></li>
-          <li><a href="#">{{_('Terms of Use')}}</a></li>
+          <li><a href="https://hellenicdataservice.gr/main/">{{_('Home')}}</a></li>
+          <li><a href="https://hellenicdataservice.gr/project/page/what-is-helix">{{_('The Project')}}</a></li>
+          <li><a href="https://hellenicdataservice.gr/project/page/contact">{{_('Contact')}}</a></li>
+          <li><a href="https://hellenicdataservice.gr/project/page/terms-of-use">{{_('Terms of Use')}}</a></li>
         </ul>
       </div>
       <div class="footer-column research">
@@ -27,9 +28,9 @@
             {{_('Research')}}
         </h3>
         <ul>
-          <li><a href="#">Data</a></li>
-          <li><a href="#">Publications</a></li>
-          <li><a href="http://192.168.10.163:8080/">Lab</a></li>
+          <li><a href="{{ h.url('home.index') }}">Data</a></li>
+          <li><a href="https://hellenicdataservice.gr/pubs/">Publications</a></li>
+          <li><a href="https://lab.hellenicdataservice.gr/">Lab</a></li>
           <li><a href="#">{{_('Topics')}}</a></li>
           <li><a href="#">{{_('Organizations')}}</a></li>
         </ul>
@@ -40,25 +41,25 @@
         </h3>
         <ul>
           <li>
-            <a class="footer-image" href="#">
+            <a class="footer-image" href="https://www.athenarc.gr/">
               <img src="{{ h.url_for_static('/images/png/PARTNER-ATHENA.png') }}" alt="">
             </a>
           </li>
           
           <li>
-            <a class="footer-image" href="#">
+            <a class="footer-image" href="https://grnet.gr/">
               <img src="{{ h.url_for_static('/images/png/PARTNER_GRNET.png') }}" alt="">
             </a>
           </li>
           
           <li>
-            <a class="footer-image" href="#">
+            <a class="footer-image" href="https://www.openaire.eu/">
               <img src="{{ h.url_for_static('/images/png/PARTNER_OPENAIRE.png') }}" alt="">
             </a>
           </li>
           
           <li>
-            <a class="footer-image" href="#">
+            <a class="footer-image" href="https://www.minedu.gov.gr/">
               <img src="{{ h.url_for_static('/images/png/PARTNER-EDUC.png') }}" alt="">
             </a>
           </li>
@@ -66,7 +67,7 @@
           
         </ul>
       </div>
-
+    </div>
       <div class="copyright-notes">
         © 2018 HELIX. All rights reserved.
       </div>

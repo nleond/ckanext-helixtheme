@@ -11,7 +11,7 @@
 {% endif %} 
 {% endfor %}
 
-    <ul>
+    <ul class=  "sub-menu">
     {% for locale in h.get_available_locales() %}
     {% if locale.identifier != current_lang %}
     <li value="{% url_for current_url, locale=locale %}"><a href="{{ h.url_for(current_url, locale=locale) }}"><span>
