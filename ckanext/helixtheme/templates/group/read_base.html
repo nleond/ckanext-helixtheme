@@ -2,9 +2,9 @@
 
 {% block content_primary_nav %}
   <div class="nav-menu">
-    {{ h.build_nav_icon('group_read', _('Datasets'), id=c.group_dict.name) }}
-    {{ h.build_nav_icon('group_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
-    {{ h.build_nav_icon('group_about', _('About'), id=c.group_dict.name) }}
+      {{ h.build_nav_icon(group_type + '_read', _('Datasets'), id=c.group_dict.name) }}
+      {{ h.build_nav_icon(group_type + '_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
+      {{ h.build_nav_icon(group_type + '_about', _('About'), id=c.group_dict.name) }}
   </div>
 {% endblock %}
 

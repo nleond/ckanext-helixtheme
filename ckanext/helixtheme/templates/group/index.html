@@ -14,7 +14,7 @@
 
 
 {% block page_primary_action %}
-  {% if c.userobj.sysadmin %} group type{{group_type}}
+  {% if c.userobj.sysadmin %}
     {% link_for _('Add Topic'), controller='group', action='new', class_='btn btn-manage', icon='plus-sign-alt' %}
   {% endif %}
 {% endblock %}
@@ -28,7 +28,7 @@
         {% snippet "group/snippets/group_list.html", groups=c.page.items %}
       {% endif %}
     {% else %}
-      <p class="empty"> 
+      <p class="empty">
         {{ _('There are currently no groups for this site') }}.
         {% if h.check_access('group_create') %}
           {% link_for _('How about creating one?'), controller='group', action='new' %}</a>.

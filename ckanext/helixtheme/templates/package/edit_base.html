@@ -39,9 +39,10 @@
 {% endblock %}
 
 {% block content_primary_nav %}
-
-   {% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn btn-manage pull-right', icon='eye' %}
-  <div class="nav-menu">
+    <div class="action">
+      {% link_for _('View dataset'), controller='package', action='read', id=pkg.name, class_='btn btn-manage pull-right read', icon='eye' %}
+    </div>
+   <div class="nav-menu">
   {{ h.build_nav_icon('dataset_edit', _('Edit metadata'), id=pkg.name) }}
   {{ h.build_nav_icon('dataset_resources', _('Resources'), id=pkg.name) }}
   </div>
