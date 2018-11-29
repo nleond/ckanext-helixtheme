@@ -2252,6 +2252,11 @@ format-label[data-format=csv], .format-label[data-format*=csv]
     background-image: url("../../images/icons/resources/csw.svg");
 }
 
+.format-label[data-format=sac], .format-label[data-format*=sac]
+{
+    background-image: url("../../images/icons/resources/data-generic.svg");
+}
+
 @media screen and (max-width : 900px){
     .hero{
         //min-height: 0 !important;
