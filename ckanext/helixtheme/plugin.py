@@ -89,7 +89,7 @@ def get_communities(username):
         temp_group = toolkit.get_action('group_show')(
             data_dict={'id': group['id']})
         users = temp_group['users']
-        if temp_group['type'] != 'communities':
+        if temp_group['type'] != 'community':
             groups.remove(group)
         else:
             members = toolkit.get_action('member_list')(

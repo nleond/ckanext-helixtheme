@@ -3,7 +3,7 @@
 {% block subtitle %}{{ _('Topics') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part" {% link_for _('Topics'), controller='group', action='index' %}</a>
+  <a class="breadcrumbs-part"{% link_for _('Topics') if group_type.startswith('group') else _('Communities'), controller='group', action='index', named_route=group_type + '_index' %}</a>
 {% endblock %}
 
 
@@ -46,10 +46,11 @@
 {% block secondary_content %}
 {% block paint %}{% endblock %}
     <div class="alt-side-style">
-        {% snippet "group/snippets/helper.html" %}
+        {% snippet "group/snippets/helper.html", type=group_type  %} 
     </div>
     <div class="group-search">
-      {% snippet 'snippets/search_form_top.html', type='group', query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search topics...'), show_empty=request.params, no_bottom_border=true if c.page.items %}
+      {% snippet 'snippets/search_form_top.html', type=group_type, query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, 
+          placeholder=_('Search topics...') if group_type.startswith('group') else _('Search Communities') , show_empty=request.params, no_bottom_border=true if c.page.items %}
     </div>
     {% endblock %}
 

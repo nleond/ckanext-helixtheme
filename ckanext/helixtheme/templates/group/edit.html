@@ -1,7 +1,7 @@
 {% ckan_extends %}
 
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part"{% link_for _('Topics'), controller='group', action='index',named_route=group_type + '_index' %}</a>
+  <a class="breadcrumbs-part"{% link_for _('Topics') if group_type=='group' else  _('Communities'), controller='group', action='index',named_route=group_type + '_index' %}</a>
   {% block breadcrumb_content_inner %}
     <a class="breadcrumbs-part"{% link_for group.display_name|truncate(35), controller='group', action='read',named_route=group_type + '_read', id=group.name   %}</a>
     <a class="breadcrumbs-part"{% link_for _('Manage'), controller='group', action='edit', id=group.name , named_route=group_type + '_edit'%}</a>
