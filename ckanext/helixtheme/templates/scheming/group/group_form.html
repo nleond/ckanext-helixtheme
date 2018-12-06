@@ -23,6 +23,6 @@
           {% endif %}
         {% endif %}
         {% endblock %}
-        <button class="btn-round upper" name="save" type="submit">{% block save_text %}{{ _('Save Group') if c.group_type=='group' else  _('Save Community') }}{% endblock %}</button>
+        <button class="btn-round upper" name="save" type="submit">{% block save_text %}{{ _('Save') if c.group_type=='group' else  _('Save Community') }}{% endblock %}</button>
     </div>
 </form>

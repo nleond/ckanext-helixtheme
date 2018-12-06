@@ -81,27 +81,13 @@ def get_topics(package_id):
 def get_communities(username):
     groups = toolkit.get_action('group_list_authz')(
         data_dict={'am_member': True})
-    log1.debug('Groups are: %s', groups)    
     groups_copy = copy.copy(groups)
     delete_indexes = []
     for group in groups_copy:
-        log1.debug('Group: %s', group['display_name'])
         temp_group = toolkit.get_action('group_show')(
             data_dict={'id': group['id']})
-        users = temp_group['users']
         if temp_group['type'] != 'community':
             groups.remove(group)
-        else:
-            members = toolkit.get_action('member_list')(
-                data_dict={'id': group['id'], 'object_type': 'user'})
-            remove = True
-            # check if user is in groups members
-            for m in members:
-                if username in m:
-                    remove = False
-                    break
-            if remove:
-                groups.remove(group)
     return groups
 
 
