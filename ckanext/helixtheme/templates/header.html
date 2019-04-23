@@ -10,8 +10,8 @@
         {# The .header-image class hides the main text and uses image replacement for the title #}
         
 
-         <a href="https://hellenicdataservice.gr/main/">
-           <img class="logo-image" src="{{ h.url_for_static('/images/Data-logo.svg') }}" alt="{{ g.site_title }} Logo"  />
+         <a href="{{ h.url('home.index') }}">
+           <img class="logo-image" src="{{ h.url_for_static('/images/heallink-logo.png') }}" alt="{{ g.site_title }} Logo"  />
            </a>
           {% if g.site_description %}<h2>{{ g.site_description }}</h2>{% endif %}
         
