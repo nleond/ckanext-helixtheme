@@ -13,7 +13,7 @@
   {% endif %}
 {% endblock %}
 
-{% set orcid = h.get_user_extra(c.userobj.id) %}
+{#{% set orcid = h.get_user_extra(c.userobj.id) %} #}
 {% block secondary_content%}
 <div class="module context-info">
   <section class="module-content">
@@ -92,10 +92,10 @@
           </dl>
         {% endif %}
         {% endblock %}
-        <dl>
+        {#<dl>
           <dt class="key">{{ _('ORCID ID') }} </dt>
           <dd class="value">{{orcid}}</code></dd>
-        </dl>
+        </dl> #}
       </div>
     {% endblock %}
   </section>
