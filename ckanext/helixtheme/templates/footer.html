@@ -7,7 +7,7 @@
 
     <div class="footer-column logo">
         
-          <a href="https://hellenicdataservice.gr/main/">
+          <a href="{{ h.url('home.index') }}">
                <img src="{{ h.url_for_static('/images/jpg/heal.jpg') }}" alt="" >
           </a>
     </div>
@@ -17,7 +17,7 @@
             {{_('About')}}
         </h3>
         <ul>
-          <li><a href="https://hellenicdataservice.gr/main/">{{_('Home')}}</a></li>
+          <li><a href="{{ h.url('home.index') }}">{{_('Home')}}</a></li>
           <li><a href="https://hellenicdataservice.gr/project/page/what-is-helix">{{_('The project')}}</a></li>
           <li><a href="https://hellenicdataservice.gr/project/page/contact">{{_('Contact')}}</a></li>
           <li><a href="https://hellenicdataservice.gr/project/page/terms-of-use">{{_('Terms of use')}}</a></li>
