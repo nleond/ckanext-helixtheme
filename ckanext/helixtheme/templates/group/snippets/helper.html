@@ -1,11 +1,11 @@
 <div class="module module-narrow module-shallow">
   <h2 class="module-heading">
     <i class="fa fa-info-circle"></i>
-    {{ _('What are Topics?')  if group_type.startswith('group') else _('What are Communities') }}
+    {{ _('What are Topics?')  if c.group_type.startswith('group') else _('What are Communities') }}
   </h2>
   <div class="module-content">
     <p>
-      {% if group_type.startswith('group') %}
+      {% if c.group_type.startswith('group') %}
       {% trans %} 
       Topics are collections of data sets for a particular theme, 
       offering a simple way to discover and use published data sets.

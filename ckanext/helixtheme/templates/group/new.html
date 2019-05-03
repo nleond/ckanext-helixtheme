@@ -1,10 +1,11 @@
 {% ckan_extends %}
 
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part"{{ h.nav_link(_('Topics'), controller='group', action='index') }}</a>
-  <a class="breadcrumbs-part"{% block breadcrumb_link %}{{ h.nav_link(_('Create a Topic'), controller='group', action='edit', id=c.group.name) }}{% endblock %}</a>
+  <a class="breadcrumbs-part"{{ h.nav_link(_('Communities') if c.group_type=='community' else _('Create a Topic'), controller='group', action='index') }}</a>
+  <a class="breadcrumbs-part"{% block breadcrumb_link %}{{ h.nav_link(_('Create a Community')if c.group_type=='community' else _('Create a Topic'), controller='group', action='edit', id=c.group.name) }}{% endblock %}</a>
 {% endblock %}
 
+{% block page_heading %}{{_('Create a Community') if c.group_type=='community' else _('Create a Topic') }}{% endblock %}
 
 {% block secondary_content %}
 {% block paint %}{% endblock %}
