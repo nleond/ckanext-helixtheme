@@ -14,7 +14,10 @@
 <div class="nav-menu">
   {{ h.build_nav_icon(group_type + '_edit', _('Edit'), id=c.group_dict.name) }}
   {{ h.build_nav_icon(group_type + '_bulk_process', _('Datasets'), id=c.group_dict.name) }}
-  {{ h.build_nav_icon(group_type + '_members', _('Members'), id=c.group_dict.name) }}
+  {# only organization admins can edit members #}
+  {% if h.check_access('group_edit_permissions', {'id': c.group_dict.name}) %}
+    {{ h.build_nav_icon(group_type + '_members', _('Members'), id=c.group_dict.name) }} 
+  {% endif %}
 </div>
 {% endblock %}
 
