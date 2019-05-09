@@ -1,22 +1,25 @@
+{% set group_type = c.group_type or group_type%}
+
 <div class="module module-narrow module-shallow">
   <h2 class="module-heading">
     <i class="fa fa-info-circle"></i>
-    {{ _('What are Topics?')  if c.group_type.startswith('group') else _('What are Communities') }}
+    {{ _('What are Communities?')  if group_type == 'community' else _('What are Topics') }}
   </h2>
   <div class="module-content">
     <p>
-      {% if c.group_type.startswith('group') %}
-      {% trans %} 
-      Topics are collections of data sets for a particular theme, 
-      offering a simple way to discover and use published data sets.
-      {% endtrans %}
-      {%else%}
-      {% trans %} 
-      Communities are domain or thematic-specific collections of data assets,
-       enabling you to organize and search for data relevant to a special interest. 
-      Regardless of who published the data, or who is responsible for its production, 
-      Communities assemble thematically-focused data.
-      {% endtrans %}
+      {% if group_type == 'community' %}
+        {% trans %} 
+        Communities are domain or thematic-specific collections of data assets,
+        enabling you to organize and search for data relevant to a special interest. 
+        Regardless of who published the data, or who is responsible for its production, 
+        Communities assemble thematically-focused data.
+        {% endtrans %}
+      {% else %}
+        {% trans %} 
+        Topics are collections of data sets for a particular theme, 
+        offering a simple way to discover and use published data sets.
+        {% endtrans %}
+      
       {% endif %}
     </p>
   </div>
