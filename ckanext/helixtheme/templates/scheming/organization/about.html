@@ -3,21 +3,21 @@
 {% block subtitle %}{{ _('About') }} - {{ super() }}{% endblock %}
 
 {% block primary_content_inner %}
-  <div class="org-description">
+  {#<div class="org-description">
     <h1>{% block page_heading %}{{ c.group_dict.display_name }}{% endblock %}</h1>
-    </div>
+    </div> {{c.group_dict.extras}}
   {% block organization_description %}
     {% if c.group_dict.description %}
       {{ h.render_markdown(c.group_dict.description) }}
     {% endif %}
-  {% endblock %}
-  <dl>
-    {% for f in c.scheming_fields %}
-    <dt>{{ h.scheming_language_text(f.label) }}:</dt>
-    <dd>{{ c.group_dict[f.field_name] or ("&nbsp;"|safe) }}</dd>
-    {% endfor %}
-    </dl>
+  {% endblock %} #}
   {% block organization_extras %}
+    <dl>
+      {% for f in c.scheming_fields %}
+      <dt>{{ h.scheming_language_text(f.label) }}:</dt>
+      <dd>{{ c.group_dict[f.field_name] or ("&nbsp;"|safe) }}</dd>
+      {% endfor %}
+    </dl>
     {% snippet 'snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras) %}
   {% endblock %}
 {% endblock %}
