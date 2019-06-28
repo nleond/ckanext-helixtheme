@@ -2,15 +2,15 @@
 
 
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part"{% link_for _('Publishers'), controller='organization', action='index', named_route=group_type + '_index' %}</a>
+  <a class="breadcrumbs-part"{% link_for _('Institutions'), controller='organization', action='index', named_route=group_type + '_index' %}</a>
 {% endblock %}
 
 {% block page_primary_action %}
   {% if h.check_access('organization_create') %}
-    {% link_for _('Add Publisher'), controller='organization', action='new', class_='btn btn-primary btn-manage', icon='plus-square', named_route=group_type + '_new' %}
+    {% link_for _('Add Institution'), controller='organization', action='new', class_='btn btn-primary btn-manage', icon='plus-square', named_route=group_type + '_new' %}
   {% endif %}
 {% endblock %}
 
 {% block organizations_search_form %} 
-    {% snippet 'snippets/search_form.html', form_id='organization-search-form', type='organization', query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search publishers...'), show_empty=request.params, no_bottom_border=true if c.page.items, sorting = [(_('Name Ascending'), 'title asc'), (_('Name Descending'), 'title desc')] %}
+    {% snippet 'snippets/search_form.html', form_id='organization-search-form', type='organization', query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search institutions...'), show_empty=request.params, no_bottom_border=true if c.page.items, sorting = [(_('Name Ascending'), 'title asc'), (_('Name Descending'), 'title desc')] %}
   {% endblock %}

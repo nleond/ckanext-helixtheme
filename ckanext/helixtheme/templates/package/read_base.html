@@ -5,7 +5,7 @@
     {% set dataset = pkg.title or pkg.name %}
     {% if pkg.organization %}
 
-      <a class="breadcrumbs-part" {% link_for _('Publishers'), controller='organization', action='index' %}</a> 
+      <a class="breadcrumbs-part" {% link_for _('Institutions'), controller='organization', action='index' %}</a> 
       <a class="breadcrumbs-part" {% link_for org.title|truncate(50) or org.name, controller='organization', action='read', id=pkg.organization.name %}</a>
     {% endif %}
     <a class="breadcrumbs-part"{{ self.breadcrumb_content_selected() }}{% link_for dataset|truncate(50), controller='package', action='read', id=pkg.name %}</a>
