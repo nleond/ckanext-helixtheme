@@ -19,11 +19,11 @@
         {% if action == 'edit' %}
           {% if h.check_access('group_delete', {'id': data.id}) and action=='edit'  %}
             {% set locale = h.dump_json({'content': _('Are you sure you want to delete this Institution?')}) %}
-            <a class="btn-round  btn-danger pull-left" href="{% url_for controller='organization', action='delete', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+            <button class="btn-round  delete upper" href="{% url_for controller='organization', action='delete', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</button>
           {% endif %}
         {% endif %}
         {% endblock %}
-        <button class="btn btn-round" name="save" type="submit">{% block save_text %}{{ _('Save Institution') }}{% endblock %}</button>
+        <button class="btn-round upper" name="save" type="submit">{% block save_text %}{{ _('Save Institution') }}{% endblock %}</button>
         {{ form.required_message() }}
     </div>
 </form>
