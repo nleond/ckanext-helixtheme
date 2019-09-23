@@ -12,7 +12,7 @@
               <div class="tag-arrow">
                 <a class="tags" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ tag.display_name }}
                 </a>
-                <span class="arrow"></span>
+                {#<span class="arrow"></span>#}
               </div>
                 
                 {% endfor %}

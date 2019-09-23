@@ -4,7 +4,7 @@
 
 
 {% block breadcrumb_content %}
-  {{ h.nav_link(_('Harvest Sources'), named_route='{0}_search'.format(c.dataset_type), class="breadcrumbs-part") }}
+<a>{{ h.nav_link(_('Harvest Sources'), named_route='{0}_search'.format(c.dataset_type), class_="breadcrumbs-part") }}</a>
 {% endblock %}
 
 

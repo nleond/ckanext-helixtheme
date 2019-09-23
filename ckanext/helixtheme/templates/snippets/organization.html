@@ -33,28 +33,28 @@ Example:
         </div>
     {% endblock %}
     {#<h1 class="heading">{{ organization.title or organization.name }}</h1> #}
-       {% if organization.description and show_desc %}
+       {% if show_desc and organization.description %}
         <p>
           {{ h.markdown_extract(organization.description, 180) }}
-          {% link_for _('read more'), controller='organization', action='about', id=organization.name %}
+          {#{% link_for _('read more'), controller='organization', action='about', id=organization.name %}#}
         </p> 
       {% elif not organization.description%}
         <p class="empty">{{ _('There is no description for this organization') }}</p>
         {% endif %}
       {% if show_nums %}
-        <div class="nums">
+        {#<div class="nums">
           <dl>
             {{ _('Followers') }}:
             {{ h.SI_number_span(organization.num_followers) }}</dd>
-          </dl>
-          <dl>
-            {{ _('Datasets') }}:
-            {{ h.SI_number_span(organization.package_count) }}
-          </dl>
+          </dl> 
         </div>
         <div class="follow_button">
           {{ h.follow_button('group', organization.id) }}
-        </div>
+        </div> #}
+        <dl class='title'>
+          {{ _('Datasets') }}:
+          {{ h.SI_number_span(organization.package_count) }}
+        </dl>
       {% endif %}
       
         {% if pkg and show_contact%}
@@ -67,5 +67,9 @@ Example:
       {% endif %}
         
       </section>
- 
-{% endwith %}
+      
+      {#<div class="border-bottom-bar"></div> #}
+     {% if search_bar%} 
+      {% snippet 'snippets/search_form_top.html', form_id='organization-datasets-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
+     {% endif %}
+     {% endwith %}

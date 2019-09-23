@@ -35,7 +35,7 @@
             <div class="breadcrumbs-pagination top">
                 <div class="breadcrumbs" data-module="breadcrumb-overflow">
                     {% block breadcrumb_content %}
-                        <a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}">DASHBOARD</a>
+                        <a class="breadcrumbs-part" href="{{ h.url_for('dashboard.index') }}">{{ _('Dashboard') }}</a>
                     {% endblock %}
                 </div>
                 {% block pagination_top %}{% endblock %}
