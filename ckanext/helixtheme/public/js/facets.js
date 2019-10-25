@@ -46,6 +46,14 @@ function handleFacets() {
             //console.log($(this).find('a').text().toUpperCase().replace('Ά', 'Α').replace('Έ', 'Ε').replace('Ή', 'Η').replace('Ί', 'Ι').replace('Ό', 'Ο').replace('Ύ', 'Υ').replace('Ώ', 'Ω'));
             $(this).find('a').text($(this).find('a').text().toUpperCase().replace(/Ά/g, 'Α').replace(/Έ/g, 'Ε').replace(/Ή/g, 'Η').replace(/Ί/g, 'Ι').replace( /Ό/g, 'Ο').replace(/Ύ/g, 'Υ').replace(/Ώ/g, 'Ω'));
         });
+
+        var order_by_options= $('.datasets-order-by select option');
+        order_by_options.each(function (index) {
+            console.log($(this).text())
+            //console.log($(this).find('a').text().toUpperCase().replace('Ά', 'Α').replace('Έ', 'Ε').replace('Ή', 'Η').replace('Ί', 'Ι').replace('Ό', 'Ο').replace('Ύ', 'Υ').replace('Ώ', 'Ω'));
+            $(this).text($(this).text().toUpperCase().replace(/Ά/g, 'Α').replace(/Έ/g, 'Ε').replace(/Ή/g, 'Η').replace(/Ί/g, 'Ι').replace( /Ό/g, 'Ο').replace(/Ύ/g, 'Υ').replace(/'Y/g, 'Υ').replace(/Ώ/g, 'Ω'));
+        });
+
     };
     init_hide();
 
