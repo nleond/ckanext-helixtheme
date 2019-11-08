@@ -22,5 +22,5 @@
 {% block secondary_content %}
   {#{% snippet 'snippets/organization.html', organization=c.group_dict, show_nums=true, show_desc=true, show_content=true %}
   {% block organization_facets %}{% endblock %} #}
-  {% snippet "group/snippets/info.html", group=c.group_dict, show_nums=true %}
+  {% snippet "group/snippets/info.html", group=c.group_dict, show_nums=true, group_type = group_type %}
 {% endblock %}

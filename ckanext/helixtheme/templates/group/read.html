@@ -22,7 +22,7 @@
 
 {% block secondary_content %}
 
-  {% snippet "group/snippets/info.html", group=c.group_dict, show_nums=true %}
+  {% snippet "group/snippets/info.html", group=c.group_dict, show_nums=true, group_type=group_type %}
  {#{% for facet in c.facet_titles %}
   {% if facet == 'groups' %}
     {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}, hide_section=true) }}
