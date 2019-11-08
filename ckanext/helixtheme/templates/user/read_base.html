@@ -13,7 +13,9 @@
   {% endif %}
 {% endblock %}
 
-{#{% set orcid = h.get_user_extra(c.userobj.id) %} #}
+{# get orcid if user is already authenticated #}
+{% set orcid = h.get_user_extra(c.userobj.name, 'orcid_id') %} 
+
 {% block secondary_content%}
 <div class="module context-info">
   <section class="module-content">
@@ -91,11 +93,14 @@
             <dd class="value"><code>{{ user.apikey }}</code></dd>
           </dl>
         {% endif %}
-        {% endblock %}
-        {#<dl>
+        <dl>
           <dt class="key">{{ _('ORCID ID') }} </dt>
           <dd class="value">{{orcid}}</code></dd>
-        </dl> #}
+        </dl> 
+        {% if orcid %}
+          <a class="btn-manage orcid" href="{{ h.url_for('/orcid/authorize') }}" >Link with ORCID</a>
+        {% endif %}
+      {% endblock %}
       </div>
     {% endblock %}
   </section>
