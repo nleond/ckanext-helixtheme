@@ -87,10 +87,10 @@
             <section class="results-main-result-set dashboard">
 
                 <div class="page-header">
-                    <div class="content_action">
+                    {#<div class="content_action">
                         {% link_for _('Edit settings'), controller='user', action='edit', id=user.name, class_='btn
                         btn-manage', icon='cog' %}
-                    </div>
+                    </div>#}
                 </div>
                 <div class=result-items>
                     <ul class="nav-bar">
@@ -100,7 +100,7 @@
                             {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
                             {{ h.build_nav_icon('dashboard.organizations', _('My Institutions') if c.userobj.sysadmin else _('Institution')) }}
                             {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }} #}
-                            {{ h.build_nav_icon('dashboard.index', _('News feed')) }}
+                            {{ h.build_nav_icon('dashboard.index', _('Activity Stream')) }}
 
                             {# {% if c.is_sysadmin %}
                             {{ h.build_nav_icon('user_dashboard_maps', _('Maps'), icon='globe') }}
@@ -120,7 +120,7 @@
                         {% snippet 'user/snippets/followee_dropdown.html', context=dashboard_activity_stream_context, followees=followee_list %}
                         <h2 class="page-heading">
                           {% block page_heading %}
-                            {{ _('News feed') }}
+                            {{ _('Activity Stream') }}
                           {% endblock %}
                           <small>{{ _("Activity from items that I'm following") }}</small>
                         </h2>

@@ -1,0 +1,6 @@
+{% ckan_extends %}
+
+
+{% block secondary_content %}
+  {% snippet "group/snippets/info.html", group_type = group_type, group=c.group_dict, show_nums=false %}
+{% endblock %}

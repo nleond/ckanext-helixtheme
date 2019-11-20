@@ -2,7 +2,14 @@
 
 
 {% block breadcrumb_content_inner %}
-  <a class="breadcrumbs-part" href="#">{{ _('Create an Institution') }}</a>
+  <a class="breadcrumbs-part" href="#">{{ _('Create an institution') }}</a>
 {% endblock %}
 
-{% block page_heading %}{{ _('Create an Institution') }}{% endblock %}
+{% block primary_content_inner %}
+  <h2 class="{% block page_heading_class %}page-heading{% endblock %}">
+    {% block page_heading %}{{ _('Create an institution') }}{% endblock %}
+  </h2>
+  {% block form %}
+    {{ c.form | safe }}
+  {% endblock %}
+{% endblock %}

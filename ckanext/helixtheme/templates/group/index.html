@@ -15,7 +15,7 @@
 
 {% block page_primary_action %}
   {% if c.userobj.sysadmin %}
-    {% link_for _('Add Topic') if group_type.startswith('group') else _('Add Community'), named_route= group_type+ '_new', controller='group', action='new', class_='btn btn-manage', icon='plus-sign-alt' %}
+    {% link_for _('Add topic') if group_type.startswith('group') else _('Add community'), named_route= group_type+ '_new', controller='group', action='new', class_='btn btn-manage', icon='plus-sign-alt' %}
   {% endif %}
 {% endblock %}
 
@@ -50,7 +50,7 @@
     </div>
     <div class="group-search">
       {% snippet 'snippets/search_form_top.html', type=group_type, query=c.q, sorting_selected=c.sort_by_selected, count=c.page.item_count, 
-          placeholder=_('Search topics...') if group_type.startswith('group') else _('Search Communities') , show_empty=request.params, no_bottom_border=true if c.page.items %}
+          placeholder=_('Search topics...') if group_type.startswith('group') else _('Search communities') , show_empty=request.params, no_bottom_border=true if c.page.items %}
     </div>
     {% endblock %}
 

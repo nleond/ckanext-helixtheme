@@ -2,10 +2,17 @@
 
 {% block breadcrumb_content %}
   <a class="breadcrumbs-part"{{ h.nav_link(_('Communities') if c.group_type=='community' else _('Create a Topic'), controller='group', named_route=group_type + '_index', action='index') }}</a>
-  <a class="breadcrumbs-part"{% block breadcrumb_link %}{{ h.nav_link(_('Create a Community')if c.group_type=='community' else _('Create a Topic'), controller='group', named_route=group_type + '_new', action='new') }}{% endblock %}</a>
+  <a class="breadcrumbs-part"{% block breadcrumb_link %}{{ h.nav_link(_('Create a community')if c.group_type=='community' else _('Create a topic'), controller='group', named_route=group_type + '_new', action='new') }}{% endblock %}</a>
 {% endblock %}
 
-{% block page_heading %}{{_('Create a Community') if c.group_type=='community' else _('Create a Topic') }}{% endblock %}
+{% block primary_content_inner %}
+  <h2 class="{% block page_heading_class %}page-heading{% endblock %}">
+    {% block page_heading %}{{_('Create a community') if c.group_type=='community' else _('Create a topic') }}{% endblock %}
+  </h2>
+  {% block form %}
+    {{ c.form | safe }}
+  {% endblock %}
+{% endblock %}
 
 {% block secondary_content %}
 {% block paint %}{% endblock %}

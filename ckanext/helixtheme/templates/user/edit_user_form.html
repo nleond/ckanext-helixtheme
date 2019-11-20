@@ -11,7 +11,7 @@
 
     {{ form.input('email', label=_('Email'), id='field-email', type='email', value=data.email, error=errors.email, placeholder=_('e.g. joe@example.com'), classes=['control-medium'], is_required=true) }}
 
-    {#{% set orcid = h.get_user_extra(c.userobj.id) %}
+    {#{% set orcid = h.get_user_extra(c.userobj.id, 'orcid_id') %} 
     
     {{ form.input_orcid('orcid_id', label=_('ORCID ID'), id='field-orcid_id', value=data.orcid_id, error=errors.orcid_id, text_value = orcid , placeholder=_('e.g. https://orcid.org/0000-0002-1825-0097'), classes=['control-medium']) }}
     #}
