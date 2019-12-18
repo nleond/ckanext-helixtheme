@@ -1,7 +1,9 @@
 {% ckan_extends %}
 
+{% block subtitle %}{{_('Create a community') if c.group_type=='community' else _('Create a topic') }}{% endblock %}
+
 {% block breadcrumb_content %}
-  <a class="breadcrumbs-part"{{ h.nav_link(_('Communities') if c.group_type=='community' else _('Create a Topic'), controller='group', named_route=group_type + '_index', action='index') }}</a>
+  <a class="breadcrumbs-part"{{ h.nav_link(_('Communities') if c.group_type=='community' else _('Create a topic'), controller='group', named_route=group_type + '_index', action='index') }}</a>
   <a class="breadcrumbs-part"{% block breadcrumb_link %}{{ h.nav_link(_('Create a community')if c.group_type=='community' else _('Create a topic'), controller='group', named_route=group_type + '_new', action='new') }}{% endblock %}</a>
 {% endblock %}
 

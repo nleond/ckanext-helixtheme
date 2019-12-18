@@ -14,7 +14,7 @@
 {% endblock %}
 
 {# get orcid if user is already authenticated #}
-{% set orcid = h.orcid_user_info(c.userobj.id) %} 
+{#{% set orcid = h.orcid_user_info(c.userobj.id) %} #}
 {% set return_url =  h.url_for(controller='user', action='read', id=c.userobj.name) %}
 
 {% block secondary_content%}
@@ -102,7 +102,7 @@
           </dd>
         </dl> 
         {% else %}
-          <a class="btn-manage orcid" href="{{ h.url_for('/orcid/authorize?return_to=' + return_url ) }}" >Link with ORCID</a>
+          <a class="btn-manage orcid" href="{{ h.url_for('/orcid/authorize?return_to=' + return_url ) }}" >{{_('Link with ORCID')}}</a>
         {% endif %}
       {% endblock %}
       </div>
