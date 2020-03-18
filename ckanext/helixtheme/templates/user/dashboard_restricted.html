@@ -1,0 +1,78 @@
+{% extends "user/dashboard.html" %}
+
+{% block primary_content_inner %}
+{% set auth_requests = h.get_restricted_requests(c.userobj.id, 'registered')%}
+{% set unauth_requests = h.get_restricted_requests(c.userobj.id, 'unregistered')%}
+{% set accepted_requests = h.get_restricted_requests(c.userobj.id, 'accepted')%}
+<div class="result-items">
+  {% if auth_requests %}<h3 class="requests-title"> {{_('Requests from registered users')}} </h3> {% endif %}
+  {% for request in auth_requests %}
+  <div class="result-item data restricted">
+    <a href="{{ h.url_for(controller='package', action='resource_read', id=request.package_id, resource_id=request.resource_id)}}"
+    class="restricted-title"> {{request.resource_name}} </a>
+    <a class="restricted-user">{{_('User')}}: {{request.user_id}}</a>
+    <a class="restricted-message">{{_('Message')}}: {{request.message}}</a>
+
+    <a class="btn btn-manage restricted-link" id="btnDeny" data-module="reject-request"
+      data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
+      data-module-user_id="{{request.user_id}}">{{_('Reject')}}</a>
+
+    <a class="btn btn-manage restricted-link" id="btnAllow" data-module="accept-request"
+      data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
+      data-module-user_id="{{request.user_id}}">{{_('Approve')}}</a>
+  </div>
+  {% endfor %}
+
+  {% if unauth_requests %}<h3 class="requests-title"> {{_('Requests from unregistered users')}} </h3> {% endif %}
+  {% for request in unauth_requests %}
+  <div class="result-item data restricted">
+    <a href="{{ h.url_for(controller='package', action='resource_read', id=request.package_id, resource_id=request.resource_id)}}"
+    class="restricted-title"> {{request.resource_name}} </a>
+    <a class="restricted-user">{{_('User Email')}}: {{request.request_email}}</a>
+    <a class="restricted-message">{{_('Message')}}: {{request.message}}</a>
+
+    <a class="btn btn-manage restricted-link" id="btnDeny" data-module="reject-request"
+      data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
+      data-module-request_email="{{request.request_email}}">{{_("Reject")}}</a>
+
+    <a class="btn btn-manage restricted-link" id="btnAllow" data-module="accept-request"
+      data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
+      data-module-request_email="{{request.request_email}}">{{_('Approve')}}</a>
+  </div>
+  {% endfor %}
+
+  {% if accepted_requests %}<h3 class="requests-title"> {{_('Accepted requests')}} </h3> {% endif%}
+
+  {% for request in accepted_requests %}
+  <div class="result-item data accepted-restricted">
+    <a href="{{ h.url_for(controller='package', action='resource_read', id=request.package_id, resource_id=request.resource_id)}}"
+    class="restricted-title"> {{request.resource_name}} </a>
+    <a class="restricted-user">
+      {% if request.request_email%}{{_('User Email')}}: {{request.request_email}}
+      {% else%} {{_('User')}}: {{request.user_id}} 
+      {% endif%}
+    </a>
+    <a class="restricted-message">{{_('Message')}}: {{request.message}}</a>
+
+    <a class="btn btn-manage restricted-link" id="btnDeny" data-module="reject-request"
+      data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
+      data-module-request_email="{{request.request_email}}">{{_("Cancel")}}</a>
+  </div>
+</div>
+{% endfor %}
+
+{% resource 'restricted/accept-request.js' %}
+{% resource 'restricted/reject-request.js' %}
+
+{% endblock%}
+
+{% block flash %}
+{% set flash_messages = h.flash.pop_messages() | list %}
+<div class="flash-messages">
+  {% for message in flash_messages %}
+  <div class="alert fade in {{ message.category }}">
+    {{ h.literal(message) }}
+  </div>
+  {% endfor %}
+</div>
+{% endblock flash %}

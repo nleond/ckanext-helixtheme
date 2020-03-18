@@ -97,6 +97,7 @@
                         <div class="nav-menu">
                             {% block page_header_navtab_links %}
                             {{ h.build_nav_icon('datasets', _('My Datasets'),controller='ckanext.helix.controllers.user:UserController') }}
+                            {{ h.build_nav_icon('restricted', _('Restricted Resources')) }} 
                             {#{{ h.build_nav_icon('user_dashboard_resources', _('Resources'), icon='cogs') }}#}
                             {{ h.build_nav_icon('dashboard.organizations', _('My Institutions') if c.userobj.sysadmin else _('Institution')) }}
                             {#{{ h.build_nav_icon('dashboard.datasets', _('My Groups')) }} #}
