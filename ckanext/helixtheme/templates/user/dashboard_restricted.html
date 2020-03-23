@@ -58,9 +58,9 @@
       data-module-user_id="{{request.user_id}}"
       data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
       data-module-request_email="{{request.request_email}}">{{_("Cancel")}}</a>
-  </div>
 </div>
 {% endfor %}
+</div>
 
 {% if not auth_requests and not unauth_requests and not accepted_requests %}
   <p class="empty">{{ _('There are no restricted requests') }}</p>
