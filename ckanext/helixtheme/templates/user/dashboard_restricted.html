@@ -54,13 +54,17 @@
     </a>
     <a class="restricted-message">{{_('Message')}}: {{request.message}}</a>
 
-    <a class="btn btn-manage restricted-link" id="btnDeny" data-module="reject-request"
+    <a class="btn btn-manage restricted-link" id="btnDeny" data-module="reject-request" 
+      data-module-user_id="{{request.user_id}}"
       data-module-request_id="{{request.request_id}}" data-module-resource_id="{{request.resource_id}}"
       data-module-request_email="{{request.request_email}}">{{_("Cancel")}}</a>
   </div>
 </div>
 {% endfor %}
 
+{% if not auth_requests and not unauth_requests and not accepted_requests %}
+  <p class="empty">{{ _('There are no restricted requests') }}</p>
+{% endif %}
 {% resource 'restricted/accept-request.js' %}
 {% resource 'restricted/reject-request.js' %}
 
