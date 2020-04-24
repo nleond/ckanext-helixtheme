@@ -14,7 +14,7 @@
 {% endblock %}
 
 {# get orcid if user is already authenticated #}
-{#{% set orcid = h.orcid_user_info(c.userobj.id) %} #}
+{% set orcid = h.orcid_user_info(c.userobj.id) %} 
 {% set return_url =  h.url_for(controller='user', action='read', id=c.userobj.name) %}
 
 {% block secondary_content%}
