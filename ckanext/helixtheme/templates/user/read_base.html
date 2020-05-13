@@ -1,6 +1,4 @@
 {% ckan_extends %}
-
-
 {% block breadcrumb_content %}
   <a class="breadcrumbs-part"{% link_for _('USERS'), controller='user', action='index'%} </a>
   <a class="breadcrumbs-part"{% link_for user.display_name|truncate(35), controller='user', action='read', id=user.name %}</a>
@@ -14,13 +12,11 @@
 {% endblock %}
 
 {# get orcid if user is already authenticated #}
-{% set orcid = h.orcid_user_info(c.userobj.id) %} 
-{% set return_url =  h.url_for(controller='user', action='read', id=c.userobj.name) %}
-
 {% block secondary_content%}
 <div class="module context-info">
   <section class="module-content">
     {% block secondary_content_inner %}
+
       {% block user_image %}
       <div class="image">{{ h.linked_gravatar(user.email_hash, 190) }}</div>
       {% endblock %}
@@ -94,16 +90,26 @@
             <dd class="value"><code>{{ user.apikey }}</code></dd>
           </dl>
         {% endif %}
+        {% set orcid = h.orcid_user_info(user.id) %} 
+        {% set return_url =  h.url_for(controller='user', action='read', id=user.name) %}
         {% if orcid%}
         <dl>
-          <dt class="key">{{ _('ORCID ID') }} </dt>
           <dd class="value">
-            <a href = {{orcid.url}} class="value">{{orcid.id}}</a>
+            <a target="_blank" href = {{orcid.url}} class="value">
+              <span class="orcid-id"></span>
+              {{orcid.url}}
+            </a>
           </dd>
         </dl> 
-        {% else %}
-          <a class="btn-manage orcid" href="{{ h.url_for('/orcid/authorize?return_to=' + return_url ) }}" >{{_('Link with ORCID')}}</a>
-        {% endif %}
+        {% elif h.check_access('user_update', user) %}
+          <a class="btn-manage orcid" href="{{ h.url_for('/orcid/authorize?return_to=' + return_url ) }}" >{{_('Link to ORCID iD')}}</a>
+          <span class='orcid-info'>
+            {{_("By authorizing HEAL-Link's research data repository (HARDMIN) to collect your ORCID iD, you allow it to link your ORCID iD")}}
+            {{_("to the research data you have submitted to HARDMIN as well as to update your ORCID record with your profile url in HARDMIN.")}}
+            {{_("Use the \"Link to ORCID iD\" button to allow HARDMIN to collect and use your ORCID iD.")}}
+            {{_("More info:")}}<a href="https://orcid.heal-link.gr/"> orcid.heal-link.gr</a>
+          </span>
+          {% endif %}
       {% endblock %}
       </div>
     {% endblock %}
