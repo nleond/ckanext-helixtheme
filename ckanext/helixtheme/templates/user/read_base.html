@@ -101,7 +101,7 @@
             </a>
           </dd>
         </dl> 
-        {% elif h.check_access('user_update', user) %}
+        {% elif c.userobj and c.userobj.id == user.id %}
           <a class="btn-manage orcid" href="{{ h.url_for('/orcid/authorize?return_to=' + return_url ) }}" >{{_('Link to ORCID iD')}}</a>
           <span class='orcid-info'>
             {{_("By authorizing HEAL-Link's research data repository (HARDMIN) to collect your ORCID iD, you allow it to link your ORCID iD")}}
