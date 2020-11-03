@@ -1,0 +1,28 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Faq') }}{% endblock %}
+
+{% block breadcrumb_content %}
+<a class="breadcrumbs-part" {% link_for _('FAQ'), controller='ckanext.helix.controllers.home:Controller', action='faq'  %}</a>
+{% endblock %}
+
+{% block primary %}
+<article class="module">
+    <div class="module-content">
+        {% block about %}
+        {% if g.site_about %}
+        {{ h.render_markdown(g.site_about) }}
+        {% endif %}
+        {% trans %}
+        <p class="about-title">Οδηγός Χρήσης</p>
+
+        <p class ="about">"Σε αυτόν τον σύνδεσμο <a href='/HEAL-LINK_Tutorial.pptx'>(HEAL-LINK Tutorial)</a>
+            μπορείτε να βρείτε έναν οδηγό σε μορφή Microsoft PowerPoint (.pptx), για τη χρήση του εθνικού αποθετηρίου ερευνητικών δεδομένων HARDMIN."</p>
+
+        {% endtrans %}
+
+        {% endblock %}
+    </div>
+</article>
+</div>
+{% endblock %}
