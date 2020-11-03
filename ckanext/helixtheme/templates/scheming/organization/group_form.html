@@ -6,7 +6,7 @@
     </p>
 {%- endif -%}
 
-<form class="dataset-form form-horizontal" method="post" data-module="basic-form" enctype="multipart/form-data">
+<form class="dataset-form form-horizontal" method="post" data-module="basic-form" enctype="multipart/form-data" novalidate>
     {%- set schema = h.scheming_get_organization_schema(c.group_type) -%}
     {%- for field in schema['fields'] -%}
         {%- snippet 'scheming/snippets/form_field.html',
